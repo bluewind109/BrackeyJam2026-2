@@ -4,7 +4,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private PlayerInputHandler _inputHandler;
-    [SerializeField] private InputSequence _inputSequence;
+    [SerializeField] private Spell _spell;
     private int inputIndex = 0;
     private List<InputDirection> _playerInputs = new List<InputDirection>();
 
@@ -35,12 +35,12 @@ public class Player : MonoBehaviour
 
     private void OnLetterTyped(InputDirection input)
     {
-        if (_inputSequence.IsInputMatched(input, inputIndex))
+        if (_spell.IsInputMatched(input, inputIndex))
         {
             inputIndex++;
             _playerInputs.Add(input);
             Debug.Log($"Correct input: {input}. Current sequence: {string.Join(", ", _playerInputs)}");
-            if (inputIndex >= _inputSequence.Length)
+            if (inputIndex >= _spell.InputSequence.Length)
             {
                 Debug.Log("Input sequence completed!");
                 inputIndex = 0; // Reset for next sequence

@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6792e6b031daaf04493fa4ece975e42f, type: 3}
-  m_Name: InputSequence_01
-  m_EditorClassIdentifier: Assembly-CSharp::InputSequence
-  _inputs: 02000000000000000300000000000000
+  m_Script: {fileID: 11500000, guid: 3d3721a314105d145a751556ae9c9d16, type: 3}
+  m_Name: Spell
+  m_EditorClassIdentifier: Assembly-CSharp::Spell
+  _spellName: Fireball
+  _inputSequence: {fileID: 11400000, guid: e779ee6cb9c8ba14185d22867dd3ed22, type: 2}

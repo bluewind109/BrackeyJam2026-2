@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   _inputHandler: {fileID: 1853510148}
-  _inputSequence: {fileID: 11400000, guid: e779ee6cb9c8ba14185d22867dd3ed22, type: 2}
+  _spell: {fileID: 11400000, guid: 0599556b9050acd40815914c8be97e19, type: 2}
 --- !u!1 &1075580800
 GameObject:
   m_ObjectHideFlags: 0
