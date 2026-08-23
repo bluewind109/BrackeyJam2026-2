@@ -40,7 +40,7 @@ public class PlayerInputHandler : MonoBehaviour
                 Debug.LogError("Invalid input letter");
                 break;
         }
-        return InputDirection.Up; // Default return to satisfy compiler, though this should never be reached
+        return InputDirection.None;
     }
 
     private bool AllowedInput(char _letter)
@@ -52,6 +52,7 @@ public class PlayerInputHandler : MonoBehaviour
 
 public enum InputDirection
 {
+    None = -1,
     Up,
     Down,
     Left,
