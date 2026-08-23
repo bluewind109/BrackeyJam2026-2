@@ -7,18 +7,8 @@ public class PlayerInputHandler : MonoBehaviour
 
     private bool isEnabled = false;
 
-    void Start()
-    {
-        EnableInput(); // testing only
-    }
-
     public void EnableInput() => isEnabled = true;
     public void DisableInput() => isEnabled = false;
-
-    void Update() // testing only
-    {
-        UpdateInput();
-    }
 
     public void UpdateInput()
     {
