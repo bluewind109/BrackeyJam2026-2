@@ -4,8 +4,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private PlayerInputHandler _inputHandler;
-    [SerializeField] private Spell _spell;
-    private int inputIndex = 0;
+    [SerializeField] private Spell_FireBall _spell_FireBall;
+    private int _inputIndex = 0;
     private Spell _currentSpell = null;
     private List<InputDirection> _playerInputs = new List<InputDirection>();
 
@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
         if (_currentSpell == null) return;
 
         Vector3 targetPosition = GetMouseWorldPosition();
+        targetPosition.z = 0f;
         _currentSpell.Cast(transform.position, targetPosition);
         _currentSpell = null; // Reset the current spell after casting
     }
@@ -51,28 +52,29 @@ public class Player : MonoBehaviour
     {
         Vector3 mousePosition = Input.mousePosition;
         mousePosition.z = Camera.main.nearClipPlane; // Set this to the distance from the camera to the player
+        // Debug.Log($"Mouse Position: {mousePosition}, World Position: {Camera.main.ScreenToWorldPoint(mousePosition)}");
         return Camera.main.ScreenToWorldPoint(mousePosition);
     }
 
     private void OnLetterTyped(InputDirection input)
     {
-        if (_spell.IsInputMatched(input, inputIndex))
+        if (_spell_FireBall.IsInputMatched(input, _inputIndex))
         {
-            inputIndex++;
+            _inputIndex++;
             _playerInputs.Add(input);
             Debug.Log($"Correct input: {input}. Current sequence: {string.Join(", ", _playerInputs)}");
-            if (inputIndex >= _spell.InputSequence.Length)
+            if (_inputIndex >= _spell_FireBall.InputSequence.Length)
             {
                 Debug.Log("<color=green>Input sequence completed!</color>");
-                inputIndex = 0; // Reset for next sequence
-                _currentSpell = _spell; // Set the current spell to the completed spell
+                _inputIndex = 0; // Reset for next sequence
+                _currentSpell = _spell_FireBall; // Set the current spell to the completed spell
                 _playerInputs.Clear();
             }
         }
         else
         {
             Debug.Log("Incorrect input. Resetting sequence.");
-            inputIndex = 0; // Reset on incorrect input
+            _inputIndex = 0; // Reset on incorrect input
             _playerInputs.Clear();
         }
     }
