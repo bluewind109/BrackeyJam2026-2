@@ -1,8 +1,8 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Spell", menuName = "Spell")]
 public abstract class Spell : ScriptableObject
 {
+	[Header("Spell Settings")]
     [SerializeField] private string _spellName;
 	[SerializeField] private Sprite _spellIcon;
 	[SerializeField] private int _damage;

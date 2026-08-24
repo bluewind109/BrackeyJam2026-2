@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private PlayerInputHandler _inputHandler;
     [SerializeField] private Spell_FireBall _spell_FireBall;
+    [SerializeField] private Spell_IceLances _spell_IceLances;
     private int _inputIndex = 0;
     private Spell _currentSpell = null;
     private List<InputDirection> _playerInputs = new List<InputDirection>();
@@ -58,16 +59,16 @@ public class Player : MonoBehaviour
 
     private void OnLetterTyped(InputDirection input)
     {
-        if (_spell_FireBall.IsInputMatched(input, _inputIndex))
+        if (_spell_IceLances.IsInputMatched(input, _inputIndex))
         {
             _inputIndex++;
             _playerInputs.Add(input);
             Debug.Log($"Correct input: {input}. Current sequence: {string.Join(", ", _playerInputs)}");
-            if (_inputIndex >= _spell_FireBall.InputSequence.Length)
+            if (_inputIndex >= _spell_IceLances.InputSequence.Length)
             {
                 Debug.Log("<color=green>Input sequence completed!</color>");
                 _inputIndex = 0; // Reset for next sequence
-                _currentSpell = _spell_FireBall; // Set the current spell to the completed spell
+                _currentSpell = _spell_IceLances; // Set the current spell to the completed spell
                 _playerInputs.Clear();
             }
         }
