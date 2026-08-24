@@ -3,6 +3,7 @@ using System;
 
 public class PlayerInputHandler : MonoBehaviour
 {
+    public Action<MouseButton> MouseClicked;
     public Action<InputDirection> LetterTyped;
 
     private bool isEnabled = false;
@@ -10,7 +11,21 @@ public class PlayerInputHandler : MonoBehaviour
     public void EnableInput() => isEnabled = true;
     public void DisableInput() => isEnabled = false;
 
-    public void UpdateInput()
+    public void UpdateMouseInput()
+    {
+        if (!isEnabled) return;
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            MouseClicked?.Invoke(MouseButton.Left);
+        }
+        else if (Input.GetMouseButtonDown(1))
+        {
+            MouseClicked?.Invoke(MouseButton.Right);
+        }
+    }
+
+    public void UpdateKeyboardInput()
     {
         if (!isEnabled) return;
         if (!Input.anyKeyDown) return;
@@ -55,6 +70,13 @@ public enum InputDirection
     None = -1,
     Up,
     Down,
+    Left,
+    Right
+}
+
+public enum MouseButton
+{
+    None = -1,
     Left,
     Right
 }
