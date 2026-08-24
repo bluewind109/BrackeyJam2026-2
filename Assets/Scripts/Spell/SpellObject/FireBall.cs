@@ -2,9 +2,23 @@ using UnityEngine;
 
 public class FireBall : MonoBehaviour
 {
-    bool _isInitialized = false;
-    float _speed = 10f;
-    Vector3 _direction;
+    private bool _isInitialized = false;
+    private float _speed = 10f;
+    private int damage = 10;
+    private Vector3 _direction;
+
+    private Hitbox _hitbox;
+
+
+	void Awake()
+    {
+        _hitbox = GetComponentInChildren<Hitbox>();
+        if (_hitbox != null)
+        {
+            _hitbox.Initialize("Enemy");
+            _hitbox.onHit += OnHit;
+        }
+    }
 
     public void Initialize(Vector3 direction, float speed)
     {
@@ -18,5 +32,10 @@ public class FireBall : MonoBehaviour
         if (!_isInitialized) return;
 
         transform.position += _direction * _speed * Time.deltaTime;
+    }
+
+    private void OnHit(Hurtbox hurtbox)
+    {
+        hurtbox.TakeDamage(damage);
     }
 }

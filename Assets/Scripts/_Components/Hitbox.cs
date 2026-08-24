@@ -28,7 +28,8 @@ public class Hitbox : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag(targetTag))
+        Debug.Log($"Hitbox collided with: {other.transform.parent.name}, Tag: {other.transform.parent.tag}");
+        if (other.transform.parent.CompareTag(targetTag))
         {
             var hurtbox = other.GetComponent<Hurtbox>();
             if (hurtbox != null)

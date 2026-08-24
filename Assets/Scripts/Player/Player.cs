@@ -60,16 +60,17 @@ public class Player : MonoBehaviour
 
     private void OnLetterTyped(InputDirection input)
     {
-        if (_spell_WindStep.IsInputMatched(input, _inputIndex))
+        Spell matchedSpell = _spell_FireBall; // testing
+        if (matchedSpell.IsInputMatched(input, _inputIndex))
         {
             _inputIndex++;
             _playerInputs.Add(input);
             Debug.Log($"Correct input: {input}. Current sequence: {string.Join(", ", _playerInputs)}");
-            if (_inputIndex >= _spell_WindStep.InputSequence.Length)
+            if (_inputIndex >= matchedSpell.InputSequence.Length)
             {
                 Debug.Log("<color=green>Input sequence completed!</color>");
                 _inputIndex = 0; // Reset for next sequence
-                _currentSpell = _spell_WindStep; // Set the current spell to the completed spell
+                _currentSpell = matchedSpell; // Set the current spell to the completed spell
                 _playerInputs.Clear();
             }
         }
