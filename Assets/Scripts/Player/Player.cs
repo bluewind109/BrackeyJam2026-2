@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerInputHandler _inputHandler;
     [SerializeField] private Spell_FireBall _spell_FireBall;
     [SerializeField] private Spell_IceLances _spell_IceLances;
+    [SerializeField] private Spell_WindStep _spell_WindStep;
     private int _inputIndex = 0;
     private Spell _currentSpell = null;
     private List<InputDirection> _playerInputs = new List<InputDirection>();
@@ -45,7 +46,7 @@ public class Player : MonoBehaviour
 
         Vector3 targetPosition = GetMouseWorldPosition();
         targetPosition.z = 0f;
-        _currentSpell.Cast(transform.position, targetPosition);
+        _currentSpell.Cast(this, targetPosition);
         _currentSpell = null; // Reset the current spell after casting
     }
 
@@ -59,16 +60,16 @@ public class Player : MonoBehaviour
 
     private void OnLetterTyped(InputDirection input)
     {
-        if (_spell_IceLances.IsInputMatched(input, _inputIndex))
+        if (_spell_WindStep.IsInputMatched(input, _inputIndex))
         {
             _inputIndex++;
             _playerInputs.Add(input);
             Debug.Log($"Correct input: {input}. Current sequence: {string.Join(", ", _playerInputs)}");
-            if (_inputIndex >= _spell_IceLances.InputSequence.Length)
+            if (_inputIndex >= _spell_WindStep.InputSequence.Length)
             {
                 Debug.Log("<color=green>Input sequence completed!</color>");
                 _inputIndex = 0; // Reset for next sequence
-                _currentSpell = _spell_IceLances; // Set the current spell to the completed spell
+                _currentSpell = _spell_WindStep; // Set the current spell to the completed spell
                 _playerInputs.Clear();
             }
         }

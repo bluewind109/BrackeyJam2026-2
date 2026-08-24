@@ -1,0 +1,86 @@
+using System;
+using UnityEngine;
+
+public class PlayerShadow : MonoBehaviour
+{
+    enum ShadowState
+    {
+        Idle,
+        Moving
+    }
+
+    [SerializeField] private float _waitDuration = 1f;
+    private float _waitTimer = 0f;
+    private float _speed = 10f;
+
+    private Player _player;
+    private ShadowState _currentState = ShadowState.Idle;
+    private bool _isInitialized = false;
+
+    public void Initialize(Player player, float speed)
+    {
+        _player = player;
+        _waitTimer = 0f;
+        _speed = speed;
+        _isInitialized = true;
+    }
+
+    void Update()
+    {
+        if (!_isInitialized) return;
+
+        switch (_currentState)
+        {
+            case ShadowState.Idle:
+                HandleIdleState();
+                break;
+            case ShadowState.Moving:
+                HandleMovingState();
+                break;
+        }
+    }
+
+    private void SetState(ShadowState newState)
+    {
+        if (newState == _currentState) return;
+        _currentState = newState;
+
+        switch (_currentState)
+        {
+            case ShadowState.Idle:
+                _waitTimer = 0f;
+                break;
+            case ShadowState.Moving:
+                break;
+        }
+    }
+
+	private void HandleIdleState()
+	{
+        if (_waitTimer >= _waitDuration) return;
+
+        _waitTimer += Time.deltaTime;
+        if (_waitTimer >= _waitDuration)
+        {
+            // this.gameObject.SetActive(false);
+            // Destroy(this.gameObject, 0.1f);
+            SetState(ShadowState.Moving);
+        }
+	}
+
+	private void HandleMovingState()
+    {
+        if (_player == null) return;
+
+        Vector3 direction = (_player.transform.position - transform.position).normalized;
+        transform.position += direction * _speed * Time.deltaTime;
+
+        // Check if the shadow has reached the player
+        if (Vector3.Distance(transform.position, _player.transform.position) < 0.1f)
+        {
+            _player = null;
+            this.gameObject.SetActive(false);
+            Destroy(this.gameObject, 0.1f);
+        }
+    }
+}

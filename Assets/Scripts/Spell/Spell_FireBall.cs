@@ -6,11 +6,13 @@ public class Spell_FireBall : Spell
 	[Header("FireBall Settings")]
 	[SerializeField] private FireBall _fireBallPrefab;
 
-	public override void Cast(Vector3 from, Vector3 to)
+	public override void Cast(Player player, Vector3 to)
 	{
 		if (_fireBallPrefab == null) return;
-		FireBall spellInstance = Instantiate(_fireBallPrefab, from, Quaternion.identity);
+		Vector3 from = player.transform.position;
 		Vector3 direction = (to - from).normalized;
+		
+		FireBall spellInstance = Instantiate(_fireBallPrefab, from, Quaternion.identity);
 		float speed = 10f;
 		spellInstance.Initialize(direction, speed);
 	}

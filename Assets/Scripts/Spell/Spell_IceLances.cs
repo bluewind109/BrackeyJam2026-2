@@ -7,9 +7,10 @@ public class Spell_IceLances : Spell
 	[SerializeField] private IceLance _iceLancePrefab;
 	[SerializeField] private int _numberOfLances = 5;
 
-	public override void Cast(Vector3 from, Vector3 to)
+	public override void Cast(Player player, Vector3 to)
 	{
 		if (_iceLancePrefab == null) return;
+		Vector3 from = player.transform.position;
 		Vector3 direction = (to - from).normalized;
 
 		float speed = 10f;
