@@ -4,7 +4,7 @@ using System;
 public class PlayerInputHandler : MonoBehaviour
 {
     public Action<MouseButton> MouseClicked;
-    public Action<InputDirection> LetterTyped;
+    public Action<InputDirection> InputReceived;
 
     private bool isEnabled = false;
 
@@ -35,7 +35,7 @@ public class PlayerInputHandler : MonoBehaviour
             if (!AllowedInput(letter)) continue;
             InputDirection direction = CheckDirectionalInput(letter);
             Debug.Log($"Letter typed: {letter}, Direction: {direction}");
-            LetterTyped?.Invoke(direction);
+            InputReceived?.Invoke(direction);
         }
     }
 
