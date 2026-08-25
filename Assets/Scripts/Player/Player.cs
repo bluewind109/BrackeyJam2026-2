@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
 		if (!_inputHandler) return;
 		_inputHandler.EnableInput();
 		_inputHandler.MouseClicked += OnMouseClicked;
-		_inputHandler.InputReceived += OnLetterTyped;
+		_inputHandler.InputReceived += OnInputReceived;
 	}
 
 	void OnDestroy()
@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
 	{
 		if (!_inputHandler) return;
 		_inputHandler.MouseClicked -= OnMouseClicked;
-		_inputHandler.InputReceived -= OnLetterTyped;
+		_inputHandler.InputReceived -= OnInputReceived;
 	}
 
 	public void GameUpdate()
@@ -94,7 +94,7 @@ public class Player : MonoBehaviour
 		return Camera.main.ScreenToWorldPoint(mousePosition);
 	}
 
-	private void OnLetterTyped(InputDirection input)
+	private void OnInputReceived(InputDirection input)
 	{
 		if (!_isFocusModeActive) return;
 
