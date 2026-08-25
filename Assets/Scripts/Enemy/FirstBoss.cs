@@ -5,6 +5,7 @@ public class FirstBoss : Enemy
 {
     [SerializeField] private EnemyState _idleState;
     [SerializeField] private EnemyState _circleShotState;
+    [SerializeField] private EnemyState _dashState;
 
     private EnemyState _currentState;
 
@@ -12,6 +13,7 @@ public class FirstBoss : Enemy
     {
         _idleState.StateFinished += OnIdleStateFinished;
         _circleShotState.StateFinished += OnCircleShotStateFinished;
+        _dashState.StateFinished += OnDashStateFinished;
 
         SetState(_idleState);
     }
@@ -20,6 +22,7 @@ public class FirstBoss : Enemy
     {
         _idleState.StateFinished -= OnIdleStateFinished;
         _circleShotState.StateFinished -= OnCircleShotStateFinished;
+        _dashState.StateFinished -= OnDashStateFinished;
     }
 
     private void SetState(EnemyState newState)
@@ -43,6 +46,11 @@ public class FirstBoss : Enemy
     }
 
     private void OnCircleShotStateFinished()
+    {
+        SetState(_idleState);
+    }
+
+    private void OnDashStateFinished()
     {
         SetState(_idleState);
     }

@@ -4,6 +4,9 @@ namespace EnemyStates
 {
     public class CircleShotState : EnemyState
     {
+        private int _numberOfShots = 8;
+        private float _shotInterval = 0.5f;
+
         private float _idleDuration = 2f;
         private float _idleTimer = 0f;
 
