@@ -9,22 +9,29 @@ namespace GameStates
 		private NormalMode _normalMode;
 		private FocusMode _focusMode;
 
+		private Timer _focusTimer;
+
 		private Player _player;
 
-		public GameplayState(GameManager gameManager, Player player) : base(gameManager)
+		public GameplayState(GameManager gameManager, Player player, Timer timer) : base(gameManager)
 		{
 			_player = player;
-			_normalMode = new NormalMode(_player);
-			_focusMode = new FocusMode(_player);
+			_focusTimer = timer;
+			_normalMode = new NormalMode(_player, _focusTimer);
+			_focusMode = new FocusMode(_player, _focusTimer);
 			SwitchPlayerMode(_normalMode);
 		}
 
 		public override void Enter()
 		{
+			_normalMode.FocusModeRequested += () => SwitchPlayerMode(_focusMode);
+			_focusMode.FocusModeComplete += () => SwitchPlayerMode(_normalMode);
 		}
 
 		public override void Exit()
 		{
+			_normalMode.FocusModeRequested -= () => SwitchPlayerMode(_focusMode);
+			_focusMode.FocusModeComplete -= () => SwitchPlayerMode(_normalMode);
 		}
 
 		public override void Update()
