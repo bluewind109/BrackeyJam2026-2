@@ -29,7 +29,7 @@ public class Timer : MonoBehaviour
         UpdateProgressBar();
     }
 
-    public void Play(float newDuration)
+    public void Begin(float newDuration)
     {
         duration = newDuration;
         timer = duration;
