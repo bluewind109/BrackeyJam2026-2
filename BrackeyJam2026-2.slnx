@@ -1,4 +1,4 @@
-<Solution>
+﻿<Solution>
   <Project Path="Unity.Timeline.csproj" />
   <Project Path="Unity.InputSystem.csproj" />
   <Project Path="Unity.PlasticSCM.Editor.csproj" />
@@ -22,7 +22,6 @@
   <Project Path="Unity.PerformanceTesting.csproj" />
   <Project Path="Unity.2D.Tilemap.Extras.Editor.csproj" />
   <Project Path="Unity.InputSystem.ForUI.csproj" />
-  <Project Path="BrackeyJam2026/BrackeyJam2026.csproj" />
   <Project Path="PsdPlugin.csproj" />
   <Project Path="Unity.2D.IK.Editor.csproj" />
   <Project Path="Unity.InternalAPIEngineBridge.001.csproj" />
@@ -49,4 +48,5 @@
   <Project Path="Unity.VisualScripting.DocCodeExamples.csproj" />
   <Project Path="Unity.PlasticSCM.Editor.Entities.csproj" />
   <Project Path="Unity.2D.Triangulation.Runtime.csproj" />
+  <Project Path="BrackeyJam2026/BrackeyJam2026.csproj" />
 </Solution>
