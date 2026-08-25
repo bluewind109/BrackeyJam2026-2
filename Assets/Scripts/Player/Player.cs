@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 
 	[SerializeField] private PlayerInputHandler _inputHandler;
 	[SerializeField] private List<Spell> _spells = new List<Spell>();
+	[SerializeField] private float _moveSpeed = 5f;
 
 	private int _inputIndex = 0;
 	private Spell _currentSpell = null;
@@ -45,7 +46,15 @@ public class Player : MonoBehaviour
 		if (_inputHandler)
 		{
 			_inputHandler.UpdateMouseInput();
-			_inputHandler.UpdateKeyboardInput();
+
+			if (_isFocusModeActive)
+			{
+				_inputHandler.UpdateKeyboardInput();
+			}
+			else
+			{
+				HandleNormalModeMovement(_inputHandler.GetMovementInput());
+			}
 		}
 	}
 
@@ -87,6 +96,8 @@ public class Player : MonoBehaviour
 
 	private void OnLetterTyped(InputDirection input)
 	{
+		if (!_isFocusModeActive) return;
+
 		if (_inputIndex == 0)
 		{
 			_inputIndex++;
@@ -116,6 +127,14 @@ public class Player : MonoBehaviour
 			_spellToType = null; // Reset the spell to type
 			_playerInputs.Clear();
 		}
+	}
+
+	private void HandleNormalModeMovement(Vector2 movementInput)
+	{
+		if (movementInput == Vector2.zero) return;
+
+		Vector3 movement = new Vector3(movementInput.x, movementInput.y, 0f);
+		transform.position += movement * _moveSpeed * Time.deltaTime;
 	}
 
 	public void EnterFocusMode()

@@ -39,6 +39,34 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+    public Vector2 GetMovementInput()
+    {
+        if (!isEnabled) return Vector2.zero;
+
+        float horizontal = 0f;
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        {
+            horizontal -= 1f;
+        }
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        {
+            horizontal += 1f;
+        }
+
+        float vertical = 0f;
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        {
+            vertical -= 1f;
+        }
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        {
+            vertical += 1f;
+        }
+
+        Vector2 movementInput = new Vector2(horizontal, vertical);
+        return movementInput.sqrMagnitude > 1f ? movementInput.normalized : movementInput;
+    }
+
     private InputDirection CheckDirectionalInput(char letter)
     {
         switch (letter)
