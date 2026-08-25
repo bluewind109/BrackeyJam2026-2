@@ -11,8 +11,11 @@ namespace PlayerModes
 		private Timer _focusCooldownTimer;
 		private bool _isFocusReady = true;
 
-		public NormalMode(Player player, Timer timer) : base(player, timer)
+		private Enemy _enemy;
+
+		public NormalMode(Player player, Enemy enemy, Timer timer) : base(player, timer)
 		{
+			_enemy = enemy;
 			_focusCooldownTimer = timer;
 		}
 
@@ -34,6 +37,7 @@ namespace PlayerModes
 		public override void Update()
 		{
 			_player.GameUpdate();
+			_enemy.GameUpdate();
 			_focusCooldownTimer.UpdateTime();
 		}
 

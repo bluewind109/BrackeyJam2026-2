@@ -4,6 +4,7 @@ using GameStates;
 public class GameManager : MonoBehaviour
 {
   [SerializeField] private Player _player;
+  [SerializeField] private Enemy _enemy;
   [SerializeField] private Timer _focusTimer;
 
   private GameState _currentState;
@@ -16,7 +17,7 @@ public class GameManager : MonoBehaviour
   void Start()
   {
     _introState = new IntroState(this);
-    _gameplayState = new GameplayState(this, _player, _focusTimer);
+    _gameplayState = new GameplayState(this, _player, _enemy, _focusTimer);
     _pauseState = new PauseState(this);
     _gameOverState = new GameOverState(this);
 

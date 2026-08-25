@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
     private Health _health;
     private Hurtbox _hurtbox;
@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
 
         if (_hurtbox != null)
         {
-            _hurtbox.onHit += OnHit;
+            _hurtbox.onHit += TakeDamage;
         }
     }
 
@@ -33,22 +33,21 @@ public class Enemy : MonoBehaviour
 
         if (_hurtbox != null)
         {
-            _hurtbox.onHit -= OnHit;
+            _hurtbox.onHit -= TakeDamage;
         }
     }
 
-	private void OnHit(int damageTaken)
+    public abstract void GameUpdate();
+
+	private void TakeDamage(int damageTaken)
 	{
-		throw new NotImplementedException();
 	}
 
 	private void OnDeath()
 	{
-		throw new NotImplementedException();
 	}
 
 	private void OnHealthChanged(int value)
 	{
-		throw new NotImplementedException();
 	}
 }
