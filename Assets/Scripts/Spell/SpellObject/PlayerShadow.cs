@@ -12,10 +12,23 @@ public class PlayerShadow : MonoBehaviour
     [SerializeField] private float _waitDuration = 1f;
     private float _waitTimer = 0f;
     private float _speed = 10f;
+    private int _damage = 10;
 
     private Player _player;
+    private Hitbox _hitbox;
+
     private ShadowState _currentState = ShadowState.Idle;
     private bool _isInitialized = false;
+
+    void Awake()
+    {
+        _hitbox = GetComponentInChildren<Hitbox>();
+        if (_hitbox != null)
+        {
+            _hitbox.Initialize("Enemy");
+            _hitbox.onHit += OnHit;
+        }
+    }
 
     public void Initialize(Player player, float speed)
     {
@@ -55,8 +68,8 @@ public class PlayerShadow : MonoBehaviour
         }
     }
 
-	private void HandleIdleState()
-	{
+    private void HandleIdleState()
+    {
         if (_waitTimer >= _waitDuration) return;
 
         _waitTimer += Time.deltaTime;
@@ -66,9 +79,9 @@ public class PlayerShadow : MonoBehaviour
             // Destroy(this.gameObject, 0.1f);
             SetState(ShadowState.Moving);
         }
-	}
+    }
 
-	private void HandleMovingState()
+    private void HandleMovingState()
     {
         if (_player == null) return;
 
@@ -82,5 +95,10 @@ public class PlayerShadow : MonoBehaviour
             this.gameObject.SetActive(false);
             Destroy(this.gameObject, 0.1f);
         }
+    }
+
+    private void OnHit(Hurtbox hurtbox)
+    {
+        hurtbox.TakeDamage(_damage);
     }
 }

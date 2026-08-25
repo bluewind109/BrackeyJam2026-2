@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Spell_WindStep
   _spellName: Wind Step
   _spellIcon: {fileID: 0}
+  _level: 0
   _damage: 1
   _cooldown: 3
-  _inputSequence: {fileID: 11400000, guid: e779ee6cb9c8ba14185d22867dd3ed22, type: 2}
+  _inputSequence: {fileID: 11400000, guid: ab84ad29d25442c42955878808554b23, type: 2}
   _playerShadowPrefab: {fileID: 3876492527447626472, guid: 1c92f1ad44caf0346a7c34b753dc24f6, type: 3}
   _castRange: 5
+  shadowSpeed: 30

@@ -7,12 +7,13 @@ public class Player : MonoBehaviour
 	public event Action RightMouseClicked;
 
 	[SerializeField] private PlayerInputHandler _inputHandler;
-	[SerializeField] private Spell_FireBall _spell_FireBall;
-	[SerializeField] private Spell_IceLances _spell_IceLances;
-	[SerializeField] private Spell_WindStep _spell_WindStep;
+	[SerializeField] private List<Spell> _spells = new List<Spell>();
+
 	private int _inputIndex = 0;
 	private Spell _currentSpell = null;
+	private Spell _spellToType = null;
 	private List<InputDirection> _playerInputs = new List<InputDirection>();
+	private bool _isFocusModeActive = false;
 
 	void Start()
 	{
@@ -86,17 +87,25 @@ public class Player : MonoBehaviour
 
 	private void OnLetterTyped(InputDirection input)
 	{
-		Spell matchedSpell = _spell_FireBall; // testing
-		if (matchedSpell.IsInputMatched(input, _inputIndex))
+		if (_inputIndex == 0)
+		{
+			_inputIndex++;
+			_spellToType = _spells.Find(spell => spell.IsInputMatched(input, 0));
+			Debug.Log($"First input: {input}. Spell to type: {_spellToType?.name ?? "None"}");
+			return;
+		}
+		if (_spellToType == null) return;
+
+		if (_spellToType.IsInputMatched(input, _inputIndex))
 		{
 			_inputIndex++;
 			_playerInputs.Add(input);
 			Debug.Log($"Correct input: {input}. Current sequence: {string.Join(", ", _playerInputs)}");
-			if (_inputIndex >= matchedSpell.InputSequence.Length)
+			if (_inputIndex >= _spellToType.InputSequence.Length)
 			{
 				Debug.Log("<color=green>Input sequence completed!</color>");
 				_inputIndex = 0; // Reset for next sequence
-				_currentSpell = matchedSpell; // Set the current spell to the completed spell
+				_currentSpell = _spellToType; // Set the current spell to the completed spell
 				_playerInputs.Clear();
 			}
 		}
@@ -104,7 +113,18 @@ public class Player : MonoBehaviour
 		{
 			Debug.Log("Incorrect input. Resetting sequence.");
 			_inputIndex = 0; // Reset on incorrect input
+			_spellToType = null; // Reset the spell to type
 			_playerInputs.Clear();
 		}
+	}
+
+	public void EnterFocusMode()
+	{
+		_isFocusModeActive = true;
+	}
+
+	public void ExitFocusMode()
+	{
+		_isFocusModeActive = false;
 	}
 }

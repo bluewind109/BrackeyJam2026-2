@@ -17,6 +17,8 @@ namespace PlayerModes
 
 		public override void Enter()
 		{
+			_player.EnterFocusMode();
+			
 			_focusTimer.Begin(_focusDuration);
 			_focusTimer.onTimerComplete += OnFocusTimerComplete;
 		}

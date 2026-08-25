@@ -4,7 +4,7 @@ public class FireBall : MonoBehaviour
 {
     private bool _isInitialized = false;
     private float _speed = 10f;
-    private int damage = 10;
+    private int _damage = 10;
     private Vector3 _direction;
 
     private Hitbox _hitbox;
@@ -36,6 +36,6 @@ public class FireBall : MonoBehaviour
 
     private void OnHit(Hurtbox hurtbox)
     {
-        hurtbox.TakeDamage(damage);
+        hurtbox.TakeDamage(_damage);
     }
 }

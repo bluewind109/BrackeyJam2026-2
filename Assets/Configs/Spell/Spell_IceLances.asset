@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Spell_IceLances
   _spellName: Ice Lances
   _spellIcon: {fileID: 0}
+  _level: 0
   _damage: 1
-  _castRange: 0
   _cooldown: 3
-  _inputSequence: {fileID: 11400000, guid: e779ee6cb9c8ba14185d22867dd3ed22, type: 2}
+  _inputSequence: {fileID: 11400000, guid: 9a7b35ff1f12b3241b4503a743801632, type: 2}
   _iceLancePrefab: {fileID: 1266967946362938931, guid: 6a90db0b983ed9e4dbe3494a1b1618d0, type: 3}
   _numberOfLances: 5
