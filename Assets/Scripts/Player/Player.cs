@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 
 	[SerializeField] private PlayerInputHandler _inputHandler;
 	[SerializeField] private List<Spell> _spells = new List<Spell>();
+	[SerializeField] private float _moveSpeed = 5f;
 
 	private int _inputIndex = 0;
 	private Spell _currentSpell = null;
@@ -25,7 +26,7 @@ public class Player : MonoBehaviour
 		if (!_inputHandler) return;
 		_inputHandler.EnableInput();
 		_inputHandler.MouseClicked += OnMouseClicked;
-		_inputHandler.InputReceived += OnInputReceived;
+		_inputHandler.InputReceived += OnLetterTyped;
 	}
 
 	void OnDestroy()
@@ -37,7 +38,7 @@ public class Player : MonoBehaviour
 	{
 		if (!_inputHandler) return;
 		_inputHandler.MouseClicked -= OnMouseClicked;
-		_inputHandler.InputReceived -= OnInputReceived;
+		_inputHandler.InputReceived -= OnLetterTyped;
 	}
 
 	public void GameUpdate()
@@ -45,7 +46,15 @@ public class Player : MonoBehaviour
 		if (_inputHandler)
 		{
 			_inputHandler.UpdateMouseInput();
-			_inputHandler.UpdateKeyboardInput();
+
+			if (_isFocusModeActive)
+			{
+				_inputHandler.UpdateKeyboardInput();
+			}
+			else
+			{
+				HandleNormalModeMovement(_inputHandler.GetMovementInput());
+			}
 		}
 	}
 
@@ -85,34 +94,14 @@ public class Player : MonoBehaviour
 		return Camera.main.ScreenToWorldPoint(mousePosition);
 	}
 
-	private void OnInputReceived(InputDirection input)
+	private void OnLetterTyped(InputDirection input)
 	{
-		if (_isFocusModeActive)
-		{
-			HandleInputInFocusMode(input);
-		}
-		else
-		{
-			HandleInputInNormalMode(input);
-		}
-	}
+		if (!_isFocusModeActive) return;
 
-	/// <summary>
-	/// Player movement in Normal Mode
-	/// </summary>
-	/// <param name="input"></param>
-	private void HandleInputInNormalMode(InputDirection input)
-	{
-		
-	}
-
-	private void HandleInputInFocusMode(InputDirection input)
-	{
-		bool isFirstInput = _inputIndex == 0;
-		if (isFirstInput)
+		if (_inputIndex == 0)
 		{
-			_spellToType = _spells.Find(spell => spell.IsInputMatched(input, 0));
 			_inputIndex++;
+			_spellToType = _spells.Find(spell => spell.IsInputMatched(input, 0));
 			Debug.Log($"First input: {input}. Spell to type: {_spellToType?.name ?? "None"}");
 			return;
 		}
@@ -123,8 +112,7 @@ public class Player : MonoBehaviour
 			_inputIndex++;
 			_playerInputs.Add(input);
 			Debug.Log($"Correct input: {input}. Current sequence: {string.Join(", ", _playerInputs)}");
-			bool isSequenceComplete = _inputIndex >= _spellToType.InputSequence.Length;
-			if (isSequenceComplete)
+			if (_inputIndex >= _spellToType.InputSequence.Length)
 			{
 				Debug.Log("<color=green>Input sequence completed!</color>");
 				_inputIndex = 0; // Reset for next sequence
@@ -139,6 +127,14 @@ public class Player : MonoBehaviour
 			_spellToType = null; // Reset the spell to type
 			_playerInputs.Clear();
 		}
+	}
+
+	private void HandleNormalModeMovement(Vector2 movementInput)
+	{
+		if (movementInput == Vector2.zero) return;
+
+		Vector3 movement = new Vector3(movementInput.x, movementInput.y, 0f);
+		transform.position += movement * _moveSpeed * Time.deltaTime;
 	}
 
 	public void EnterFocusMode()
