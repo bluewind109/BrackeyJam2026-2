@@ -4,6 +4,10 @@ namespace PlayerModes
 {
 	public class FocusMode : PlayerMode
 	{
+		public FocusMode(Player player) : base(player)
+		{
+		}
+
 		public override void Enter()
 		{
 		}
@@ -14,6 +18,7 @@ namespace PlayerModes
 
 		public override void Update()
 		{
+			_player.GameUpdate();
 		}
 	}
 }

@@ -4,16 +4,20 @@ namespace GameStates
 {
 	public class IntroState : GameState
 	{
-	public override void Enter()
-	{
-	}
+		public IntroState(GameManager gameManager) : base(gameManager)
+		{
+		}
 
-	public override void Exit()
-	{
-	}
+		public override void Enter()
+		{
+		}
 
-	public override void Update()
-	{
-	}
+		public override void Exit()
+		{
+		}
+
+		public override void Update()
+		{
+		}
 	}
 }
