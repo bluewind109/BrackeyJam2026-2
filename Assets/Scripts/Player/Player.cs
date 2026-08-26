@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-	public event Action RightMouseClicked;
+	public event Action OnRightMouseClicked;
+	public event Action OnSpellTyped;
 
 	[SerializeField] private PlayerInputHandler _inputHandler;
 	[SerializeField] private List<Spell> _spells = new List<Spell>();
@@ -83,14 +84,15 @@ public class Player : MonoBehaviour
 
 	private void HandleRightClick()
 	{
-		RightMouseClicked?.Invoke();
+		OnRightMouseClicked?.Invoke();
 	}
 
 	private Vector3 GetMouseWorldPosition()
 	{
 		Vector3 mousePosition = Input.mousePosition;
-		mousePosition.z = Camera.main.nearClipPlane; // Set this to the distance from the camera to the player
-													 // Debug.Log($"Mouse Position: {mousePosition}, World Position: {Camera.main.ScreenToWorldPoint(mousePosition)}");
+		// Set this to the distance from the camera to the player
+		mousePosition.z = Camera.main.nearClipPlane;
+		// Debug.Log($"Mouse Position: {mousePosition}, World Position: {Camera.main.ScreenToWorldPoint(mousePosition)}");
 		return Camera.main.ScreenToWorldPoint(mousePosition);
 	}
 
@@ -115,16 +117,17 @@ public class Player : MonoBehaviour
 			if (_inputIndex >= _spellToType.InputSequence.Length)
 			{
 				Debug.Log("<color=green>Input sequence completed!</color>");
-				_inputIndex = 0; // Reset for next sequence
-				_currentSpell = _spellToType; // Set the current spell to the completed spell
+				_inputIndex = 0;
+				_currentSpell = _spellToType;
 				_playerInputs.Clear();
+				OnSpellTyped?.Invoke();
 			}
 		}
 		else
 		{
 			Debug.Log("Incorrect input. Resetting sequence.");
-			_inputIndex = 0; // Reset on incorrect input
-			_spellToType = null; // Reset the spell to type
+			_inputIndex = 0;
+			_spellToType = null;
 			_playerInputs.Clear();
 		}
 	}

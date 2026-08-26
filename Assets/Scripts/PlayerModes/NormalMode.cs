@@ -21,7 +21,7 @@ namespace PlayerModes
 
 		public override void Enter()
 		{
-			_player.RightMouseClicked += OnRightMouseClicked;
+			_player.OnRightMouseClicked += OnRightMouseClicked;
 			_player.ExitFocusMode();
 
 			_focusCooldownTimer.Begin(_focusCooldown);
@@ -30,7 +30,7 @@ namespace PlayerModes
 
 		public override void Exit()
 		{
-			_player.RightMouseClicked -= OnRightMouseClicked;
+			_player.OnRightMouseClicked -= OnRightMouseClicked;
 			_focusCooldownTimer.onTimerComplete -= OnFocusCooldownTimerComplete;
 		}
 

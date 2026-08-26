@@ -18,6 +18,7 @@ namespace PlayerModes
 		public override void Enter()
 		{
 			_player.EnterFocusMode();
+			_player.OnSpellTyped += OnSpellTyped;
 			
 			_focusTimer.Begin(_focusDuration);
 			_focusTimer.onTimerComplete += OnFocusTimerComplete;
@@ -26,12 +27,19 @@ namespace PlayerModes
 		public override void Exit()
 		{
 			_focusTimer.onTimerComplete -= OnFocusTimerComplete;
+			_player.OnSpellTyped -= OnSpellTyped;
 		}
 
 		public override void Update()
 		{
 			_player.GameUpdate();
 			_focusTimer.UpdateTime();
+		}
+
+		private void OnSpellTyped()
+		{
+			Debug.Log("Spell typed in FocusMode");
+			OnFocusTimerComplete();
 		}
 
 		private void OnFocusTimerComplete()
