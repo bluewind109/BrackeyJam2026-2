@@ -6,11 +6,13 @@ namespace EnemyStates
 {
     public class CircleShotState : EnemyState
     {
-        private int _numberOfShots = 8;
-		private int _projectilesPerShot = 10;
+        [SerializeField] private CircleShotStateConfig config;
+
+        private int _numberOfShots;
+		private int _projectilesPerShot;
 		private int _currentShotCount = 0;
 
-        private float _shotInterval = 0.5f;
+        private float _shotInterval;
         private float _shotTimer = 0f;
 
         public override void Enter()
@@ -18,6 +20,9 @@ namespace EnemyStates
             Debug.Log("Entering Circle Shot State");
             _shotTimer = 0f;
 			_currentShotCount = 0;
+            _numberOfShots = config.NumberOfShots;
+            _projectilesPerShot = config.ProjectilesPerShot;
+            _shotInterval = config.ShotInterval;
         }
 
         public override void Exit()

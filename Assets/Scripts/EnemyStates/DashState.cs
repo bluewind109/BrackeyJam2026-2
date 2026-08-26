@@ -6,18 +6,21 @@ namespace EnemyStates
 {
     public class DashState : EnemyState
     {
-        private float _delayDuration = 1f;
+        [SerializeField] private DashStateConfig config;
+
+        private float _delayDuration;
         private float _delayTimer = 0f;
 
-        private float _dashSpeed = 10f;
-        private float _dashDistance = 10f;
+        private float _dashSpeed;
+        private float _dashDistance;
         private Vector3 _dashDirection;
         private Vector3 _startPosition;
 
-        private int _projectilesPerShot = 10;
+        private int _projectilesPerShot;
+        private float _projectileSpeed;
         private int _currentShotCount = 0;
 
-        private float _shotInterval = 0.25f;
+        private float _shotInterval;
         private float _shotTimer = 0f;
 
         private Enemy _enemy;
@@ -34,6 +37,14 @@ namespace EnemyStates
             Debug.Log("Entering Dash State");
             _delayTimer = 0f;
             _dashDirection = Vector3.zero;
+
+            _dashSpeed = config.DashSpeed;
+            _dashDistance = config.DashDistance;
+            _delayDuration = config.DelayDuration;
+
+            _projectilesPerShot = config.ProjectilesPerShot;
+            _projectileSpeed = config.ProjectileSpeed;
+            _shotInterval = config.ShotInterval;
 
             _shotTimer = _shotInterval;
             _currentShotCount = 0;
@@ -92,9 +103,8 @@ namespace EnemyStates
                 }
             }
 
-            float projectileSpeed = 2.5f;
             RadialPattern radialPattern = new RadialPattern();
-            radialPattern.Shoot(projectiles, _enemy.transform.position, projectileSpeed);
+            radialPattern.Shoot(projectiles, _enemy.transform.position, _projectileSpeed);
         }
     }
 }
