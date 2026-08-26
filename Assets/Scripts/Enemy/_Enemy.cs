@@ -5,6 +5,7 @@ public abstract class Enemy : MonoBehaviour
 {
     private Health _health;
     private Hurtbox _hurtbox;
+    private Player _player;
 
     void Awake()
     {
@@ -35,6 +36,11 @@ public abstract class Enemy : MonoBehaviour
         {
             _hurtbox.onHit -= TakeDamage;
         }
+    }
+
+    public virtual void Initialize(Player player)
+    {
+        _player = player;
     }
 
     public abstract void GameUpdate();

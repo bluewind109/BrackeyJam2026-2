@@ -4,7 +4,7 @@ namespace EnemyStates
 {
     public class IdleState : EnemyState
     {
-        private float _idleDuration = 2f;
+        private float _idleDuration = 3f;
         private float _idleTimer = 0f;
 
         public override void Enter()

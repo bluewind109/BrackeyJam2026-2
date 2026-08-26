@@ -32,9 +32,8 @@ namespace EnemyStates
             {
                 _shotTimer = 0f;
                 _currentShotCount++;
-				// Angle adjusted after each shot to create a circular pattern
-
-                Shoot(_currentShotCount * (360f / _numberOfShots));
+                // Shoot(_currentShotCount * (360f / _numberOfShots));
+                Shoot();
                 if (_currentShotCount >= _numberOfShots)
                 {
                     OnStateFinished();
@@ -42,7 +41,7 @@ namespace EnemyStates
             }
         }
 
-		private void Shoot(float startAngle = 0f)
+		private void Shoot()
 		{
 			List<Projectile> projectiles = new List<Projectile>();
 			for (int i = 0; i < _projectilesPerShot; i++)

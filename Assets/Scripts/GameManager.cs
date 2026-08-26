@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
 	void Start()
 	{
-		InitState = new InitState(this);
+		InitState = new InitState(this, _player, _enemy);
 		IntroState = new IntroState(this);
 		GameplayState = new GameplayState(this, _player, _enemy, _focusTimer);
 		PauseState = new PauseState(this);

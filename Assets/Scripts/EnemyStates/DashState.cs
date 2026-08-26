@@ -1,30 +1,100 @@
+using System.Collections.Generic;
+using ShootPatterns;
 using UnityEngine;
 
 namespace EnemyStates
 {
     public class DashState : EnemyState
     {
-        private float _dashDuration = 1f;
-        private float _dashTimer = 0f;
+        private float _delayDuration = 1f;
+        private float _delayTimer = 0f;
+
+        private float _dashSpeed = 10f;
+        private float _dashDistance = 10f;
+        private Vector3 _dashDirection;
+        private Vector3 _startPosition;
+
+        private int _projectilesPerShot = 10;
+        private int _currentShotCount = 0;
+
+        private float _shotInterval = 0.25f;
+        private float _shotTimer = 0f;
+
+        private Enemy _enemy;
+        private Player _player;
+
+        public void Initialize(Enemy enemy, Player player)
+        {
+            _enemy = enemy;
+            _player = player;
+        }
 
         public override void Enter()
         {
             Debug.Log("Entering Dash State");
-            _dashTimer = 0f;
+            _delayTimer = 0f;
+            _dashDirection = Vector3.zero;
+
+            _shotTimer = _shotInterval;
+            _currentShotCount = 0;
         }
 
         public override void Exit()
         {
-            // Logic for exiting the Dash state
         }
 
         public override void UpdateState()
         {
-            _dashTimer += Time.deltaTime;
-            if (_dashTimer >= _dashDuration)
+            UpdateDash();
+
+            bool isDelayFinished = _delayTimer >= _delayDuration;
+            if (!isDelayFinished) _delayTimer += Time.deltaTime;
+            if (isDelayFinished && _dashDirection == Vector3.zero)
+            {
+                StartDash();
+            }
+        }
+
+        private void StartDash()
+        {
+            _startPosition = _enemy.transform.position;
+            _dashDirection = (_player.transform.position - _enemy.transform.position).normalized;
+        }
+
+        private void UpdateDash()
+        {
+            if (_dashDirection == Vector3.zero) return;
+            _enemy.transform.position += _dashDirection * _dashSpeed * Time.deltaTime;
+
+            _shotTimer += Time.deltaTime;
+            if (_shotTimer >= _shotInterval)
+            {
+                _shotTimer = 0f;
+                _currentShotCount++;
+                Shoot();
+            }
+
+            if (Vector3.Distance(_enemy.transform.position, _startPosition) >= _dashDistance)
             {
                 OnStateFinished();
             }
+        }
+
+        private void Shoot()
+        {
+            List<Projectile> projectiles = new List<Projectile>();
+            for (int i = 0; i < _projectilesPerShot; i++)
+            {
+                var projectile = EnemyProjectileManager.Instance.SpawnProjectile(_enemy.transform.position, Vector3.zero, 5f);
+                if (projectile != null)
+                {
+                    projectiles.Add(projectile);
+                }
+            }
+
+            float projectileSpeed = 2.5f;
+            RadialPattern radialPattern = new RadialPattern();
+            radialPattern.Shoot(projectiles, _enemy.transform.position, projectileSpeed);
         }
     }
 }
