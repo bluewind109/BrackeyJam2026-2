@@ -20,7 +20,7 @@ public class EnemyProjectile : MonoBehaviour
         _hitbox = GetComponentInChildren<Hitbox>();
         if (_hitbox != null)
         {
-            _hitbox.Initialize("Enemy");
+            _hitbox.Initialize("Player");
             _hitbox.onHit += OnHit;
         }
     }

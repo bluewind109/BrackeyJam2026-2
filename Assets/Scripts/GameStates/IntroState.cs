@@ -10,6 +10,8 @@ namespace GameStates
 
 		public override void Enter()
 		{
+			// TODO show countdown UI
+			_gameManager.SetState(_gameManager.GameplayState);
 		}
 
 		public override void Exit()

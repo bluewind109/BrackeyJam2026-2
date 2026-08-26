@@ -3,39 +3,40 @@ using GameStates;
 
 public class GameManager : MonoBehaviour
 {
-  [SerializeField] private Player _player;
-  [SerializeField] private Enemy _enemy;
-  [SerializeField] private Timer _focusTimer;
+	[SerializeField] private Player _player;
+	[SerializeField] private Enemy _enemy;
+	[SerializeField] private Timer _focusTimer;
 
-  private GameState _currentState;
-  private GameState _introState;
-  private GameState _gameplayState;
-  private GameState _pauseState;
-  private GameState _gameOverState;
+	private GameState _currentState;
+	public GameState InitState { get; private set; }
+	public GameState IntroState { get; private set; }
+	public GameState GameplayState { get; private set; }
+	public GameState PauseState { get; private set; }
+	public GameState GameOverState { get; private set; }
 
+	void Start()
+	{
+		InitState = new InitState(this);
+		IntroState = new IntroState(this);
+		GameplayState = new GameplayState(this, _player, _enemy, _focusTimer);
+		PauseState = new PauseState(this);
+		GameOverState = new GameOverState(this);
 
-  void Start()
-  {
-    _introState = new IntroState(this);
-    _gameplayState = new GameplayState(this, _player, _enemy, _focusTimer);
-    _pauseState = new PauseState(this);
-    _gameOverState = new GameOverState(this);
+		SetState(InitState);
+	}
 
-    SetState(_gameplayState);
-  }
+	void Update()
+	{
+		_currentState?.Update();
+	}
 
-  void Update()
-  {
-    _currentState?.Update();
-  }
+	public void SetState(GameState newState)
+	{
+		if (newState == null) return;
+		if (_currentState == newState) return;
 
-  private void SetState(GameState newState)
-  {
-    if (newState == null) return;
-    if (_currentState == newState) return;
-
-    _currentState?.Exit();
-    _currentState = newState;
-    _currentState?.Enter();
-  }
+		_currentState?.Exit();
+		_currentState = newState;
+		_currentState?.Enter();
+	}
 }

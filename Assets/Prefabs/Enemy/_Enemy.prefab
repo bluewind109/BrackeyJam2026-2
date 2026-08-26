@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1413085394406001191}
   - component: {fileID: 6189591858222316966}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,7 +140,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a5263b1256b27b49a6b4f9347c7591f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FirstBoss
+  _idleState: {fileID: 0}
   _circleShotState: {fileID: 0}
+  _dashState: {fileID: 0}
 --- !u!1 &9133862957717341413
 GameObject:
   m_ObjectHideFlags: 0

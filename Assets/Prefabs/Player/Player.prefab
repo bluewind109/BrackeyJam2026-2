@@ -47,13 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   _inputHandler: {fileID: 4817366234634584827}
-  _spell_FireBall: {fileID: 11400000, guid: 0599556b9050acd40815914c8be97e19, type: 2}
-  _spell_IceLances: {fileID: 11400000, guid: beb02d716ca25af4dacd7aa35941efbb, type: 2}
-  _spell_WindStep: {fileID: 11400000, guid: 6c7c8cc1d13af274291564ae6853887d, type: 2}
   _spells:
   - {fileID: 11400000, guid: 0599556b9050acd40815914c8be97e19, type: 2}
   - {fileID: 11400000, guid: beb02d716ca25af4dacd7aa35941efbb, type: 2}
   - {fileID: 11400000, guid: 6c7c8cc1d13af274291564ae6853887d, type: 2}
+  _moveSpeed: 5
 --- !u!1 &4022069889420862849
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,7 +63,7 @@ GameObject:
   - component: {fileID: 4839741028688709516}
   - component: {fileID: 7974007958857934852}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

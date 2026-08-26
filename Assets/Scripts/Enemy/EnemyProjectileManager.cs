@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyProjectileManager : MonoBehaviour
 {
+	public static EnemyProjectileManager Instance { get; private set; }
+
 	[SerializeField] private EnemyProjectile _projectilePrefab;
 
 	private Stack<EnemyProjectile> _projectilePool = new Stack<EnemyProjectile>();
@@ -12,6 +14,19 @@ public class EnemyProjectileManager : MonoBehaviour
 
 	private bool _isInitialized = false;
 	public bool IsInitialized => _isInitialized;
+
+	void Awake()
+	{
+		Instance = this;
+	}
+
+	void OnDestroy()
+	{
+		if (Instance == this)
+		{
+			Instance = null;
+		}
+	}
 
 	public void Initialize()
 	{
