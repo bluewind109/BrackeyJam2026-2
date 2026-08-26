@@ -3,17 +3,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Spell_FireBall", menuName = "Spell/FireBall")]
 public class Spell_FireBall : Spell
 {
-	[Header("FireBall Settings")]
-	[SerializeField] private FireBall _fireBallPrefab;
+	// [Header("FireBall Settings")]
 
 	public override void Cast(Player player, Vector3 to)
 	{
-		if (_fireBallPrefab == null) return;
+		float speed = 10f;
 		Vector3 from = player.transform.position;
 		Vector3 direction = (to - from).normalized;
-		
-		FireBall spellInstance = Instantiate(_fireBallPrefab, from, Quaternion.identity);
-		float speed = 10f;
-		spellInstance.Initialize(direction, speed, "Enemy");
+		PlayerProjectileManager.Instance.SpawnProjectile<FireBall>(from, direction, speed);
 	}
 }
