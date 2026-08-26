@@ -105,3 +105,6 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+BrackeyJam2026-2.slnx
+BrackeyJam2026/obj/Debug/net9.0/BrackeyJam2026.AssemblyInfo.cs
+BrackeyJam2026/obj/Debug/net9.0/BrackeyJam2026.AssemblyInfoInputs.cache
