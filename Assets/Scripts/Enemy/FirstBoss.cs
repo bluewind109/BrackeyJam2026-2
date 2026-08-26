@@ -9,6 +9,7 @@ public class FirstBoss : Enemy
     [SerializeField] private EnemyState _chaseState;
     [SerializeField] private EnemyState _circleShotState;
     [SerializeField] private EnemyState _dashState;
+    [SerializeField] private EnemyState _recoverState;
 
     private List<EnemyState> _attackStates = new List<EnemyState>();
 
@@ -20,6 +21,7 @@ public class FirstBoss : Enemy
         _chaseState.StateFinished += OnChaseStateFinished;
         _circleShotState.StateFinished += OnCircleShotStateFinished;
         _dashState.StateFinished += OnDashStateFinished;
+        _recoverState.StateFinished += OnRecoverStateFinished;
 
         _attackStates.Add(_circleShotState);
         _attackStates.Add(_dashState);
@@ -31,6 +33,7 @@ public class FirstBoss : Enemy
         _chaseState.StateFinished -= OnChaseStateFinished;
         _circleShotState.StateFinished -= OnCircleShotStateFinished;
         _dashState.StateFinished -= OnDashStateFinished;
+        _recoverState.StateFinished -= OnRecoverStateFinished;
     }
 
     public override void Initialize(Player player)
@@ -76,10 +79,14 @@ public class FirstBoss : Enemy
 
     private void OnCircleShotStateFinished()
     {
-        SetState(_chaseState);
+        SetState(_recoverState);
     }
 
     private void OnDashStateFinished()
+    {
+        SetState(_recoverState);
+    }
+    private void OnRecoverStateFinished()
     {
         SetState(_chaseState);
     }
