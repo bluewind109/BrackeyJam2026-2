@@ -58,6 +58,7 @@ public class EnemyProjectileManager : MonoBehaviour
 		if (projectile != null)
 		{
 			projectile.transform.position = position;
+            projectile.OnReleased += OnProjectileReleased;
 			projectile.Initialize(direction, speed, "Player");
 			return projectile;
 		}
