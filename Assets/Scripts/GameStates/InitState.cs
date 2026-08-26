@@ -15,6 +15,7 @@ namespace GameStates
 
 		public override void Enter()
 		{
+			PlayerProjectileManager.Instance.Initialize();
 			EnemyProjectileManager.Instance.Initialize();
 			_enemy.Initialize(_player);
 		}
@@ -25,7 +26,8 @@ namespace GameStates
 
 		public override void Update()
 		{
-			if (EnemyProjectileManager.Instance.IsInitialized)
+			if (PlayerProjectileManager.Instance.IsInitialized &&
+				EnemyProjectileManager.Instance.IsInitialized)
 			{
 				_gameManager.SetState(_gameManager.IntroState);
 			}
