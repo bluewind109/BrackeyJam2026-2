@@ -20,7 +20,7 @@ public class Spell_IceLances : Spell
 			IceLance spellInstance = Instantiate(_iceLancePrefab, from, Quaternion.identity);
 			float angleOffset = (i - (_numberOfLances - 1) / 2f) * 10f; // Adjust the angle offset for each lance
 			Vector3 rotatedDirection = Quaternion.Euler(0, 0, angleOffset) * direction;
-			spellInstance.Initialize(rotatedDirection, speed);
+			spellInstance.Initialize(rotatedDirection, speed, "Enemy");
 		}
 	}
 }

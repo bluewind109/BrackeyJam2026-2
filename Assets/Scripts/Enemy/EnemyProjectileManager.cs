@@ -8,9 +8,9 @@ public class EnemyProjectileManager : MonoBehaviour
 
 	[SerializeField] private EnemyProjectile _projectilePrefab;
 
-	private Stack<EnemyProjectile> _projectilePool = new Stack<EnemyProjectile>();
+	private List<Projectile> _projectilePool = new List<Projectile>();
 
-	private const int POOL_SIZE = 50;
+	private const int POOL_SIZE = 100;
 
 	private bool _isInitialized = false;
 	public bool IsInitialized => _isInitialized;
@@ -39,7 +39,7 @@ public class EnemyProjectileManager : MonoBehaviour
 		for (int i = 0; i < POOL_SIZE; i++)
 		{
 			var projectile = CreateNewProjectile();
-			_projectilePool.Push(projectile);
+			_projectilePool.Add(projectile);
 		}
 	}
 
@@ -47,14 +47,31 @@ public class EnemyProjectileManager : MonoBehaviour
 	{
 		var newProjectile = Instantiate(_projectilePrefab, transform);
 		newProjectile.OnReleased += OnProjectileReleased;
+		newProjectile.gameObject.SetActive(false);
+		_projectilePool.Add(newProjectile);
 		return newProjectile;
 	}
 
-	public EnemyProjectile GetFreeProjectile()
+	public Projectile SpawnProjectile(Vector3 position, Vector3 direction, float speed)
 	{
-		if (_projectilePool.Count > 0)
+		var projectile = GetFreeProjectile();
+		if (projectile != null)
 		{
-			return _projectilePool.Pop();
+			projectile.transform.position = position;
+			projectile.Initialize(direction, speed, "Player");
+			return projectile;
+		}
+		return null;
+	}
+
+	private Projectile GetFreeProjectile()
+	{
+		foreach (var projectile in _projectilePool)
+		{
+			if (!projectile.IsActive)
+			{
+				return projectile;
+			}
 		}
 
 		if (_projectilePrefab == null)
@@ -66,11 +83,9 @@ public class EnemyProjectileManager : MonoBehaviour
 		return newProjectile;
 	}
 
-	private void OnProjectileReleased(EnemyProjectile projectile)
+	private void OnProjectileReleased(Projectile projectile)
 	{
 		projectile.OnReleased -= OnProjectileReleased;
-		projectile.gameObject.SetActive(false);
-		_projectilePool.Push(projectile);
 	}
 
 	public void GameUpdate()
@@ -81,6 +96,4 @@ public class EnemyProjectileManager : MonoBehaviour
 			projectile.GameUpdate();
 		}
 	}
-
-
 }

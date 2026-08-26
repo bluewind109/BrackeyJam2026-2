@@ -14,6 +14,6 @@ public class Spell_FireBall : Spell
 		
 		FireBall spellInstance = Instantiate(_fireBallPrefab, from, Quaternion.identity);
 		float speed = 10f;
-		spellInstance.Initialize(direction, speed);
+		spellInstance.Initialize(direction, speed, "Enemy");
 	}
 }
