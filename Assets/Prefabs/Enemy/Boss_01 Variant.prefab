@@ -244,6 +244,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss_01 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8304034563500000565, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: m_Size.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8304034563500000565, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
