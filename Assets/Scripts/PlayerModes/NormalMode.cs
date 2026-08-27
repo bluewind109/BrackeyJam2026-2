@@ -23,7 +23,7 @@ namespace PlayerModes
 			_player.OnRightMouseClicked += OnRightMouseClicked;
 			_player.ExitFocusMode();
 
-			_focusCooldownTimer.Begin(_focusCooldown);
+			_focusCooldownTimer.Begin(_focusCooldown, true);
 			_focusCooldownTimer.onTimerComplete += OnFocusCooldownTimerComplete;
 		}
 

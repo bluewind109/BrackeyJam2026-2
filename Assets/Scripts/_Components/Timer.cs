@@ -9,9 +9,9 @@ public class Timer : MonoBehaviour
 
     private float duration;
     private float timer;
+    private bool isCountingUp;
     public bool IsPaused { get; private set; }
     public bool IsRunning => timer > 0 && !IsPaused;
-	public float RemainingPercentage => duration > 0 ? timer / duration : 0;
 
     public void UpdateTime(float timeScale = 1f)
     {
@@ -29,8 +29,9 @@ public class Timer : MonoBehaviour
         UpdateProgressBar();
     }
 
-    public void Begin(float newDuration)
+    public void Begin(float newDuration, bool isCountingUp = false)
     {
+        this.isCountingUp = isCountingUp;
         duration = newDuration;
         timer = duration;
         UpdateProgressBar();
@@ -55,7 +56,13 @@ public class Timer : MonoBehaviour
     private void UpdateProgressBar()
     {
         if (progressBar == null) return;
-        progressBar.fillAmount = duration > 0 ? timer / duration : 0;
+        if (isCountingUp)
+        {
+            progressBar.fillAmount = duration > 0 ? 1 - (timer / duration) : 0;
+        }
+        else
+        {
+            progressBar.fillAmount = duration > 0 ? timer / duration : 0;
+        }
     }
-
 }
