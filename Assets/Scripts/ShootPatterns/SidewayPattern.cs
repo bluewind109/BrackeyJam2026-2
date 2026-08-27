@@ -30,11 +30,10 @@ namespace ShootPatterns
 			Vector3 shootDirection = Vector3.Cross(direction, Vector3.forward).normalized;
 			for (int i = 0; i < 2; i++)
 			{
-				Vector3 spawnPosition = position + (i == 0 ? shootDirection : -shootDirection);
 				EnemyProjectileManager.Instance.SpawnProjectile(
 					_config.ProjectileDamage,
-					spawnPosition,
-					direction,
+					position,
+					i == 0 ? shootDirection : -shootDirection,
 					_config.ProjectileSpeed
 				);
 			}

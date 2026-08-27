@@ -36,6 +36,7 @@ namespace EnemyStates
             _delayTimer = 0f;
             _dashDirection = Vector3.zero;
 
+            _dashTimer = 0f;
             _shotTimer = _config.ShotInterval;
             _currentShotCount = 0;
         }

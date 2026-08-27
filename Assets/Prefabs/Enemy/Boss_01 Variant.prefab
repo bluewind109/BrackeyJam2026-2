@@ -315,12 +315,12 @@ PrefabInstance:
       objectReference: {fileID: 7915424087615280481}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _attackStates.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: '_attackStates.Array.data[0]'
       value: 
-      objectReference: {fileID: 5919872402068557067}
+      objectReference: {fileID: 6305990441899281335}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: '_attackStates.Array.data[1]'
       value: 
