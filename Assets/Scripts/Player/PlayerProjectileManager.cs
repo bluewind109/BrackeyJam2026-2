@@ -67,7 +67,6 @@ public class PlayerProjectileManager : MonoBehaviour
         if (projectile != null)
         {
             projectile.transform.position = position;
-            projectile.OnReleased += OnProjectileReleased;
             projectile.Initialize(direction, speed, damage, "Enemy");
             return projectile;
         }
@@ -88,14 +87,12 @@ public class PlayerProjectileManager : MonoBehaviour
         if (typeof(T) == typeof(FireBall))
         {
             var newFireBall = CreateNewFireBall();
-            newFireBall.OnReleased += OnProjectileReleased;
             _fireBallPool.Add(newFireBall);
             return newFireBall;
         }
         else if (typeof(T) == typeof(IceLance))
         {
             var newIceLance = CreateNewIceLance();
-            newIceLance.OnReleased += OnProjectileReleased;
             _iceLancePool.Add(newIceLance);
             return newIceLance;
         }
@@ -118,8 +115,4 @@ public class PlayerProjectileManager : MonoBehaviour
         }
     }
 
-    private void OnProjectileReleased(Projectile projectile)
-    {
-        projectile.OnReleased -= OnProjectileReleased;
-    }
 }
