@@ -179,6 +179,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStates.CircleShotState
   _shootPatternConfig: {fileID: 11400000, guid: fb6984cc5b2e8a94b8cca36361199c5f, type: 2}
+--- !u!1 &6901176135321113537
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 934910249055744642}
+  - component: {fileID: 8888663338373061959}
+  m_Layer: 0
+  m_Name: SpawnState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &934910249055744642
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6901176135321113537}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 152684261516999017}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8888663338373061959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6901176135321113537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4fb1511b72ee464fa59290c47e323ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStates.SpawnState
 --- !u!1 &7445563150749018732
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,9 +337,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3818007979712407486}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: _spawnState
+      value: 
+      objectReference: {fileID: 8888663338373061959}
+    - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _recoverState
       value: 
       objectReference: {fileID: 4253798069121746932}
+    - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: _spriteRenderer
+      value: 
+      objectReference: {fileID: 7915424087615280481}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _circleShotState
       value: 
@@ -385,6 +437,9 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4189074171661111726, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 934910249055744642}
+    - targetCorrespondingSourceObject: {fileID: 4189074171661111726, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 2825990294987032118}
     - targetCorrespondingSourceObject: {fileID: 4189074171661111726, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       insertIndex: -1
@@ -406,5 +461,10 @@ PrefabInstance:
 --- !u!4 &152684261516999017 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4189074171661111726, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+  m_PrefabInstance: {fileID: 4052365850602940615}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &7915424087615280481 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6189591858222316966, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
   m_PrefabInstance: {fileID: 4052365850602940615}
   m_PrefabAsset: {fileID: 0}
