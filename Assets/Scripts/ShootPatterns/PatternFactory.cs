@@ -4,7 +4,6 @@ namespace ShootPatterns
 {
     public static class PatternFactory
     {
-        // Example method to create a pattern based on ShootPatternInfo
         public static Pattern CreatePattern(ShootPatternInfo patternInfo)
         {
             switch (patternInfo.PatternType)
@@ -13,6 +12,10 @@ namespace ShootPatterns
                     return new RadialPattern((RadialPatternConfig)patternInfo.Config);
                 case ShootPatternType.Spiral:
                     return new SpiralPattern((SpiralPatternConfig)patternInfo.Config);
+                case ShootPatternType.Sideway:
+                    return new SidewayPattern((SidewayPatternConfig)patternInfo.Config);
+                case ShootPatternType.Fan:
+                    return new FanPattern((FanPatternConfig)patternInfo.Config);
                 default:
                     Debug.LogError("Unknown pattern type: " + patternInfo.PatternType);
                     return null;

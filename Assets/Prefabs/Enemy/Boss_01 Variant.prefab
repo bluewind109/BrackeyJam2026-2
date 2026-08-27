@@ -91,8 +91,10 @@ MonoBehaviour:
   _possiblePatterns:
   - PatternType: 0
     Config: {fileID: 11400000, guid: fb6984cc5b2e8a94b8cca36361199c5f, type: 2}
-  - PatternType: 0
+  - PatternType: 1
     Config: {fileID: 11400000, guid: cfbdd1bd8a1a6de4898873d3a444cd13, type: 2}
+  - PatternType: 2
+    Config: {fileID: 11400000, guid: 4e4433d2c1e7ace4e9a3b60280dae7e9, type: 2}
 --- !u!1 &3834184620517093811
 GameObject:
   m_ObjectHideFlags: 0

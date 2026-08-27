@@ -14,6 +14,7 @@ public abstract class ShootPatternConfig : ScriptableObject
 
 public interface IShotBasedPattern
 {
+	public int ProjectilesPerShot { get; }
 	public int NumberOfShots { get; }
 }
 
