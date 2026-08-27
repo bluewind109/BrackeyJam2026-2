@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d4ddcd321a9bd4c81ad75f6f453e38, type: 3}
   m_Name: RadialPatternConfig_FirstBoss
   m_EditorClassIdentifier: Assembly-CSharp::RadialPatternConfig
+  damage: 1
+  numberOfShots: 8
   projectilesPerShot: 10
-  projectileSpeed: 2.5
+  projectileSpeed: 5
   shotInterval: 0.25

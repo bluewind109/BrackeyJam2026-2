@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using ShootPatterns;
 using UnityEngine;
 
@@ -42,18 +41,8 @@ namespace EnemyStates
 
 		private void Shoot()
 		{
-			List<Projectile> projectiles = new List<Projectile>();
-			for (int i = 0; i < _shootPatternConfig.ProjectilesPerShot; i++)
-			{
-				var projectile = EnemyProjectileManager.Instance.GetFreeProjectile();
-				if (projectile != null)
-				{
-					projectiles.Add(projectile);
-				}
-			}
-
 			_spiralPattern.Shoot(
-                projectiles, 
+                _shootPatternConfig.ProjectilesPerShot,
                 transform.position, 
                 _shootPatternConfig.ProjectileSpeed, 
                 _shootPatternConfig.ProjectileDamage);

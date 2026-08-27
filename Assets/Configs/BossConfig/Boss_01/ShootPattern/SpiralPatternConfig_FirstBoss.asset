@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7783cc1475abcae4e9f20e1d15180fea, type: 3}
   m_Name: SpiralPatternConfig_FirstBoss
   m_EditorClassIdentifier: Assembly-CSharp::SpiralPatternConfig
+  projectileDamage: 1
+  numberOfShots: 8
   projectilesPerShot: 10
-  projectileSpeed: 2.5
+  projectileSpeed: 5
   shotInterval: 0.25
   angleIncrement: 15

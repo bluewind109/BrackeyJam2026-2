@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using ShootPatterns;
 using UnityEngine;
 
@@ -79,19 +78,9 @@ namespace EnemyStates
 
         private void Shoot()
         {
-            List<Projectile> projectiles = new List<Projectile>();
-            for (int i = 0; i < _config.ProjectilesPerShot; i++)
-            {
-				var projectile = EnemyProjectileManager.Instance.GetFreeProjectile();
-				if (projectile != null)
-				{
-					projectiles.Add(projectile);
-				}
-            }
-
             RadialPattern radialPattern = new RadialPattern();
             radialPattern.Shoot(
-                projectiles, 
+                _config.ProjectilesPerShot,
                 _enemy.transform.position, 
                 _config.ProjectileSpeed, 
                 _config.ProjectileDamage

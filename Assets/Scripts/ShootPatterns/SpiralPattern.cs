@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ShootPatterns
@@ -14,32 +13,43 @@ namespace ShootPatterns
 		}
 
 		public void Shoot(
-			List<Projectile> projectiles,
+			int projectileCount,
 			Vector3 position,
 			float projectileSpeed,
 			int projectileDamage)
 		{
-			float angleStep = 360f / projectiles.Count;
+			if (projectileCount <= 0)
+			{
+				Debug.LogWarning("SpiralPattern.Shoot called with no projectiles to spawn.");
+				return;
+			}
+
+			if (EnemyProjectileManager.Instance == null)
+			{
+				Debug.LogError("EnemyProjectileManager instance is missing.");
+				return;
+			}
+
+			float angleStep = 360f / projectileCount;
 			float angle = _currentAngle;
 
-			for (int i = 0; i < projectiles.Count; i++)
+			for (int i = 0; i < projectileCount; i++)
 			{
 				float projectileDirXPosition = position.x + Mathf.Sin((angle * Mathf.PI) / 180);
 				float projectileDirYPosition = position.y + Mathf.Cos((angle * Mathf.PI) / 180);
 
 				Vector3 projectileVector = new Vector3(projectileDirXPosition, projectileDirYPosition, 0);
 				Vector3 projectileMoveDirection = (projectileVector - position).normalized;
-				projectiles[i].Initialize(
-					projectileMoveDirection, 
-					projectileSpeed, 
-					projectileDamage, 
-					"Player"
+				EnemyProjectileManager.Instance.SpawnProjectile(
+					projectileDamage,
+					position,
+					projectileMoveDirection,
+					projectileSpeed
 				);
 
 				angle += angleStep;
 			}
 			_currentAngle += _angleIncrement;
-			Debug.Log($"Current Angle: {_currentAngle}");
 		}
 	}
 }

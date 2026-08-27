@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -38,8 +37,7 @@ public class EnemyProjectileManager : MonoBehaviour
 	{
 		for (int i = 0; i < POOL_SIZE; i++)
 		{
-			var projectile = CreateNewProjectile();
-			_projectilePool.Add(projectile);
+			CreateNewProjectile();
 		}
 	}
 
@@ -58,7 +56,8 @@ public class EnemyProjectileManager : MonoBehaviour
 		if (projectile != null)
 		{
 			projectile.transform.position = position;
-            projectile.OnReleased += OnProjectileReleased;
+			projectile.OnReleased -= OnProjectileReleased;
+			projectile.OnReleased += OnProjectileReleased;
 			projectile.Initialize(direction, speed, damage, "Player");
 			return projectile;
 		}
