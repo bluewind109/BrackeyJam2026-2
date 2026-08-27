@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 
 	[SerializeField] private PlayerStats _playerStats;
 	[SerializeField] private PlayerInputHandler _inputHandler;
+	[SerializeField] private PlayerTypedInput _typedInput;
 	[SerializeField] private List<Spell> _spells = new List<Spell>();
 
 	private Health _health;
@@ -47,7 +48,7 @@ public class Player : MonoBehaviour
 
 	private void OnHealthChanged(int value)
 	{
-		
+
 	}
 
 	void Start()
@@ -77,6 +78,8 @@ public class Player : MonoBehaviour
 
 	public void GameUpdate()
 	{
+		_typedInput.UpdateTypedInput(_playerInputs);
+
 		if (_inputHandler)
 		{
 			_inputHandler.UpdateMouseInput();
@@ -137,7 +140,8 @@ public class Player : MonoBehaviour
 		{
 			_inputIndex++;
 			_spellToType = _spells.Find(spell => spell.IsInputMatched(input, 0));
-			Debug.Log($"First input: {input}. Spell to type: {_spellToType?.name ?? "None"}");
+			// Debug.Log($"First input: {input}. Spell to type: {_spellToType?.name ?? "None"}");
+			_playerInputs.Add(input);
 			return;
 		}
 		if (_spellToType == null) return;
@@ -146,11 +150,11 @@ public class Player : MonoBehaviour
 		{
 			_inputIndex++;
 			_playerInputs.Add(input);
-			Debug.Log($"Correct input: {input}. Current sequence: {string.Join(", ", _playerInputs)}");
+			// Debug.Log($"Correct input: {input}. Current sequence: {string.Join(", ", _playerInputs)}");
 			bool isSequenceComplete = _inputIndex >= _spellToType.InputSequence.Length;
 			if (isSequenceComplete)
 			{
-				Debug.Log("<color=green>Input sequence completed!</color>");
+				// Debug.Log("<color=green>Input sequence completed!</color>");
 				_inputIndex = 0;
 				SaveTypedSpell(_spellToType);
 				_playerInputs.Clear();
@@ -159,7 +163,7 @@ public class Player : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log("Incorrect input. Resetting sequence.");
+			// Debug.Log("Incorrect input. Resetting sequence.");
 			_inputIndex = 0;
 			_spellToType = null;
 			_playerInputs.Clear();

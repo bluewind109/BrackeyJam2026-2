@@ -72,13 +72,13 @@ public class PlayerInputHandler : MonoBehaviour
         switch (letter)
         {
             case 'w':
-                return InputDirection.Up;
+                return InputDirection.W;
             case 's':
-                return InputDirection.Down;
+                return InputDirection.S;
             case 'a':
-                return InputDirection.Left;
+                return InputDirection.A;
             case 'd':
-                return InputDirection.Right;
+                return InputDirection.D;
             default:
                 Debug.LogError("Invalid input letter");
                 break;
@@ -96,10 +96,10 @@ public class PlayerInputHandler : MonoBehaviour
 public enum InputDirection
 {
     None = -1,
-    Up,
-    Down,
-    Left,
-    Right
+    W,
+    S,
+    A,
+    D
 }
 
 public enum MouseButton
