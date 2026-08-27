@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Hurtbox : MonoBehaviour
 {
-    public System.Action<int> onHit;
+    public System.Action<int> OnHit;
 
     public void SetTag(string tag)
     {
@@ -12,6 +12,6 @@ public class Hurtbox : MonoBehaviour
     public void TakeDamage(int damage)
     {
         // Debug.Log($"Hurtbox took {damage} damage.");
-        onHit?.Invoke(damage);
+        OnHit?.Invoke(damage);
     }
 }

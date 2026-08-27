@@ -24,7 +24,7 @@ public abstract class Enemy : MonoBehaviour
 
         if (_hurtbox != null)
         {
-            _hurtbox.onHit += TakeDamage;
+            _hurtbox.OnHit += TakeDamage;
         }
     }
 
@@ -38,7 +38,7 @@ public abstract class Enemy : MonoBehaviour
 
         if (_hurtbox != null)
         {
-            _hurtbox.onHit -= TakeDamage;
+            _hurtbox.OnHit -= TakeDamage;
         }
     }
 
@@ -49,9 +49,10 @@ public abstract class Enemy : MonoBehaviour
 
     public abstract void GameUpdate();
 
-	private void TakeDamage(int damageTaken)
-	{
-	}
+	protected void TakeDamage(int damageTaken)
+    {
+        _health?.TakeDamage(damageTaken);
+    }
 
 	private void OnDeath()
 	{

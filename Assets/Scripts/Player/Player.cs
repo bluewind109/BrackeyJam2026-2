@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
 
 		if (_hurtbox != null)
 		{
-			_hurtbox.onHit += TakeDamage;
+			_hurtbox.OnHit += TakeDamage;
 		}
 	}
 
