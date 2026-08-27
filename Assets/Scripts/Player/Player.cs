@@ -7,15 +7,52 @@ public class Player : MonoBehaviour
 	public event Action OnRightMouseClicked;
 	public event Action OnSpellTyped;
 
+	[SerializeField] private PlayerStats _playerStats;
 	[SerializeField] private PlayerInputHandler _inputHandler;
 	[SerializeField] private List<Spell> _spells = new List<Spell>();
 	[SerializeField] private float _moveSpeed = 5f;
+
+	private Health _health;
+	private Hurtbox _hurtbox;
 
 	private int _inputIndex = 0;
 	private Spell _currentSpell = null;
 	private Spell _spellToType = null;
 	private List<InputDirection> _playerInputs = new List<InputDirection>();
 	private bool _isFocusModeActive = false;
+
+	void Awake()
+	{
+		_health = GetComponentInChildren<Health>();
+		_hurtbox = GetComponentInChildren<Hurtbox>();
+
+		if (_health != null)
+		{
+			_health.Initialize(_playerStats.MaxHealth);
+			_health.onHealthChanged += OnHealthChanged;
+			_health.onDeath += OnDeath;
+		}
+
+		if (_hurtbox != null)
+		{
+			_hurtbox.onHit += TakeDamage;
+		}
+	}
+
+	private void TakeDamage(int obj)
+	{
+		throw new NotImplementedException();
+	}
+
+	private void OnDeath()
+	{
+		throw new NotImplementedException();
+	}
+
+	private void OnHealthChanged(int obj)
+	{
+		throw new NotImplementedException();
+	}
 
 	void Start()
 	{
@@ -114,11 +151,12 @@ public class Player : MonoBehaviour
 			_inputIndex++;
 			_playerInputs.Add(input);
 			Debug.Log($"Correct input: {input}. Current sequence: {string.Join(", ", _playerInputs)}");
-			if (_inputIndex >= _spellToType.InputSequence.Length)
+			bool isSequenceComplete = _inputIndex >= _spellToType.InputSequence.Length;
+			if (isSequenceComplete)
 			{
 				Debug.Log("<color=green>Input sequence completed!</color>");
 				_inputIndex = 0;
-				_currentSpell = _spellToType;
+				SaveTypedSpell(_spellToType);
 				_playerInputs.Clear();
 				OnSpellTyped?.Invoke();
 			}
@@ -130,6 +168,11 @@ public class Player : MonoBehaviour
 			_spellToType = null;
 			_playerInputs.Clear();
 		}
+	}
+
+	private void SaveTypedSpell(Spell spell)
+	{
+		_currentSpell = spell;
 	}
 
 	private void HandleNormalModeMovement(Vector2 movementInput)
