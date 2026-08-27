@@ -7,17 +7,18 @@ public abstract class Enemy : MonoBehaviour
 
     private Health _health;
     private Hurtbox _hurtbox;
+    private Hitbox _hitbox;
     private Player _player;
 
     void Awake()
     {
         _health = GetComponentInChildren<Health>();
         _hurtbox = GetComponentInChildren<Hurtbox>();
-
-        _health.Initialize(_bossStats.MaxHealth);
+        _hitbox = GetComponentInChildren<Hitbox>();
 
         if (_health != null)
         {
+            _health.Initialize(_bossStats.MaxHealth);
             _health.onHealthChanged += OnHealthChanged;
             _health.onDeath += OnDeath;
         }
@@ -25,6 +26,12 @@ public abstract class Enemy : MonoBehaviour
         if (_hurtbox != null)
         {
             _hurtbox.Initialize(_health);
+        }
+
+        if (_hitbox != null)
+        {
+            _hitbox.Initialize("Player");
+            _hitbox.OnHit += OnHitPlayer;
         }
     }
 
@@ -35,6 +42,11 @@ public abstract class Enemy : MonoBehaviour
             _health.onHealthChanged -= OnHealthChanged;
             _health.onDeath -= OnDeath;
         }
+
+        if (_hitbox != null)
+        {
+            _hitbox.OnHit -= OnHitPlayer;
+        }
     }
 
     public virtual void Initialize(Player player)
@@ -44,13 +56,18 @@ public abstract class Enemy : MonoBehaviour
 
     public abstract void GameUpdate();
 
-	private void OnDeath()
+    private void OnHitPlayer(Hurtbox playerHurtbox)
     {
-        
+        playerHurtbox.TakeDamage(1);
     }
 
-	private void OnHealthChanged(int value)
+    private void OnDeath()
     {
-        
+
+    }
+
+    private void OnHealthChanged(int value)
+    {
+
     }
 }

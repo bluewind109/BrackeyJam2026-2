@@ -26,7 +26,7 @@ public class PlayerShadow : MonoBehaviour
         if (_hitbox != null)
         {
             _hitbox.Initialize("Enemy");
-            _hitbox.onHit += OnHit;
+            _hitbox.OnHit += OnHit;
         }
     }
 

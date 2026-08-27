@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Hitbox : MonoBehaviour
 {
-    public System.Action<Hurtbox> onHit;
+    public System.Action<Hurtbox> OnHit;
 
     private string targetTag = "";
 
@@ -18,13 +18,13 @@ public class Hitbox : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Debug.Log($"Hitbox collided with: {other.transform.parent.name}, Tag: {other.transform.parent.tag}");
+        Debug.Log($"Hitbox collided with: {other.transform.parent.name}, Tag: {other.transform.parent.tag}");
         if (other.transform.parent.CompareTag(targetTag))
         {
             var hurtbox = other.GetComponent<Hurtbox>();
             if (hurtbox != null)
             {
-                onHit?.Invoke(hurtbox);
+                OnHit?.Invoke(hurtbox);
             }
         }
     }

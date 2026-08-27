@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4d58bc0b54a3964ba02f27955865b83, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  maxHealth: 10
+  maxHealth: 3
   moveSpeed: 3
   baseDamage: 3
   focusCooldown: 3

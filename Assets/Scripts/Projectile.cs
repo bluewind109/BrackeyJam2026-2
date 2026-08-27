@@ -23,7 +23,7 @@ public abstract class Projectile : MonoBehaviour
 
 		if (_hitbox != null)
 		{
-			_hitbox.onHit += OnHit;
+			_hitbox.OnHit += OnHit;
 		}
 	}
 

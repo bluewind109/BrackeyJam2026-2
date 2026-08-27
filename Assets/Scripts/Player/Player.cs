@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+	public event Action OnPlayerDeath;
 	public event Action OnRightMouseClicked;
 	public event Action OnSpellTyped;
 
@@ -41,12 +42,13 @@ public class Player : MonoBehaviour
 
 	private void OnDeath()
 	{
-		throw new NotImplementedException();
+		Debug.Log("<color=red>Player has died!</color>");
+		OnPlayerDeath?.Invoke();
 	}
 
 	private void OnHealthChanged(int value)
 	{
-		throw new NotImplementedException();
+		
 	}
 
 	void Start()

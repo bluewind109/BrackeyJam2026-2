@@ -308,6 +308,14 @@ PrefabInstance:
       propertyPath: _spiralShootState
       value: 
       objectReference: {fileID: 4750405431801089794}
+    - target: {fileID: 2954071230119703291, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954071230119703291, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3832596036317032641, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.27
@@ -355,6 +363,14 @@ PrefabInstance:
     - target: {fileID: 5002056913124532906, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: m_Name
       value: Boss_01 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365094172161161967, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: m_Size.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365094172161161967, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: m_Size.y
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8304034563500000565, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: m_Size.x

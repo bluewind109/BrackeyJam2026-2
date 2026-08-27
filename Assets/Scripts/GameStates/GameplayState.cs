@@ -5,6 +5,7 @@ namespace GameStates
 {
 	public class GameplayState : GameState
 	{
+
 		private PlayerMode _currentPlayerMode;
 		private NormalMode _normalMode;
 		private FocusMode _focusMode;
@@ -26,12 +27,14 @@ namespace GameStates
 
 		public override void Enter()
 		{
+			_player.OnPlayerDeath += OnPlayerDeath;
 			_normalMode.FocusModeRequested += () => SwitchPlayerMode(_focusMode);
 			_focusMode.FocusModeComplete += () => SwitchPlayerMode(_normalMode);
 		}
 
 		public override void Exit()
 		{
+			_player.OnPlayerDeath -= OnPlayerDeath;
 			_normalMode.FocusModeRequested -= () => SwitchPlayerMode(_focusMode);
 			_focusMode.FocusModeComplete -= () => SwitchPlayerMode(_normalMode);
 		}
@@ -49,6 +52,12 @@ namespace GameStates
 			_currentPlayerMode?.Exit();
 			_currentPlayerMode = newMode;
 			_currentPlayerMode?.Enter();
+		}
+
+		private void OnPlayerDeath()
+		{
+			Debug.Log("<color=red>Player has died! Game Over!</color>");
+			_gameManager.SetState(_gameManager.GameOverState);
 		}
 	}
 }
