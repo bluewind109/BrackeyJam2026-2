@@ -15,6 +15,24 @@ public class PlayerTypedInput : MonoBehaviour
             return;
         }
 
-        _typedInputText.text = string.Join(" ", inputDirections);
+        _typedInputText.text = string.Join(" ", inputDirections.ConvertAll(MapInputDirectionToArrowCharacter));
+    }
+
+    private string MapInputDirectionToArrowCharacter(InputDirection inputDirection)
+    {
+        switch (inputDirection)
+        {
+            case InputDirection.Up:
+                return "↑";
+            case InputDirection.Down:
+                return "↓";
+            case InputDirection.Left:
+                return "←";
+            case InputDirection.Right:
+                return "→";
+            default:
+                Debug.LogError("Invalid input direction");
+                return "↑"; // Default case
+        }
     }
 }
