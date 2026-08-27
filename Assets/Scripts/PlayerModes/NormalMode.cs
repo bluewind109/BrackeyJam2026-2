@@ -9,7 +9,6 @@ namespace PlayerModes
 
 		private float _focusCooldown = 1f;
 		private Timer _focusCooldownTimer;
-		private bool _isFocusReady = true;
 
 		private Enemy _enemy;
 
@@ -46,14 +45,13 @@ namespace PlayerModes
 		private void OnRightMouseClicked()
 		{
 			Debug.Log("Right mouse clicked in NormalMode");
-			if (!_isFocusReady) return;
-			_isFocusReady = false;
+			if (_focusCooldownTimer.IsRunning) return;
 			FocusModeRequested?.Invoke();
 		}
 
 		private void OnFocusCooldownTimerComplete()
 		{
-			_isFocusReady = true;
+			
 		}
 	}
 }
