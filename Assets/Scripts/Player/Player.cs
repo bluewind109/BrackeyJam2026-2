@@ -171,6 +171,12 @@ public class Player : MonoBehaviour
 		}
 	}
 
+	public void ClearInputSequence()
+	{
+		_inputIndex = 0;
+		_playerInputs.Clear();
+	}
+
 	private void SaveTypedSpell(Spell spell)
 	{
 		_currentSpell = spell;
@@ -207,5 +213,6 @@ public class Player : MonoBehaviour
 	public void ExitFocusMode()
 	{
 		_isFocusModeActive = false;
+		ClearInputSequence();
 	}
 }

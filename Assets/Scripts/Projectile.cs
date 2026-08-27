@@ -14,9 +14,6 @@ public abstract class Projectile : MonoBehaviour
 	private bool _isActive = false;
 	public bool IsActive => _isActive;
 
-	private float horizontalBoundary = 20f;
-	private float verticalBoundary = 15f;
-
 	void Awake()
 	{
 		_hitbox = GetComponentInChildren<Hitbox>();
@@ -56,8 +53,7 @@ public abstract class Projectile : MonoBehaviour
 
 	private bool IsOutOfBounds()
 	{
-		return Mathf.Abs(transform.position.x) > horizontalBoundary || 
-			   Mathf.Abs(transform.position.y) > verticalBoundary;
+		return ScreenBoundsUtility.IsOutsideCamera(Camera.main, transform);
 	}
 
 	protected virtual void OnHit(Hurtbox hurtbox)

@@ -9,8 +9,9 @@ public static class ScreenBoundsUtility
             return desiredPosition;
         }
 
-        Vector2 worldMin = GetWorldPoint(camera, desiredPosition.z, 0f, 0f);
-        Vector2 worldMax = GetWorldPoint(camera, desiredPosition.z, 1f, 1f);
+        GetViewportBounds(camera, out Vector2 viewportMin, out Vector2 viewportMax);
+        Vector2 worldMin = GetWorldPoint(camera, desiredPosition.z, viewportMin.x, viewportMin.y);
+        Vector2 worldMax = GetWorldPoint(camera, desiredPosition.z, viewportMax.x, viewportMax.y);
 
         if (!TryGetTargetOffsets(target, out Vector2 leftBottomOffset, out Vector2 rightTopOffset))
         {
@@ -33,6 +34,72 @@ public static class ScreenBoundsUtility
         );
 
         return desiredPosition;
+    }
+
+    public static bool IsOutsideCamera(Camera camera, Transform target)
+    {
+        if (camera == null || target == null)
+        {
+            return false;
+        }
+
+        GetViewportBounds(camera, out Vector2 viewportMin, out Vector2 viewportMax);
+        Vector2 worldMin = GetWorldPoint(camera, target.position.z, viewportMin.x, viewportMin.y);
+        Vector2 worldMax = GetWorldPoint(camera, target.position.z, viewportMax.x, viewportMax.y);
+
+        if (!TryGetTargetBounds(target, out Bounds bounds))
+        {
+            Vector3 position = target.position;
+            return position.x < worldMin.x ||
+                   position.x > worldMax.x ||
+                   position.y < worldMin.y ||
+                   position.y > worldMax.y;
+        }
+
+        return bounds.max.x < worldMin.x ||
+               bounds.min.x > worldMax.x ||
+               bounds.max.y < worldMin.y ||
+               bounds.min.y > worldMax.y;
+    }
+
+    private static void GetViewportBounds(Camera camera, out Vector2 viewportMin, out Vector2 viewportMax)
+    {
+        viewportMin = Vector2.zero;
+        viewportMax = Vector2.one;
+
+        CameraBoundsOffsets offsets = camera.GetComponent<CameraBoundsOffsets>();
+        if (offsets == null)
+        {
+            return;
+        }
+
+        Rect pixelRect = camera.pixelRect;
+        float width = Mathf.Max(1f, pixelRect.width);
+        float height = Mathf.Max(1f, pixelRect.height);
+
+        float minX = offsets.LeftPixels / width;
+        float maxX = 1f - (offsets.RightPixels / width);
+        float minY = offsets.BottomPixels / height;
+        float maxY = 1f - (offsets.TopPixels / height);
+
+        viewportMin.x = Mathf.Clamp01(minX);
+        viewportMax.x = Mathf.Clamp01(maxX);
+        viewportMin.y = Mathf.Clamp01(minY);
+        viewportMax.y = Mathf.Clamp01(maxY);
+
+        if (viewportMin.x > viewportMax.x)
+        {
+            float centerX = (viewportMin.x + viewportMax.x) * 0.5f;
+            viewportMin.x = centerX;
+            viewportMax.x = centerX;
+        }
+
+        if (viewportMin.y > viewportMax.y)
+        {
+            float centerY = (viewportMin.y + viewportMax.y) * 0.5f;
+            viewportMin.y = centerY;
+            viewportMax.y = centerY;
+        }
     }
 
     private static float ClampAxis(float value, float min, float max, float fallback)
