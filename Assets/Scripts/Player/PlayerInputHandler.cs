@@ -30,12 +30,15 @@ public class PlayerInputHandler : MonoBehaviour
         if (!isEnabled) return;
         if (!Input.anyKeyDown) return;
         
-        foreach (char letter in Input.inputString)
+        foreach (KeyCode keyCode in Enum.GetValues(typeof(KeyCode)))
         {
-            if (!AllowedInput(letter)) continue;
-            InputDirection direction = CheckDirectionalInput(letter);
-            Debug.Log($"Letter typed: {letter}, Direction: {direction}");
-            InputReceived?.Invoke(direction);
+            if (Input.GetKeyDown(keyCode))
+            {
+                if (!AllowedInput(keyCode)) continue;
+                InputDirection direction = CheckDirectionalInput(keyCode);
+                Debug.Log($"Key pressed: {keyCode}, Direction: {direction}");
+                InputReceived?.Invoke(direction);
+            }
         }
     }
 
@@ -67,29 +70,40 @@ public class PlayerInputHandler : MonoBehaviour
         return movementInput.sqrMagnitude > 1f ? movementInput.normalized : movementInput;
     }
 
-    private InputDirection CheckDirectionalInput(char letter)
+    private InputDirection CheckDirectionalInput(KeyCode keyCode)
     {
-        switch (letter)
+        switch (keyCode)
         {
-            case 'w':
+            case KeyCode.W:
+            case KeyCode.UpArrow:
                 return InputDirection.Up;
-            case 's':
+            case KeyCode.S:
+            case KeyCode.DownArrow:
                 return InputDirection.Down;
-            case 'a':
+            case KeyCode.A:
+            case KeyCode.LeftArrow:
                 return InputDirection.Left;
-            case 'd':
+            case KeyCode.D:
+            case KeyCode.RightArrow:
                 return InputDirection.Right;
             default:
-                Debug.LogError("Invalid input letter");
+                Debug.LogError($"Invalid input keyCode: {keyCode}");
                 break;
         }
         return InputDirection.None;
     }
 
-    private bool AllowedInput(char _letter)
+    private bool AllowedInput(KeyCode keyCode)
     {
-        bool wasd = _letter == 'w' || _letter == 'a' || _letter == 's' || _letter == 'd';
-        return wasd;
+        bool wasdKeys = keyCode == KeyCode.W || 
+                        keyCode == KeyCode.A || 
+                        keyCode == KeyCode.S || 
+                        keyCode == KeyCode.D;
+        bool arrowKeys = keyCode == KeyCode.UpArrow || 
+                        keyCode == KeyCode.DownArrow || 
+                        keyCode == KeyCode.LeftArrow || 
+                        keyCode == KeyCode.RightArrow;
+        return wasdKeys || arrowKeys;
     }
 }
 
