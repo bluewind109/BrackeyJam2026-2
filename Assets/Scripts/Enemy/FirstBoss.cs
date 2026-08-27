@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class FirstBoss : Enemy
 {
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+
+    [SerializeField] private EnemyState _spawnState;
     [SerializeField] private EnemyState _idleState;
     [SerializeField] private EnemyState _chaseState;
     [SerializeField] private EnemyState _radialShootState;
@@ -18,6 +21,7 @@ public class FirstBoss : Enemy
 
     void Start()
     {
+        _spawnState.StateFinished += OnSpawnStateFinished;
         _idleState.StateFinished += OnIdleStateFinished;
         _chaseState.StateFinished += OnChaseStateFinished;
         _radialShootState.StateFinished += OnRadialShootStateFinished;
@@ -32,6 +36,7 @@ public class FirstBoss : Enemy
 
     void OnDestroy()
     {
+        _spawnState.StateFinished -= OnSpawnStateFinished;
         _idleState.StateFinished -= OnIdleStateFinished;
         _chaseState.StateFinished -= OnChaseStateFinished;
         _radialShootState.StateFinished -= OnRadialShootStateFinished;
@@ -43,9 +48,10 @@ public class FirstBoss : Enemy
     public override void Initialize(Player player)
     {
         base.Initialize(player);
+        ((SpawnState)_spawnState).Initialize(_spriteRenderer);
         ((ChaseState)_chaseState).Initialize(this, player);
         ((DashState)_dashState).Initialize(this,player);
-        SetState(_idleState);
+        SetState(_spawnState);
     }
 
     private void SetState(EnemyState newState)
@@ -61,6 +67,11 @@ public class FirstBoss : Enemy
     public override void GameUpdate()
     {
         _currentState?.UpdateState();
+    }
+
+    private void OnSpawnStateFinished()
+    {
+        SetState(_idleState);
     }
 
     private void OnIdleStateFinished()
