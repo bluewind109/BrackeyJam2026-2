@@ -7,6 +7,7 @@ namespace EnemyStates
     {
         [SerializeField] private DashStateConfig _config;
         [SerializeField] private RadialPatternConfig _radialPatternConfig;
+        [SerializeField] private SidewayPatternConfig _sidewayPatternConfig;
 
         private float _delayTimer = 0f;
 
@@ -16,6 +17,9 @@ namespace EnemyStates
         private int _currentShotCount = 0;
 
         private float _shotTimer = 0f;
+
+        private float _dashDuration = 2f;
+        private float _dashTimer = 0f;
 
         private Enemy _enemy;
         private Player _player;
@@ -50,6 +54,15 @@ namespace EnemyStates
             {
                 StartDash();
             }
+
+            if (isDelayFinished && _dashDirection != Vector3.zero)
+            {
+                _dashTimer += Time.deltaTime;
+                if (_dashTimer >= _dashDuration)
+                {
+                    OnDashFinished();
+                }
+            }
         }
 
         private void StartDash()
@@ -68,16 +81,30 @@ namespace EnemyStates
             {
                 _shotTimer = 0f;
                 _currentShotCount++;
-                Shoot();
+                ShootSideway();
             }
 
-            if (Vector3.Distance(_enemy.transform.position, _startPosition) >= _config.DashDistance)
+            float traveledDistance = Vector3.Distance(_enemy.transform.position, _startPosition);
+            bool hasReachedDashDistance = traveledDistance >= _config.DashDistance;
+            if (hasReachedDashDistance)
             {
-                OnStateFinished();
+                OnDashFinished();
             }
         }
 
-        private void Shoot()
+        private void OnDashFinished()
+        {
+            ShootRadial();
+            OnStateFinished();
+        }
+
+        private void ShootSideway()
+        {
+            SidewayPattern sidewayPattern = new SidewayPattern(_sidewayPatternConfig);
+            sidewayPattern.Shoot(_enemy.transform.position, _dashDirection);
+        }
+
+        private void ShootRadial()
         {
             RadialPattern radialPattern = new RadialPattern(_radialPatternConfig);
             radialPattern.Shoot(_enemy.transform.position);

@@ -139,6 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStates.DashState
   _config: {fileID: 11400000, guid: aba309f44428055428f7a6e463d24aef, type: 2}
   _radialPatternConfig: {fileID: 11400000, guid: fb6984cc5b2e8a94b8cca36361199c5f, type: 2}
+  _sidewayPatternConfig: {fileID: 11400000, guid: 4aaa63768b9943f4ebe3749afc840eaf, type: 2}
 --- !u!1 &6901176135321113537
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,12 +315,12 @@ PrefabInstance:
       objectReference: {fileID: 7915424087615280481}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _attackStates.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: '_attackStates.Array.data[0]'
       value: 
-      objectReference: {fileID: 6305990441899281335}
+      objectReference: {fileID: 5919872402068557067}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: '_attackStates.Array.data[1]'
       value: 

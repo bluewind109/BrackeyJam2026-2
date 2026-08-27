@@ -44,7 +44,8 @@ namespace EnemyStates
                 _currentShotCount++;
                 // Shoot(_currentShotCount * (360f / _numberOfShots));
                 Shoot();
-                if (_currentShotCount >= _currentPatternInfo.Config.NumberOfShots)
+                if (_currentPatternInfo.Config is IShotBasedPattern shotBasedPattern && 
+                    _currentShotCount >= shotBasedPattern.NumberOfShots)
                 {
                     OnStateFinished();
                 }
