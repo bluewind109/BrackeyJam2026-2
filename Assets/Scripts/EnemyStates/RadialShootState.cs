@@ -4,9 +4,10 @@ using UnityEngine;
 
 namespace EnemyStates
 {
-    public class CircleShotState : EnemyState
+    public class RadialShootState : EnemyState
     {
-        [SerializeField] private CircleShotStateConfig config;
+        [SerializeField] private RadialShootStateConfig _config;
+        [SerializeField] private RadialPatternConfig _shootPatternConfig;
 
         private int _numberOfShots;
 		private int _projectilesPerShot;
@@ -17,17 +18,17 @@ namespace EnemyStates
 
         public override void Enter()
         {
-            Debug.Log("Entering Circle Shot State");
+            Debug.Log("Entering Radial Shoot State");
             _shotTimer = 0f;
 			_currentShotCount = 0;
-            _numberOfShots = config.NumberOfShots;
-            _projectilesPerShot = config.ProjectilesPerShot;
-            _shotInterval = config.ShotInterval;
+            _numberOfShots = _config.NumberOfShots;
+            _projectilesPerShot = _config.ProjectilesPerShot;
+            _shotInterval = _config.ShotInterval;
         }
 
         public override void Exit()
         {
-            // Logic for exiting the Circle Shot state
+            // Logic for exiting the Radial Shoot state
         }
 
         public override void UpdateState()
@@ -58,9 +59,8 @@ namespace EnemyStates
 				}
 			}
 
-			float projectileSpeed = 2.5f;
-			RadialPattern radialPattern = new RadialPattern();
-			radialPattern.Shoot(projectiles, transform.position, projectileSpeed);
+            RadialPattern radialPattern = new RadialPattern();
+            radialPattern.Shoot(projectiles, transform.position, _shootPatternConfig.ProjectileSpeed);
 		}
     }
 }

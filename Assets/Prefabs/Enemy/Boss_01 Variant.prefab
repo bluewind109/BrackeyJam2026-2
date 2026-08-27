@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c015f535438bf418c8d84af6674230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStates.DashState
-  config: {fileID: 11400000, guid: aba309f44428055428f7a6e463d24aef, type: 2}
+  _config: {fileID: 11400000, guid: aba309f44428055428f7a6e463d24aef, type: 2}
 --- !u!1 &5142401284368094088
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 5409674493785269268}
   - component: {fileID: 8371027357438024089}
   m_Layer: 0
-  m_Name: CircleShotState
+  m_Name: RadialShootState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,7 +133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 202a8357661ea984e8f349fee2c45a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStates.CircleShotState
-  config: {fileID: 11400000, guid: 9c100bb4aa76f49499c79a9ab5fb82ff, type: 2}
+  _config: {fileID: 11400000, guid: 9c100bb4aa76f49499c79a9ab5fb82ff, type: 2}
+  _shootPatternConfig: {fileID: 11400000, guid: fb6984cc5b2e8a94b8cca36361199c5f, type: 2}
 --- !u!1 &7445563150749018732
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,6 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32242e6e6f46f88429644a042860a20f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStates.ChaseState
+  _config: {fileID: 11400000, guid: cbf4605b136e06e45b977a5201281d9c, type: 2}
 --- !u!1 &9149958311972801870
 GameObject:
   m_ObjectHideFlags: 0

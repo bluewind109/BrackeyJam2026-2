@@ -7,7 +7,7 @@ public class FirstBoss : Enemy
 {
     [SerializeField] private EnemyState _idleState;
     [SerializeField] private EnemyState _chaseState;
-    [SerializeField] private EnemyState _circleShotState;
+    [SerializeField] private EnemyState _radialShootState;
     [SerializeField] private EnemyState _dashState;
     [SerializeField] private EnemyState _recoverState;
 
@@ -19,11 +19,11 @@ public class FirstBoss : Enemy
     {
         _idleState.StateFinished += OnIdleStateFinished;
         _chaseState.StateFinished += OnChaseStateFinished;
-        _circleShotState.StateFinished += OnCircleShotStateFinished;
+        _radialShootState.StateFinished += OnRadialShootStateFinished;
         _dashState.StateFinished += OnDashStateFinished;
         _recoverState.StateFinished += OnRecoverStateFinished;
 
-        _attackStates.Add(_circleShotState);
+        _attackStates.Add(_radialShootState);
         _attackStates.Add(_dashState);
     }
 
@@ -31,7 +31,7 @@ public class FirstBoss : Enemy
     {
         _idleState.StateFinished -= OnIdleStateFinished;
         _chaseState.StateFinished -= OnChaseStateFinished;
-        _circleShotState.StateFinished -= OnCircleShotStateFinished;
+        _radialShootState.StateFinished -= OnRadialShootStateFinished;
         _dashState.StateFinished -= OnDashStateFinished;
         _recoverState.StateFinished -= OnRecoverStateFinished;
     }
@@ -77,7 +77,7 @@ public class FirstBoss : Enemy
         SetState(_attackStates[randomIndex]);
     }
 
-    private void OnCircleShotStateFinished()
+    private void OnRadialShootStateFinished()
     {
         SetState(_recoverState);
     }

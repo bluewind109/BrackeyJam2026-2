@@ -4,7 +4,8 @@ using UnityEngine;
 public abstract class Projectile : MonoBehaviour
 {
 	public event Action<Projectile> OnReleased;
-	
+
+	private ProjectileBehavior _behavior;
 	protected Hitbox _hitbox;
 	private float _speed = 10f;
 	private int _damage = 10;
@@ -42,7 +43,7 @@ public abstract class Projectile : MonoBehaviour
 	{
 		if (!_isActive) return;
 
-		transform.position += _direction * _speed * Time.deltaTime;
+		_behavior?.GameUpdate();
 
 		// if out of bounds, release the projectile
 		if (IsOutOfBounds())

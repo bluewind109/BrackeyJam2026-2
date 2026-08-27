@@ -3,6 +3,8 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
+    [SerializeField] protected BossStats _bossStats;
+
     private Health _health;
     private Hurtbox _hurtbox;
     private Player _player;
@@ -11,6 +13,8 @@ public abstract class Enemy : MonoBehaviour
     {
         _health = GetComponent<Health>();
         _hurtbox = GetComponent<Hurtbox>();
+
+        _health.Initialize(_bossStats.MaxHealth);
 
         if (_health != null)
         {

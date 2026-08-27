@@ -4,12 +4,12 @@ namespace EnemyStates
 {
     public class ChaseState : EnemyState
     {
-        private float _chaseDuration = 2f;
+        [SerializeField] private ChaseStateConfig _config;
+
         private float _chaseTimer = 0f;
 
         private Enemy _enemy;
         private Player _player;
-        private float _chaseSpeed = 1f;
 
         public void Initialize(Enemy enemy, Player player)
         {
@@ -33,7 +33,7 @@ namespace EnemyStates
             ChasePlayer();
 
             _chaseTimer += Time.deltaTime;
-            if (_chaseTimer >= _chaseDuration)
+            if (_chaseTimer >= _config.ChaseDuration)
             {
                 OnStateFinished();
             }
@@ -43,7 +43,7 @@ namespace EnemyStates
         {
             if (_player == null) return;
             Vector3 direction = (_player.transform.position - _enemy.transform.position).normalized;
-            _enemy.transform.position += direction * Time.deltaTime * _chaseSpeed;
+            _enemy.transform.position += direction * Time.deltaTime * _config.ChaseSpeed;
         }
     }
 }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BrackeyJam2026")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3f0830d676b2afc681ed7ceefc9d6429dc979629")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f47f1b38514daaec5968b09db106777e44edc772")]
 [assembly: System.Reflection.AssemblyProductAttribute("BrackeyJam2026")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BrackeyJam2026")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

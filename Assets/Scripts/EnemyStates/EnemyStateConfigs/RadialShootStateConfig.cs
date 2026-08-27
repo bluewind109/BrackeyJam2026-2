@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CircleShotStateConfig", menuName = "Enemy State Configs/Circle Shot State Config")]
-public class CircleShotStateConfig : ScriptableObject
+[CreateAssetMenu(fileName = "RadialShootStateConfig", menuName = "Enemy State Configs/Radial Shoot State Config")]
+public class RadialShootStateConfig : ScriptableObject
 {
     [SerializeField] private int numberOfShots = 8;
 	[SerializeField] private int projectilesPerShot = 10;
