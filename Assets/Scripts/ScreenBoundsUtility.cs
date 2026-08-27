@@ -35,6 +35,31 @@ public static class ScreenBoundsUtility
         return desiredPosition;
     }
 
+    public static bool IsOutsideCamera(Camera camera, Transform target)
+    {
+        if (camera == null || target == null)
+        {
+            return false;
+        }
+
+        Vector2 worldMin = GetWorldPoint(camera, target.position.z, 0f, 0f);
+        Vector2 worldMax = GetWorldPoint(camera, target.position.z, 1f, 1f);
+
+        if (!TryGetTargetBounds(target, out Bounds bounds))
+        {
+            Vector3 position = target.position;
+            return position.x < worldMin.x ||
+                   position.x > worldMax.x ||
+                   position.y < worldMin.y ||
+                   position.y > worldMax.y;
+        }
+
+        return bounds.max.x < worldMin.x ||
+               bounds.min.x > worldMax.x ||
+               bounds.max.y < worldMin.y ||
+               bounds.min.y > worldMax.y;
+    }
+
     private static float ClampAxis(float value, float min, float max, float fallback)
     {
         if (min > max)
