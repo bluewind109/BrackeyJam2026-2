@@ -10,8 +10,7 @@ public class FirstBoss : Enemy
     [SerializeField] private EnemyState _spawnState;
     [SerializeField] private EnemyState _idleState;
     [SerializeField] private EnemyState _chaseState;
-    [SerializeField] private EnemyState _radialShootState;
-    [SerializeField] private EnemyState _spiralShootState;
+    [SerializeField] private EnemyState _shootState;
     [SerializeField] private EnemyState _dashState;
     [SerializeField] private EnemyState _recoverState;
 
@@ -24,13 +23,11 @@ public class FirstBoss : Enemy
         _spawnState.StateFinished += OnSpawnStateFinished;
         _idleState.StateFinished += OnIdleStateFinished;
         _chaseState.StateFinished += OnChaseStateFinished;
-        _radialShootState.StateFinished += OnRadialShootStateFinished;
-        _spiralShootState.StateFinished += OnSpiralShootStateFinished;
+        _shootState.StateFinished += OnShootStateFinished;
         _dashState.StateFinished += OnDashStateFinished;
         _recoverState.StateFinished += OnRecoverStateFinished;
 
-        _attackStates.Add(_radialShootState);
-        // _attackStates.Add(_spiralShootState);
+        _attackStates.Add(_shootState);
         _attackStates.Add(_dashState);
     }
 
@@ -39,8 +36,7 @@ public class FirstBoss : Enemy
         _spawnState.StateFinished -= OnSpawnStateFinished;
         _idleState.StateFinished -= OnIdleStateFinished;
         _chaseState.StateFinished -= OnChaseStateFinished;
-        _radialShootState.StateFinished -= OnRadialShootStateFinished;
-        _spiralShootState.StateFinished -= OnSpiralShootStateFinished;
+        _shootState.StateFinished -= OnShootStateFinished;
         _dashState.StateFinished -= OnDashStateFinished;
         _recoverState.StateFinished -= OnRecoverStateFinished;
     }
@@ -92,12 +88,7 @@ public class FirstBoss : Enemy
         SetState(_attackStates[randomIndex]);
     }
 
-    private void OnRadialShootStateFinished()
-    {
-        SetState(_recoverState);
-    }
-
-    private void OnSpiralShootStateFinished()
+    private void OnShootStateFinished()
     {
         SetState(_recoverState);
     }

@@ -14,5 +14,7 @@ namespace ShootPatterns
 	public abstract class Pattern
 	{
 		public event Action OnShootComplete;
+
+		public abstract void Shoot(Vector3 position);
 	}
 }

@@ -4,21 +4,22 @@ namespace ShootPatterns
 {
 	public class SpiralPattern : Pattern
 	{
+		private SpiralPatternConfig _config;
 		private float _currentAngle = 0f;
-		private float _angleIncrement = 0f;
 
-		public SpiralPattern(float angleIncrement = 10f)
+		public SpiralPattern(SpiralPatternConfig config)
 		{
-			_angleIncrement = angleIncrement;
+			_config = config;
 		}
 
-		public void Shoot(
-			int projectileCount,
-			Vector3 position,
-			float projectileSpeed,
-			int projectileDamage)
+		public override void Shoot(Vector3 position)
 		{
-			if (projectileCount <= 0)
+			if (_config == null)
+			{
+				Debug.LogError("SpiralPattern.Shoot called with null config.");
+				return;
+			}
+			if (_config.ProjectilesPerShot <= 0)
 			{
 				Debug.LogWarning("SpiralPattern.Shoot called with no projectiles to spawn.");
 				return;
@@ -30,10 +31,10 @@ namespace ShootPatterns
 				return;
 			}
 
-			float angleStep = 360f / projectileCount;
+			float angleStep = 360f / _config.ProjectilesPerShot;
 			float angle = _currentAngle;
 
-			for (int i = 0; i < projectileCount; i++)
+			for (int i = 0; i < _config.ProjectilesPerShot; i++)
 			{
 				float projectileDirXPosition = position.x + Mathf.Sin((angle * Mathf.PI) / 180);
 				float projectileDirYPosition = position.y + Mathf.Cos((angle * Mathf.PI) / 180);
@@ -41,15 +42,15 @@ namespace ShootPatterns
 				Vector3 projectileVector = new Vector3(projectileDirXPosition, projectileDirYPosition, 0);
 				Vector3 projectileMoveDirection = (projectileVector - position).normalized;
 				EnemyProjectileManager.Instance.SpawnProjectile(
-					projectileDamage,
+					_config.ProjectileDamage,
 					position,
 					projectileMoveDirection,
-					projectileSpeed
+					_config.ProjectileSpeed
 				);
 
 				angle += angleStep;
 			}
-			_currentAngle += _angleIncrement;
+			_currentAngle += _config.AngleIncrement;
 		}
 	}
 }

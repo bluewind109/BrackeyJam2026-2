@@ -2,15 +2,23 @@ using UnityEngine;
 
 namespace ShootPatterns
 {
-	public class RadialPattern
+	public class RadialPattern : Pattern
 	{
-		public void Shoot(
-			int projectileCount,
-			Vector3 position, 
-			float projectileSpeed,
-			int projectileDamage)
+		private RadialPatternConfig _config;
+
+		public RadialPattern(RadialPatternConfig config)
 		{
-			if (projectileCount <= 0)
+			_config = config;
+		}
+
+		public override void Shoot(Vector3 position)
+		{
+			if (_config == null)
+			{
+				Debug.LogError("RadialPattern.Shoot called with null config.");
+				return;
+			}
+			if (_config.ProjectilesPerShot <= 0)
 			{
 				Debug.LogWarning("RadialPattern.Shoot called with no projectiles to spawn.");
 				return;
@@ -22,10 +30,10 @@ namespace ShootPatterns
 				return;
 			}
 
-			float angleStep = 360f / projectileCount;
+			float angleStep = 360f / _config.ProjectilesPerShot;
 			float angle = 0f;
 
-			for (int i = 0; i < projectileCount; i++)
+			for (int i = 0; i < _config.ProjectilesPerShot; i++)
 			{
 				float projectileDirXPosition = position.x + Mathf.Sin((angle * Mathf.PI) / 180);
 				float projectileDirYPosition = position.y + Mathf.Cos((angle * Mathf.PI) / 180);
@@ -33,10 +41,10 @@ namespace ShootPatterns
 				Vector3 projectileVector = new Vector3(projectileDirXPosition, projectileDirYPosition, 0);
 				Vector3 projectileMoveDirection = (projectileVector - position).normalized;
 				EnemyProjectileManager.Instance.SpawnProjectile(
-					projectileDamage,
+					_config.ProjectileDamage,
 					position,
 					projectileMoveDirection,
-					projectileSpeed
+					_config.ProjectileSpeed
 				);
 
 				angle += angleStep;

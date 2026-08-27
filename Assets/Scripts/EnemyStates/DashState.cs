@@ -6,6 +6,7 @@ namespace EnemyStates
     public class DashState : EnemyState
     {
         [SerializeField] private DashStateConfig _config;
+        [SerializeField] private RadialPatternConfig _radialPatternConfig;
 
         private float _delayTimer = 0f;
 
@@ -78,13 +79,8 @@ namespace EnemyStates
 
         private void Shoot()
         {
-            RadialPattern radialPattern = new RadialPattern();
-            radialPattern.Shoot(
-                _config.ProjectilesPerShot,
-                _enemy.transform.position, 
-                _config.ProjectileSpeed, 
-                _config.ProjectileDamage
-            );
+            RadialPattern radialPattern = new RadialPattern(_radialPatternConfig);
+            radialPattern.Shoot(_enemy.transform.position);
         }
     }
 }
