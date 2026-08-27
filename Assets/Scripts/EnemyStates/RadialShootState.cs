@@ -9,21 +9,16 @@ namespace EnemyStates
         [SerializeField] private RadialShootStateConfig _config;
         [SerializeField] private RadialPatternConfig _shootPatternConfig;
 
-        private int _numberOfShots;
-		private int _projectilesPerShot;
 		private int _currentShotCount = 0;
-
-        private float _shotInterval;
         private float _shotTimer = 0f;
+        private RadialPattern _radialPattern;
 
         public override void Enter()
         {
             Debug.Log("Entering Radial Shoot State");
             _shotTimer = 0f;
 			_currentShotCount = 0;
-            _numberOfShots = _config.NumberOfShots;
-            _projectilesPerShot = _config.ProjectilesPerShot;
-            _shotInterval = _config.ShotInterval;
+			_radialPattern = new RadialPattern();
         }
 
         public override void Exit()
@@ -34,13 +29,13 @@ namespace EnemyStates
         public override void UpdateState()
         {
             _shotTimer += Time.deltaTime;
-            if (_shotTimer >= _shotInterval)
+            if (_shotTimer >= _config.ShotInterval)
             {
                 _shotTimer = 0f;
                 _currentShotCount++;
                 // Shoot(_currentShotCount * (360f / _numberOfShots));
                 Shoot();
-                if (_currentShotCount >= _numberOfShots)
+                if (_currentShotCount >= _config.NumberOfShots)
                 {
                     OnStateFinished();
                 }
@@ -50,7 +45,7 @@ namespace EnemyStates
 		private void Shoot()
 		{
 			List<Projectile> projectiles = new List<Projectile>();
-			for (int i = 0; i < _projectilesPerShot; i++)
+			for (int i = 0; i < _config.ProjectilesPerShot; i++)
 			{
 				var projectile = EnemyProjectileManager.Instance.SpawnProjectile(transform.position, Vector3.zero, 5f);
 				if (projectile != null)
@@ -59,8 +54,7 @@ namespace EnemyStates
 				}
 			}
 
-            RadialPattern radialPattern = new RadialPattern();
-            radialPattern.Shoot(projectiles, transform.position, _shootPatternConfig.ProjectileSpeed);
+            _radialPattern.Shoot(projectiles, transform.position, _shootPatternConfig.ProjectileSpeed);
 		}
     }
 }

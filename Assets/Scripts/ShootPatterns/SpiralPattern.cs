@@ -1,20 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 namespace ShootPatterns
 {
-	public abstract class Pattern
-	{
-		public event Action OnShootComplete;
-	}
-
 	public class SpiralPattern : Pattern
 	{
-		public void Shoot(List<Projectile> projectiles, Vector3 position, float projectileSpeed, float startAngle = 0f)
+		private float _currentAngle = 0f;
+
+		public void Shoot(
+			List<Projectile> projectiles,
+			Vector3 position,
+			float projectileSpeed,
+			float angleIncrement)
 		{
 			float angleStep = 360f / projectiles.Count;
-			float angle = startAngle;
+			float angle = _currentAngle;
 
 			for (int i = 0; i < projectiles.Count; i++)
 			{
@@ -27,6 +27,8 @@ namespace ShootPatterns
 
 				angle += angleStep;
 			}
+			_currentAngle += angleIncrement;
+			Debug.Log($"Current Angle: {_currentAngle}");
 		}
 	}
 }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37d4ddcd321a9bd4c81ad75f6f453e38, type: 3}
-  m_Name: RadialPatternConfig
+  m_Name: RadialPatternConfig_FirstBoss
   m_EditorClassIdentifier: Assembly-CSharp::RadialPatternConfig
   projectilesPerShot: 10
   projectileSpeed: 2.5

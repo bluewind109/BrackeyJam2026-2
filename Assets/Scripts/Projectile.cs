@@ -43,7 +43,8 @@ public abstract class Projectile : MonoBehaviour
 	{
 		if (!_isActive) return;
 
-		_behavior?.GameUpdate();
+		transform.position += _direction * _speed * Time.deltaTime;
+		// _behavior?.GameUpdate();
 
 		// if out of bounds, release the projectile
 		if (IsOutOfBounds())

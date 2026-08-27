@@ -89,6 +89,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStates.DashState
   _config: {fileID: 11400000, guid: aba309f44428055428f7a6e463d24aef, type: 2}
+--- !u!1 &4053080806215253812
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7055841732399987865}
+  - component: {fileID: 4750405431801089794}
+  m_Layer: 0
+  m_Name: SpiralShootState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7055841732399987865
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4053080806215253812}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 152684261516999017}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4750405431801089794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4053080806215253812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9354c922c0c704488b751ac36fc157b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStates.SpiralShootState
+  _config: {fileID: 11400000, guid: a85d02cec59c6b04295ad47a9e79352c, type: 2}
+  _shootPatternConfig: {fileID: 11400000, guid: cfbdd1bd8a1a6de4898873d3a444cd13, type: 2}
 --- !u!1 &5142401284368094088
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,6 +279,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: _bossStats
+      value: 
+      objectReference: {fileID: 11400000, guid: fe2a94fe805c9ac42b880e82e9571532, type: 2}
+    - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _dashState
       value: 
       objectReference: {fileID: 5919872402068557067}
@@ -252,6 +302,14 @@ PrefabInstance:
       propertyPath: _circleShotState
       value: 
       objectReference: {fileID: 8371027357438024089}
+    - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: _radialShootState
+      value: 
+      objectReference: {fileID: 8371027357438024089}
+    - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: _spiralShootState
+      value: 
+      objectReference: {fileID: 4750405431801089794}
     - target: {fileID: 3832596036317032641, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.27
@@ -316,6 +374,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4189074171661111726, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5409674493785269268}
+    - targetCorrespondingSourceObject: {fileID: 4189074171661111726, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7055841732399987865}
     - targetCorrespondingSourceObject: {fileID: 4189074171661111726, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3215623339076595237}

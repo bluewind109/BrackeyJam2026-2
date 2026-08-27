@@ -8,6 +8,7 @@ public class FirstBoss : Enemy
     [SerializeField] private EnemyState _idleState;
     [SerializeField] private EnemyState _chaseState;
     [SerializeField] private EnemyState _radialShootState;
+    [SerializeField] private EnemyState _spiralShootState;
     [SerializeField] private EnemyState _dashState;
     [SerializeField] private EnemyState _recoverState;
 
@@ -20,11 +21,13 @@ public class FirstBoss : Enemy
         _idleState.StateFinished += OnIdleStateFinished;
         _chaseState.StateFinished += OnChaseStateFinished;
         _radialShootState.StateFinished += OnRadialShootStateFinished;
+        _spiralShootState.StateFinished += OnSpiralShootStateFinished;
         _dashState.StateFinished += OnDashStateFinished;
         _recoverState.StateFinished += OnRecoverStateFinished;
 
-        _attackStates.Add(_radialShootState);
-        _attackStates.Add(_dashState);
+        // _attackStates.Add(_radialShootState);
+        _attackStates.Add(_spiralShootState);
+        // _attackStates.Add(_dashState);
     }
 
     void OnDestroy()
@@ -32,6 +35,7 @@ public class FirstBoss : Enemy
         _idleState.StateFinished -= OnIdleStateFinished;
         _chaseState.StateFinished -= OnChaseStateFinished;
         _radialShootState.StateFinished -= OnRadialShootStateFinished;
+        _spiralShootState.StateFinished -= OnSpiralShootStateFinished;
         _dashState.StateFinished -= OnDashStateFinished;
         _recoverState.StateFinished -= OnRecoverStateFinished;
     }
@@ -78,6 +82,11 @@ public class FirstBoss : Enemy
     }
 
     private void OnRadialShootStateFinished()
+    {
+        SetState(_recoverState);
+    }
+
+    private void OnSpiralShootStateFinished()
     {
         SetState(_recoverState);
     }

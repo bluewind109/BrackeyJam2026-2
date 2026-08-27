@@ -5,7 +5,10 @@ namespace ShootPatterns
 {
 	public class RadialPattern
 	{
-		public void Shoot(List<Projectile> projectiles, Vector3 position, float projectileSpeed)
+		public void Shoot(
+			List<Projectile> projectiles, 
+			Vector3 position, 
+			float projectileSpeed)
 		{
 			float angleStep = 360f / projectiles.Count;
 			float angle = 0f;

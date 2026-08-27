@@ -8,7 +8,6 @@ namespace EnemyStates
     {
         [SerializeField] private DashStateConfig _config;
 
-        private float _delayDuration;
         private float _delayTimer = 0f;
 
         private Vector3 _dashDirection;
@@ -33,8 +32,6 @@ namespace EnemyStates
             _delayTimer = 0f;
             _dashDirection = Vector3.zero;
 
-            _delayDuration = _config.DelayDuration;
-
             _shotTimer = _config.ShotInterval;
             _currentShotCount = 0;
         }
@@ -47,7 +44,7 @@ namespace EnemyStates
         {
             UpdateDash();
 
-            bool isDelayFinished = _delayTimer >= _delayDuration;
+            bool isDelayFinished = _delayTimer >= _config.DelayDuration;
             if (!isDelayFinished) _delayTimer += Time.deltaTime;
             if (isDelayFinished && _dashDirection == Vector3.zero)
             {

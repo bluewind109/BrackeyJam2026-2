@@ -11,8 +11,8 @@ public abstract class Enemy : MonoBehaviour
 
     void Awake()
     {
-        _health = GetComponent<Health>();
-        _hurtbox = GetComponent<Hurtbox>();
+        _health = GetComponentInChildren<Health>();
+        _hurtbox = GetComponentInChildren<Hurtbox>();
 
         _health.Initialize(_bossStats.MaxHealth);
 
