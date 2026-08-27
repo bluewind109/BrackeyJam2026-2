@@ -82,15 +82,20 @@ namespace EnemyStates
             List<Projectile> projectiles = new List<Projectile>();
             for (int i = 0; i < _config.ProjectilesPerShot; i++)
             {
-                var projectile = EnemyProjectileManager.Instance.SpawnProjectile(_enemy.transform.position, Vector3.zero, 5f);
-                if (projectile != null)
-                {
-                    projectiles.Add(projectile);
-                }
+				var projectile = EnemyProjectileManager.Instance.GetFreeProjectile();
+				if (projectile != null)
+				{
+					projectiles.Add(projectile);
+				}
             }
 
             RadialPattern radialPattern = new RadialPattern();
-            radialPattern.Shoot(projectiles, _enemy.transform.position, _config.ProjectileSpeed);
+            radialPattern.Shoot(
+                projectiles, 
+                _enemy.transform.position, 
+                _config.ProjectileSpeed, 
+                _config.ProjectileDamage
+            );
         }
     }
 }

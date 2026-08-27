@@ -60,7 +60,7 @@ public class PlayerProjectileManager : MonoBehaviour
         return newIceLance;
     }
 
-    public Projectile SpawnProjectile<T>(Vector3 position, Vector3 direction, float speed) where T : Projectile
+    public Projectile SpawnProjectile<T>(Vector3 position, Vector3 direction, float speed, int damage) where T : Projectile
     {
         List<T> pool = typeof(T) == typeof(FireBall) ? _fireBallPool as List<T> : _iceLancePool as List<T>;
         var projectile = GetFreeProjectile(pool);
@@ -68,7 +68,7 @@ public class PlayerProjectileManager : MonoBehaviour
         {
             projectile.transform.position = position;
             projectile.OnReleased += OnProjectileReleased;
-            projectile.Initialize(direction, speed, "Enemy");
+            projectile.Initialize(direction, speed, damage, "Enemy");
             return projectile;
         }
         return null;

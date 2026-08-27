@@ -35,13 +35,8 @@ public class Player : MonoBehaviour
 
 		if (_hurtbox != null)
 		{
-			_hurtbox.OnHit += TakeDamage;
+			_hurtbox.Initialize(_health);
 		}
-	}
-
-	private void TakeDamage(int obj)
-	{
-		throw new NotImplementedException();
 	}
 
 	private void OnDeath()
@@ -49,7 +44,7 @@ public class Player : MonoBehaviour
 		throw new NotImplementedException();
 	}
 
-	private void OnHealthChanged(int obj)
+	private void OnHealthChanged(int value)
 	{
 		throw new NotImplementedException();
 	}

@@ -45,18 +45,18 @@ namespace EnemyStates
 			List<Projectile> projectiles = new List<Projectile>();
 			for (int i = 0; i < _shootPatternConfig.ProjectilesPerShot; i++)
 			{
-				var projectile = EnemyProjectileManager.Instance.SpawnProjectile(
-                    transform.position, 
-                    Vector3.zero, 
-                    _shootPatternConfig.ProjectileSpeed
-                );
+				var projectile = EnemyProjectileManager.Instance.GetFreeProjectile();
 				if (projectile != null)
 				{
 					projectiles.Add(projectile);
 				}
 			}
 
-			_spiralPattern.Shoot(projectiles, transform.position, _shootPatternConfig.ProjectileSpeed);
+			_spiralPattern.Shoot(
+                projectiles, 
+                transform.position, 
+                _shootPatternConfig.ProjectileSpeed, 
+                _shootPatternConfig.ProjectileDamage);
 		}
 	}
 }

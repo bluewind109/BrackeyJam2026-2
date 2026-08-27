@@ -16,7 +16,8 @@ namespace ShootPatterns
 		public void Shoot(
 			List<Projectile> projectiles,
 			Vector3 position,
-			float projectileSpeed)
+			float projectileSpeed,
+			int projectileDamage)
 		{
 			float angleStep = 360f / projectiles.Count;
 			float angle = _currentAngle;
@@ -28,7 +29,12 @@ namespace ShootPatterns
 
 				Vector3 projectileVector = new Vector3(projectileDirXPosition, projectileDirYPosition, 0);
 				Vector3 projectileMoveDirection = (projectileVector - position).normalized;
-				projectiles[i].Initialize(projectileMoveDirection, projectileSpeed, "Player");
+				projectiles[i].Initialize(
+					projectileMoveDirection, 
+					projectileSpeed, 
+					projectileDamage, 
+					"Player"
+				);
 
 				angle += angleStep;
 			}

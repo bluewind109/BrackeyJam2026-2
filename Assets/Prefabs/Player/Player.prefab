@@ -203,6 +203,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hurtbox
       objectReference: {fileID: 0}
+    - target: {fileID: 2211066675607712378, guid: d5d91b54187a28946ba54a0cb5b0af28, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4771234554810398976, guid: d5d91b54187a28946ba54a0cb5b0af28, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.27

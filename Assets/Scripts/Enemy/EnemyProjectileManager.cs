@@ -52,20 +52,20 @@ public class EnemyProjectileManager : MonoBehaviour
 		return newProjectile;
 	}
 
-	public Projectile SpawnProjectile(Vector3 position, Vector3 direction, float speed)
+	public Projectile SpawnProjectile(int damage, Vector3 position, Vector3 direction, float speed)
 	{
 		var projectile = GetFreeProjectile();
 		if (projectile != null)
 		{
 			projectile.transform.position = position;
             projectile.OnReleased += OnProjectileReleased;
-			projectile.Initialize(direction, speed, "Player");
+			projectile.Initialize(direction, speed, damage, "Player");
 			return projectile;
 		}
 		return null;
 	}
 
-	private Projectile GetFreeProjectile()
+	public Projectile GetFreeProjectile()
 	{
 		foreach (var projectile in _projectilePool)
 		{

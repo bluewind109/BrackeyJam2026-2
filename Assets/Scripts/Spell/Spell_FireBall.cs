@@ -10,6 +10,6 @@ public class Spell_FireBall : Spell
 		float speed = 10f;
 		Vector3 from = player.transform.position;
 		Vector3 direction = (to - from).normalized;
-		PlayerProjectileManager.Instance.SpawnProjectile<FireBall>(from, direction, speed);
+		PlayerProjectileManager.Instance.SpawnProjectile<FireBall>(from, direction, speed, Damage);
 	}
 }

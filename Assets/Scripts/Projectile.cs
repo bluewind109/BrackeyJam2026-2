@@ -27,10 +27,11 @@ public abstract class Projectile : MonoBehaviour
 		}
 	}
 
-	public virtual void Initialize(Vector3 direction, float speed, string targetTag)
+	public virtual void Initialize(Vector3 direction, float speed, int damage, string targetTag)
 	{
 		_direction = direction;
 		_speed = speed;
+		_damage = damage;
 		gameObject.SetActive(true);
 		_isActive = true;
 		if (_hitbox != null)

@@ -133,7 +133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9354c922c0c704488b751ac36fc157b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStates.SpiralShootState
-  _config: {fileID: 11400000, guid: a85d02cec59c6b04295ad47a9e79352c, type: 2}
   _shootPatternConfig: {fileID: 11400000, guid: cfbdd1bd8a1a6de4898873d3a444cd13, type: 2}
 --- !u!1 &5142401284368094088
 GameObject:
@@ -179,7 +178,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 202a8357661ea984e8f349fee2c45a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStates.CircleShotState
-  _config: {fileID: 11400000, guid: 9c100bb4aa76f49499c79a9ab5fb82ff, type: 2}
   _shootPatternConfig: {fileID: 11400000, guid: fb6984cc5b2e8a94b8cca36361199c5f, type: 2}
 --- !u!1 &7445563150749018732
 GameObject:
@@ -349,6 +347,10 @@ PrefabInstance:
     - target: {fileID: 3832596036317032641, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4717436436787066950, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 5002056913124532906, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: m_Name

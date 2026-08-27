@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class Hurtbox : MonoBehaviour
 {
-    public System.Action<int> OnHit;
+    private Health _health;
 
-    public void SetTag(string tag)
+    public void Initialize(Health health)
     {
-        this.gameObject.tag = tag;
-    } 
+        _health = health;
+    }
 
     public void TakeDamage(int damage)
     {
         // Debug.Log($"Hurtbox took {damage} damage.");
-        OnHit?.Invoke(damage);
+        _health?.TakeDamage(damage);
     }
 }
