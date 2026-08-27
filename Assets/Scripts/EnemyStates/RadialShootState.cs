@@ -6,7 +6,6 @@ namespace EnemyStates
 {
     public class RadialShootState : EnemyState
     {
-        [SerializeField] private RadialShootStateConfig _config;
         [SerializeField] private RadialPatternConfig _shootPatternConfig;
 
 		private int _currentShotCount = 0;
@@ -29,13 +28,13 @@ namespace EnemyStates
         public override void UpdateState()
         {
             _shotTimer += Time.deltaTime;
-            if (_shotTimer >= _config.ShotInterval)
+            if (_shotTimer >= _shootPatternConfig.ShotInterval)
             {
                 _shotTimer = 0f;
                 _currentShotCount++;
                 // Shoot(_currentShotCount * (360f / _numberOfShots));
                 Shoot();
-                if (_currentShotCount >= _config.NumberOfShots)
+                if (_currentShotCount >= _shootPatternConfig.NumberOfShots)
                 {
                     OnStateFinished();
                 }
@@ -45,9 +44,13 @@ namespace EnemyStates
 		private void Shoot()
 		{
 			List<Projectile> projectiles = new List<Projectile>();
-			for (int i = 0; i < _config.ProjectilesPerShot; i++)
+			for (int i = 0; i < _shootPatternConfig.ProjectilesPerShot; i++)
 			{
-				var projectile = EnemyProjectileManager.Instance.SpawnProjectile(transform.position, Vector3.zero, 5f);
+				var projectile = EnemyProjectileManager.Instance.SpawnProjectile(
+                    transform.position, 
+                    Vector3.zero, 
+                    _shootPatternConfig.ProjectileSpeed
+                );
 				if (projectile != null)
 				{
 					projectiles.Add(projectile);

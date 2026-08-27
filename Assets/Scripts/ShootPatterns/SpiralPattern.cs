@@ -6,12 +6,17 @@ namespace ShootPatterns
 	public class SpiralPattern : Pattern
 	{
 		private float _currentAngle = 0f;
+		private float _angleIncrement = 0f;
+
+		public SpiralPattern(float angleIncrement = 10f)
+		{
+			_angleIncrement = angleIncrement;
+		}
 
 		public void Shoot(
 			List<Projectile> projectiles,
 			Vector3 position,
-			float projectileSpeed,
-			float angleIncrement)
+			float projectileSpeed)
 		{
 			float angleStep = 360f / projectiles.Count;
 			float angle = _currentAngle;
@@ -27,7 +32,7 @@ namespace ShootPatterns
 
 				angle += angleStep;
 			}
-			_currentAngle += angleIncrement;
+			_currentAngle += _angleIncrement;
 			Debug.Log($"Current Angle: {_currentAngle}");
 		}
 	}

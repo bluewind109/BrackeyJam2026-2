@@ -6,7 +6,6 @@ namespace EnemyStates
 {
 	public class SpiralShootState : EnemyState
 	{
-        [SerializeField] private SpiralShootStateConfig _config;
         [SerializeField] private SpiralPatternConfig _shootPatternConfig;
 
 		private int _currentShotCount = 0;
@@ -18,7 +17,7 @@ namespace EnemyStates
             Debug.Log("Entering Spiral Shoot State");
 			_shotTimer = 0f;
 			_currentShotCount = 0;
-			_spiralPattern = new SpiralPattern();
+			_spiralPattern = new SpiralPattern(_shootPatternConfig.AngleIncrement);
 		}
 
 		public override void Exit()
@@ -29,12 +28,12 @@ namespace EnemyStates
 		public override void UpdateState()
 		{
 			_shotTimer += Time.deltaTime;
-			if (_shotTimer >= _config.ShotInterval)
+			if (_shotTimer >= _shootPatternConfig.ShotInterval)
 			{
 				_shotTimer = 0f;
 				_currentShotCount++;
 				Shoot();
-				if (_currentShotCount >= _config.NumberOfShots)
+				if (_currentShotCount >= _shootPatternConfig.NumberOfShots)
 				{
 					OnStateFinished();
 				}
@@ -44,16 +43,20 @@ namespace EnemyStates
 		private void Shoot()
 		{
 			List<Projectile> projectiles = new List<Projectile>();
-			for (int i = 0; i < _config.ProjectilesPerShot; i++)
+			for (int i = 0; i < _shootPatternConfig.ProjectilesPerShot; i++)
 			{
-				var projectile = EnemyProjectileManager.Instance.SpawnProjectile(transform.position, Vector3.zero, 5f);
+				var projectile = EnemyProjectileManager.Instance.SpawnProjectile(
+                    transform.position, 
+                    Vector3.zero, 
+                    _shootPatternConfig.ProjectileSpeed
+                );
 				if (projectile != null)
 				{
 					projectiles.Add(projectile);
 				}
 			}
 
-			_spiralPattern.Shoot(projectiles, transform.position, _shootPatternConfig.ProjectileSpeed, _config.AngleIncrement);
+			_spiralPattern.Shoot(projectiles, transform.position, _shootPatternConfig.ProjectileSpeed);
 		}
 	}
 }
