@@ -11,7 +11,7 @@ public class Hurtbox : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        Debug.Log($"Hurtbox took {damage} damage.");
+        // Debug.Log($"Hurtbox took {damage} damage.");
         _health?.TakeDamage(damage);
     }
 }

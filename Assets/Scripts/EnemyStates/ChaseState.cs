@@ -43,7 +43,7 @@ namespace EnemyStates
         {
             if (_player == null) return;
             Vector3 direction = (_player.transform.position - _enemy.transform.position).normalized;
-            _enemy.transform.position += direction * Time.deltaTime * _config.ChaseSpeed;
+            _enemy.Move(direction * Time.deltaTime * _config.ChaseSpeed);
         }
     }
 }

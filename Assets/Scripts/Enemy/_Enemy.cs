@@ -52,9 +52,25 @@ public abstract class Enemy : MonoBehaviour
     public virtual void Initialize(Player player)
     {
         _player = player;
+        ClampInsideScreen();
     }
 
     public abstract void GameUpdate();
+
+    public void Move(Vector3 movement)
+    {
+        SetPosition(transform.position + movement);
+    }
+
+    public void SetPosition(Vector3 targetPosition)
+    {
+        transform.position = ScreenBoundsUtility.ClampPositionInsideCamera(Camera.main, transform, targetPosition);
+    }
+
+    public void ClampInsideScreen()
+    {
+        SetPosition(transform.position);
+    }
 
     private void OnHitPlayer(Hurtbox playerHurtbox)
     {

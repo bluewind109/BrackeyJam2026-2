@@ -23,6 +23,6 @@ public class Spell_WindStep : Spell
 
 		Vector3 direction = (to - player.transform.position).normalized;
 		Vector3 targetPosition = player.transform.position + direction * distance;
-		player.transform.position = targetPosition;
+		player.SetPosition(targetPosition);
 	}
 }

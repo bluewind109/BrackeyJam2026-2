@@ -60,7 +60,7 @@ namespace EnemyStates
         private void UpdateDash()
         {
             if (_dashDirection == Vector3.zero) return;
-            _enemy.transform.position += _dashDirection * _config.DashSpeed * Time.deltaTime;
+            _enemy.Move(_dashDirection * _config.DashSpeed * Time.deltaTime);
 
             _shotTimer += Time.deltaTime;
             if (_shotTimer >= _config.ShotInterval)
