@@ -39,19 +39,20 @@ namespace ShootPatterns
 
 			for (int i = 0; i < _config.ProjectilesPerShot; i++)
 			{
-				float projectileDirXPosition = position.x + Mathf.Sin((startAngle * Mathf.PI) / 180);
-				float projectileDirYPosition = position.y + Mathf.Cos((startAngle * Mathf.PI) / 180);
+				float shotAngle = startAngle + (i * _angleStep);
+				float projectileAngleInRadians = shotAngle * Mathf.Deg2Rad;
+				Vector3 projectileMoveDirection = new Vector3(
+					Mathf.Sin(projectileAngleInRadians),
+					Mathf.Cos(projectileAngleInRadians),
+					0f
+				).normalized;
 
-				Vector3 projectileVector = new Vector3(projectileDirXPosition, projectileDirYPosition, 0);
-				Vector3 projectileMoveDirection = (projectileVector - position).normalized;
 				EnemyProjectileManager.Instance.SpawnProjectile(
 					_config.ProjectileDamage,
 					position,
 					projectileMoveDirection,
 					_config.ProjectileSpeed
 				);
-
-				startAngle += _angleStep;
 			}
 
 			_isAlternateAngle = !_isAlternateAngle;
