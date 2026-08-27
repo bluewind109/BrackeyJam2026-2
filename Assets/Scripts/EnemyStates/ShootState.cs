@@ -26,6 +26,7 @@ namespace EnemyStates
             _shotTimer = 0f;
             _currentShotCount = 0;
             _currentPatternInfo = GetRandomPatternInfo();
+            Debug.Log($"Selected Pattern: <color=yellow>{_currentPatternInfo.PatternType}</color>");
             _currentPattern = PatternFactory.CreatePattern(_currentPatternInfo);
         }
 

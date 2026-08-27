@@ -5,10 +5,15 @@ namespace ShootPatterns
 	public class RadialPattern : Pattern, IStaticPattern
 	{
 		private RadialPatternConfig _config;
+		private float _angleStep = 0f;
+		private float _alternateAngle = 0f;
+		private bool _isAlternateAngle = false;
 
 		public RadialPattern(RadialPatternConfig config)
 		{
 			_config = config;
+			_angleStep = 360f / _config.ProjectilesPerShot;
+			_alternateAngle = _angleStep / 2f;
 		}
 
 		public void Shoot(Vector3 position)
@@ -30,13 +35,12 @@ namespace ShootPatterns
 				return;
 			}
 
-			float angleStep = 360f / _config.ProjectilesPerShot;
-			float angle = 0f;
+			float startAngle = _isAlternateAngle ? _alternateAngle : 0f;
 
 			for (int i = 0; i < _config.ProjectilesPerShot; i++)
 			{
-				float projectileDirXPosition = position.x + Mathf.Sin((angle * Mathf.PI) / 180);
-				float projectileDirYPosition = position.y + Mathf.Cos((angle * Mathf.PI) / 180);
+				float projectileDirXPosition = position.x + Mathf.Sin((startAngle * Mathf.PI) / 180);
+				float projectileDirYPosition = position.y + Mathf.Cos((startAngle * Mathf.PI) / 180);
 
 				Vector3 projectileVector = new Vector3(projectileDirXPosition, projectileDirYPosition, 0);
 				Vector3 projectileMoveDirection = (projectileVector - position).normalized;
@@ -47,8 +51,10 @@ namespace ShootPatterns
 					_config.ProjectileSpeed
 				);
 
-				angle += angleStep;
+				startAngle += _angleStep;
 			}
+
+			_isAlternateAngle = !_isAlternateAngle;
 		}
 	}
 }

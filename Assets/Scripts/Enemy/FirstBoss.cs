@@ -14,7 +14,7 @@ public class FirstBoss : Enemy
     [SerializeField] private EnemyState _dashState;
     [SerializeField] private EnemyState _recoverState;
 
-    private List<EnemyState> _attackStates = new List<EnemyState>();
+    [SerializeField] private List<EnemyState> _attackStates = new List<EnemyState>();
 
     private EnemyState _currentState;
 
@@ -26,9 +26,6 @@ public class FirstBoss : Enemy
         _shootState.StateFinished += OnShootStateFinished;
         _dashState.StateFinished += OnDashStateFinished;
         _recoverState.StateFinished += OnRecoverStateFinished;
-
-        _attackStates.Add(_shootState);
-        _attackStates.Add(_dashState);
     }
 
     void OnDestroy()
