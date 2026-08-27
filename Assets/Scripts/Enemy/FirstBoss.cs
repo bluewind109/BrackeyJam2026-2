@@ -25,9 +25,9 @@ public class FirstBoss : Enemy
         _dashState.StateFinished += OnDashStateFinished;
         _recoverState.StateFinished += OnRecoverStateFinished;
 
-        // _attackStates.Add(_radialShootState);
-        _attackStates.Add(_spiralShootState);
-        // _attackStates.Add(_dashState);
+        _attackStates.Add(_radialShootState);
+        // _attackStates.Add(_spiralShootState);
+        _attackStates.Add(_dashState);
     }
 
     void OnDestroy()
