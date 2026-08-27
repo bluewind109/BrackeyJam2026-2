@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
 	[SerializeField] private PlayerStats _playerStats;
 	[SerializeField] private PlayerInputHandler _inputHandler;
 	[SerializeField] private List<Spell> _spells = new List<Spell>();
-	[SerializeField] private float _moveSpeed = 5f;
 
 	private Health _health;
 	private Hurtbox _hurtbox;
@@ -177,7 +176,7 @@ public class Player : MonoBehaviour
 		if (movementInput == Vector2.zero) return;
 
 		Vector3 movement = new Vector3(movementInput.x, movementInput.y, 0f);
-		transform.position += movement * _moveSpeed * Time.deltaTime;
+		transform.position += movement * _playerStats.MoveSpeed * Time.deltaTime;
 	}
 
 	public void EnterFocusMode()
