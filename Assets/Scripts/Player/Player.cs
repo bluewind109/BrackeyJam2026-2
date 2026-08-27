@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
 	void Start()
 	{
 		InitInput();
+		ClampInsideScreen();
 	}
 
 	private void InitInput()
@@ -180,7 +181,22 @@ public class Player : MonoBehaviour
 		if (movementInput == Vector2.zero) return;
 
 		Vector3 movement = new Vector3(movementInput.x, movementInput.y, 0f);
-		transform.position += movement * _playerStats.MoveSpeed * Time.deltaTime;
+		Move(movement * _playerStats.MoveSpeed * Time.deltaTime);
+	}
+
+	public void Move(Vector3 movement)
+	{
+		SetPosition(transform.position + movement);
+	}
+
+	public void SetPosition(Vector3 targetPosition)
+	{
+		transform.position = ScreenBoundsUtility.ClampPositionInsideCamera(Camera.main, transform, targetPosition);
+	}
+
+	public void ClampInsideScreen()
+	{
+		SetPosition(transform.position);
 	}
 
 	public void EnterFocusMode()
