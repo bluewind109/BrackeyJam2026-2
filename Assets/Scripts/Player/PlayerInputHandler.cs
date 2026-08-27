@@ -36,7 +36,7 @@ public class PlayerInputHandler : MonoBehaviour
             {
                 if (!AllowedInput(keyCode)) continue;
                 InputDirection direction = CheckDirectionalInput(keyCode);
-                Debug.Log($"Key pressed: {keyCode}, Direction: {direction}");
+                // Debug.Log($"Key pressed: {keyCode}, Direction: {direction}");
                 InputReceived?.Invoke(direction);
             }
         }
