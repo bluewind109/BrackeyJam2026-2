@@ -14,7 +14,15 @@ namespace ShootPatterns
 	public abstract class Pattern
 	{
 		public event Action OnShootComplete;
+	}
 
-		public abstract void Shoot(Vector3 position);
+	public interface IStaticPattern
+	{
+		void Shoot(Vector3 position);
+	}
+
+	public interface IDirectionalPattern
+	{
+		void Shoot(Vector3 position, Vector3 direction);
 	}
 }

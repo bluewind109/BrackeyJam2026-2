@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ShootPatterns
 {
-	public class RadialPattern : Pattern
+	public class RadialPattern : Pattern, IStaticPattern
 	{
 		private RadialPatternConfig _config;
 
@@ -11,7 +11,7 @@ namespace ShootPatterns
 			_config = config;
 		}
 
-		public override void Shoot(Vector3 position)
+		public void Shoot(Vector3 position)
 		{
 			if (_config == null)
 			{

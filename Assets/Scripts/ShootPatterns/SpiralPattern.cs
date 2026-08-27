@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ShootPatterns
 {
-	public class SpiralPattern : Pattern
+	public class SpiralPattern : Pattern, IStaticPattern
 	{
 		private SpiralPatternConfig _config;
 		private float _currentAngle = 0f;
@@ -12,7 +12,7 @@ namespace ShootPatterns
 			_config = config;
 		}
 
-		public override void Shoot(Vector3 position)
+		public void Shoot(Vector3 position)
 		{
 			if (_config == null)
 			{
