@@ -64,7 +64,12 @@ namespace EnemyStates
             List<Vector3> existingSpawnPositions = new List<Vector3>(_numberOfSlamAttacks);
             float accumulatedStagger = 0f;
 
-            for (int i = 0; i < _numberOfSlamAttacks; i++)
+            float centerRandomDelay = Random.Range(0f, Mathf.Max(0f, _spawnDelayJitter));
+            float centerDelayDuration = Mathf.Max(0f, _baseDelayDuration + centerRandomDelay);
+            AoeAttackManager.Instance.SpawnAoeAttack(centerDelayDuration, _slamDamage, playerPosition);
+            existingSpawnPositions.Add(playerPosition);
+
+            for (int i = 1; i < _numberOfSlamAttacks; i++)
             {
                 Vector3 spawnPosition = GetSpawnPosition(playerPosition, existingSpawnPositions);
                 existingSpawnPositions.Add(spawnPosition);
