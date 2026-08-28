@@ -39,6 +39,7 @@ namespace PlayerModes
 			_enemy.GameUpdate();
 			PlayerProjectileManager.Instance.GameUpdate();
 			EnemyProjectileManager.Instance.GameUpdate();
+			AoeAttackManager.Instance.GameUpdate();
 			_focusCooldownTimer.UpdateTime();
 		}
 

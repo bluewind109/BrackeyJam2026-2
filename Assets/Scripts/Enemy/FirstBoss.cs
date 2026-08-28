@@ -11,6 +11,7 @@ public class FirstBoss : Enemy
     [SerializeField] private EnemyState _idleState;
     [SerializeField] private EnemyState _chaseState;
     [SerializeField] private EnemyState _shootState;
+    [SerializeField] private EnemyState _slamState;
     [SerializeField] private EnemyState _dashState;
     [SerializeField] private EnemyState _recoverState;
 
@@ -24,6 +25,7 @@ public class FirstBoss : Enemy
         _idleState.StateFinished += OnIdleStateFinished;
         _chaseState.StateFinished += OnChaseStateFinished;
         _shootState.StateFinished += OnShootStateFinished;
+        _slamState.StateFinished += OnSlamStateFinished;
         _dashState.StateFinished += OnDashStateFinished;
         _recoverState.StateFinished += OnRecoverStateFinished;
     }
@@ -34,6 +36,7 @@ public class FirstBoss : Enemy
         _idleState.StateFinished -= OnIdleStateFinished;
         _chaseState.StateFinished -= OnChaseStateFinished;
         _shootState.StateFinished -= OnShootStateFinished;
+        _slamState.StateFinished -= OnSlamStateFinished;
         _dashState.StateFinished -= OnDashStateFinished;
         _recoverState.StateFinished -= OnRecoverStateFinished;
     }
@@ -45,6 +48,7 @@ public class FirstBoss : Enemy
         ((ChaseState)_chaseState).Initialize(this, player);
         ((DashState)_dashState).Initialize(this, player);
         ((ShootState)_shootState).Initialize(player);
+        ((SlamAttackState)_slamState).Initialize(player, 8);
         SetState(_spawnState);
     }
 
@@ -87,6 +91,10 @@ public class FirstBoss : Enemy
     }
 
     private void OnShootStateFinished()
+    {
+        SetState(_recoverState);
+    }
+    private void OnSlamStateFinished()
     {
         SetState(_recoverState);
     }

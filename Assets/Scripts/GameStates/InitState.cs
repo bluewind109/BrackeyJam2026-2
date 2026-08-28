@@ -17,6 +17,7 @@ namespace GameStates
 		{
 			PlayerProjectileManager.Instance.Initialize();
 			EnemyProjectileManager.Instance.Initialize();
+			AoeAttackManager.Instance.Initialize();
 			_enemy.Initialize(_player);
 		}
 
@@ -27,7 +28,8 @@ namespace GameStates
 		public override void Update()
 		{
 			if (PlayerProjectileManager.Instance.IsInitialized &&
-				EnemyProjectileManager.Instance.IsInitialized)
+				EnemyProjectileManager.Instance.IsInitialized &&
+				AoeAttackManager.Instance.IsInitialized)
 			{
 				_gameManager.SetState(_gameManager.IntroState);
 			}
