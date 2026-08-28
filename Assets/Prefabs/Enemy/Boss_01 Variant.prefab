@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b13fd3403ec4de4d95cda9a8cd90f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStates.SlamAttackState
+  _config: {fileID: 11400000, guid: da3da24c2cfe04346a59cb0851ca4c88, type: 2}
 --- !u!1 &6901176135321113537
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,16 +275,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01c14f593a73a6d40a454c3be51112cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStates.SlamAttackState
-  _minSpawnRadius: 0.9
-  _maxSpawnRadius: 2.4
-  _baseDelayDuration: 1
-  _spawnRadius: 1.5
-  _spawnDelayJitter: 0.5
-  _spawnStaggerMin: 0.03
-  _spawnStaggerMax: 0.12
-  _minSpawnDistanceBetweenAttacks: 0.65
+  _config: {fileID: 11400000, guid: c867586f3fc45b94688676c002451d41, type: 2}
   _positionRetryCount: 6
-  _meteorDamage: 1
 --- !u!1 &7445563150749018732
 GameObject:
   m_ObjectHideFlags: 0

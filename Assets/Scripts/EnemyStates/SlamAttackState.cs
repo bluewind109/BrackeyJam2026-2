@@ -4,15 +4,10 @@ namespace EnemyStates
 {
 	public class SlamAttackState : EnemyState
 	{
-        private float _slamAttackDelay = 1f;
+        [SerializeField] private SlamAttackStateConfig _config;
+
         private float _slamAttackTimer = 0f;
-
-        private float _slamAttackPersistenceDuration = 0.1f;
         private float _slamAttackPersistenceTimer = 0f;
-
-        private int _slamAttackDamage = 1;
-        private float _slamAttackRadius = 16f;
-
 
 		public override void Enter()
 		{
@@ -48,9 +43,9 @@ namespace EnemyStates
 
             Vector3 slamAttackPosition = transform.position;
             AoeAttack slamAttack = AoeAttackManager.Instance.SpawnAoeAttack(
-                _slamAttackDelay, 
-                _slamAttackDamage, 
-                _slamAttackRadius,
+                _config.SlamAttackDelay, 
+                _config.SlamAttackDamage, 
+                _config.SlamAttackRadius,
                 slamAttackPosition
             );
         }
