@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace EnemyStates
 {
-    public class SlamAttackState : EnemyState
+    public class MeteorRainState : EnemyState
     {
         [SerializeField] private float _minSpawnRadius = 0.9f;
         [SerializeField] private float _maxSpawnRadius = 2.4f;
@@ -13,28 +13,28 @@ namespace EnemyStates
         [SerializeField] private float _spawnStaggerMax = 0.12f;
         [SerializeField] private float _minSpawnDistanceBetweenAttacks = 0.65f;
         [SerializeField] private int _positionRetryCount = 6;
-        [SerializeField] private int _slamDamage = 1;
+        [SerializeField] private int _meteorDamage = 1;
 
         private Player _player;
-        private int _numberOfSlamAttacks = 8;
+        private int _numberOfMeteors = 8;
 
-        public void Initialize(Player player, int numberOfSlamAttacks)
+        public void Initialize(Player player, int numberOfMeteors)
         {
             _player = player;
-            _numberOfSlamAttacks = numberOfSlamAttacks;
+            _numberOfMeteors = numberOfMeteors;
         }
 
         public override void Enter()
         {
-            Debug.Log("Entering Slam Attack State");
+            Debug.Log("Entering Meteor Rain State");
             if (_player == null)
             {
-                Debug.LogError("SlamAttackState requires a player reference before entering.");
+                Debug.LogError("MeteorRainState requires a player reference before entering.");
                 OnStateFinished();
                 return;
             }
 
-            SpawnAoeAttacksAroundPlayer();
+            SpawnMeteorsAroundPlayer();
             OnStateFinished();
         }
 
@@ -46,37 +46,37 @@ namespace EnemyStates
         {
         }
 
-        private void SpawnAoeAttacksAroundPlayer()
+        private void SpawnMeteorsAroundPlayer()
         {
-            if (_numberOfSlamAttacks <= 0)
+            if (_numberOfMeteors <= 0)
             {
-                Debug.LogWarning("SlamAttackState skipped spawning because number of slam attacks is not positive.");
+                Debug.LogWarning("MeteorRainState skipped spawning because number of meteors is not positive.");
                 return;
             }
 
             if (AoeAttackManager.Instance == null)
             {
-                Debug.LogError("Cannot spawn slam AOEs because AoeAttackManager.Instance is null.");
+                Debug.LogError("Cannot spawn meteor rain AOEs because AoeAttackManager.Instance is null.");
                 return;
             }
 
             Vector3 playerPosition = _player.transform.position;
-            List<Vector3> existingSpawnPositions = new List<Vector3>(_numberOfSlamAttacks);
+            List<Vector3> existingSpawnPositions = new List<Vector3>(_numberOfMeteors);
             float accumulatedStagger = 0f;
 
             float centerRandomDelay = Random.Range(0f, Mathf.Max(0f, _spawnDelayJitter));
             float centerDelayDuration = Mathf.Max(0f, _baseDelayDuration + centerRandomDelay);
-            AoeAttackManager.Instance.SpawnAoeAttack(centerDelayDuration, _slamDamage, playerPosition);
+            AoeAttackManager.Instance.SpawnAoeAttack(centerDelayDuration, _meteorDamage, playerPosition);
             existingSpawnPositions.Add(playerPosition);
 
-            for (int i = 1; i < _numberOfSlamAttacks; i++)
+            for (int i = 1; i < _numberOfMeteors; i++)
             {
                 Vector3 spawnPosition = GetSpawnPosition(playerPosition, existingSpawnPositions);
                 existingSpawnPositions.Add(spawnPosition);
 
                 float randomDelay = Random.Range(0f, Mathf.Max(0f, _spawnDelayJitter));
                 float delayDuration = Mathf.Max(0f, _baseDelayDuration + randomDelay + accumulatedStagger);
-                AoeAttackManager.Instance.SpawnAoeAttack(delayDuration, _slamDamage, spawnPosition);
+                AoeAttackManager.Instance.SpawnAoeAttack(delayDuration, _meteorDamage, spawnPosition);
 
                 float staggerStep = Random.Range(
                     Mathf.Max(0f, _spawnStaggerMin),

@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 4067863672086903850}
   - component: {fileID: 4144934245156963055}
   m_Layer: 0
-  m_Name: SlamState
+  m_Name: MeteorRainState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -230,6 +230,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01c14f593a73a6d40a454c3be51112cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStates.SlamAttackState
+  _minSpawnRadius: 0.9
+  _maxSpawnRadius: 2.4
+  _baseDelayDuration: 1
+  _spawnDelayJitter: 0.35
+  _spawnStaggerMin: 0.03
+  _spawnStaggerMax: 0.12
+  _minSpawnDistanceBetweenAttacks: 0.65
+  _positionRetryCount: 6
+  _meteorDamage: 1
 --- !u!1 &7445563150749018732
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,6 +372,10 @@ PrefabInstance:
       propertyPath: _spriteRenderer
       value: 
       objectReference: {fileID: 7915424087615280481}
+    - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: _meteorRainState
+      value: 
+      objectReference: {fileID: 4144934245156963055}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _attackStates.Array.size
       value: 1
