@@ -12,6 +12,7 @@ public class FirstBoss : Enemy
     [SerializeField] private EnemyState _chaseState;
     [SerializeField] private EnemyState _shootState;
     [SerializeField] private EnemyState _meteorRainState;
+    [SerializeField] private EnemyState _slamAttackState;
     [SerializeField] private EnemyState _dashState;
     [SerializeField] private EnemyState _recoverState;
 
@@ -26,6 +27,7 @@ public class FirstBoss : Enemy
         _chaseState.StateFinished += OnChaseStateFinished;
         _shootState.StateFinished += OnShootStateFinished;
         _meteorRainState.StateFinished += OnMeteorRainStateFinished;
+        _slamAttackState.StateFinished += OnSlamAttackStateFinished;
         _dashState.StateFinished += OnDashStateFinished;
         _recoverState.StateFinished += OnRecoverStateFinished;
     }
@@ -37,6 +39,7 @@ public class FirstBoss : Enemy
         _chaseState.StateFinished -= OnChaseStateFinished;
         _shootState.StateFinished -= OnShootStateFinished;
         _meteorRainState.StateFinished -= OnMeteorRainStateFinished;
+        _slamAttackState.StateFinished -= OnSlamAttackStateFinished;
         _dashState.StateFinished -= OnDashStateFinished;
         _recoverState.StateFinished -= OnRecoverStateFinished;
     }
@@ -95,6 +98,11 @@ public class FirstBoss : Enemy
         SetState(_recoverState);
     }
     private void OnMeteorRainStateFinished()
+    {
+        SetState(_recoverState);
+    }
+
+    private void OnSlamAttackStateFinished()
     {
         SetState(_recoverState);
     }

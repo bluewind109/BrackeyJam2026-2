@@ -3,11 +3,31 @@ using UnityEngine;
 
 namespace EnemyStates
 {
+    /// <summary>
+    /// In SpawnMeteorsAroundPlayer, stagger is controlled by 3 pieces:<br/>
+    /// <b>_spawnStaggerMin</b> and <b>_spawnStaggerMax</b> <br/>
+    /// These define the random extra time added between each meteor. <br/>
+    ///  <br/>
+    /// <b>accumulatedStagger</b> <br/>
+    /// This starts at 0, then grows every loop by a random step: <br/>
+    /// staggerStep = Random.Range(_spawnStaggerMin, _spawnStaggerMax) <br/>
+    /// accumulatedStagger += staggerStep <br/>
+    ///  <br/>
+    /// Then each meteor delay is: <br/>
+    /// delayDuration = _baseDelayDuration + randomDelay + accumulatedStagger <br/>
+    /// So later meteors always tend to land later than earlier ones,  <br/>
+    /// creating a “rain over time” effect instead of all AOEs appearing at once. <br/>
+    ///  <br/>
+    /// Also: <br/>
+    /// _spawnDelayJitter adds per-meteor randomness. <br/>
+    /// The center meteor currently uses only base + jitter (no accumulated stagger). <br/>
+    /// </summary>
     public class MeteorRainState : EnemyState
     {
         [SerializeField] private float _minSpawnRadius = 0.9f;
         [SerializeField] private float _maxSpawnRadius = 2.4f;
         [SerializeField] private float _baseDelayDuration = 1f;
+        [SerializeField] private float _spawnRadius = 1.5f;
         [SerializeField] private float _spawnDelayJitter = 0.35f;
         [SerializeField] private float _spawnStaggerMin = 0.03f;
         [SerializeField] private float _spawnStaggerMax = 0.12f;
@@ -66,7 +86,7 @@ namespace EnemyStates
 
             float centerRandomDelay = Random.Range(0f, Mathf.Max(0f, _spawnDelayJitter));
             float centerDelayDuration = Mathf.Max(0f, _baseDelayDuration + centerRandomDelay);
-            AoeAttackManager.Instance.SpawnAoeAttack(centerDelayDuration, _meteorDamage, playerPosition);
+            AoeAttackManager.Instance.SpawnAoeAttack(centerDelayDuration, _meteorDamage, _spawnRadius, playerPosition);
             existingSpawnPositions.Add(playerPosition);
 
             for (int i = 1; i < _numberOfMeteors; i++)
@@ -76,7 +96,7 @@ namespace EnemyStates
 
                 float randomDelay = Random.Range(0f, Mathf.Max(0f, _spawnDelayJitter));
                 float delayDuration = Mathf.Max(0f, _baseDelayDuration + randomDelay + accumulatedStagger);
-                AoeAttackManager.Instance.SpawnAoeAttack(delayDuration, _meteorDamage, spawnPosition);
+                AoeAttackManager.Instance.SpawnAoeAttack(delayDuration, _meteorDamage, _spawnRadius, spawnPosition);
 
                 float staggerStep = Random.Range(
                     Mathf.Max(0f, _spawnStaggerMin),

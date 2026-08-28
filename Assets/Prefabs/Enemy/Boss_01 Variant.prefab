@@ -142,6 +142,50 @@ MonoBehaviour:
   _config: {fileID: 11400000, guid: aba309f44428055428f7a6e463d24aef, type: 2}
   _radialPatternConfig: {fileID: 11400000, guid: fb6984cc5b2e8a94b8cca36361199c5f, type: 2}
   _sidewayPatternConfig: {fileID: 11400000, guid: 4aaa63768b9943f4ebe3749afc840eaf, type: 2}
+--- !u!1 &5742486627938187004
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8356896405298155176}
+  - component: {fileID: 4194479015732547997}
+  m_Layer: 0
+  m_Name: SlamAttackState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8356896405298155176
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5742486627938187004}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 152684261516999017}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4194479015732547997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5742486627938187004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b13fd3403ec4de4d95cda9a8cd90f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStates.SlamAttackState
 --- !u!1 &6901176135321113537
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +277,8 @@ MonoBehaviour:
   _minSpawnRadius: 0.9
   _maxSpawnRadius: 2.4
   _baseDelayDuration: 1
-  _spawnDelayJitter: 0.35
+  _spawnRadius: 1.5
+  _spawnDelayJitter: 0.5
   _spawnStaggerMin: 0.03
   _spawnStaggerMax: 0.12
   _minSpawnDistanceBetweenAttacks: 0.65
@@ -377,17 +422,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4144934245156963055}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: _slamAttackState
+      value: 
+      objectReference: {fileID: 4194479015732547997}
+    - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _attackStates.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: '_attackStates.Array.data[0]'
       value: 
-      objectReference: {fileID: 4144934245156963055}
+      objectReference: {fileID: 4194479015732547997}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: '_attackStates.Array.data[1]'
       value: 
-      objectReference: {fileID: 4144934245156963055}
+      objectReference: {fileID: 4194479015732547997}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: '_attackStates.Array.data[2]'
       value: 
@@ -482,6 +531,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4189074171661111726, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4067863672086903850}
+    - targetCorrespondingSourceObject: {fileID: 4189074171661111726, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8356896405298155176}
     - targetCorrespondingSourceObject: {fileID: 4189074171661111726, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3215623339076595237}

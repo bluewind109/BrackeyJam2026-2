@@ -56,13 +56,17 @@ public class AoeAttackManager : MonoBehaviour
         return newAttack;
     }
 
-    public AoeAttack SpawnAoeAttack(float delayDuration, int damage, Vector3 position)
+    public AoeAttack SpawnAoeAttack(
+        float delayDuration, 
+        int damage, 
+        float spawnRadius,
+        Vector3 position)
     {
         var attack = GetFreeAttack();
         if (attack != null)
         {
             attack.transform.position = position;
-            attack.Initialize(delayDuration, damage);
+            attack.Initialize(delayDuration, damage, spawnRadius);
             return attack;
         }
         return null;

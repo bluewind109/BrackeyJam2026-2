@@ -51,7 +51,7 @@ public class AoeAttack : MonoBehaviour
         _hitbox.Initialize("Player");
     }
 
-    public void Initialize(float delayDuration, int damage)
+    public void Initialize(float delayDuration, int damage, float spawnRadius)
     {
         if (_hitbox == null)
         {
@@ -62,6 +62,7 @@ public class AoeAttack : MonoBehaviour
         gameObject.SetActive(true);
         _delayDuration = delayDuration;
         _damage = damage;
+        this.transform.localScale = new Vector3(spawnRadius, spawnRadius, 1f);
         _delayTimer = 0f;
         _persistenceTimer = 0f;
         predictionZone.transform.localScale = Vector3.zero;
