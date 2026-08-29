@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using MoreMountains.Tools;
 [CreateAssetMenu(fileName = "SpellInfo_FireBall", menuName = "Spell/FireBall")]
 public class SpellInfo_FireBall : SpellInfo
 {
@@ -14,5 +14,7 @@ public class SpellInfo_FireBall : SpellInfo
 		int damage = GetLevelInfo(level)?.Damage ?? 1;
 
 		PlayerProjectileManager.Instance.SpawnProjectile<FireBall>(from, direction, projectileSpeed, damage);
+
+		MMGameEvent.Trigger(GameDefine.SpellEvents.OnSpellCast, stringParameter: GameDefine.SpellEvents.Spell_FireBall);
 	}
 }
