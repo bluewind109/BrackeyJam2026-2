@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using MoreMountains.Tools;
 
 public class Player : MonoBehaviour
 {
@@ -154,6 +155,8 @@ public class Player : MonoBehaviour
 			}
 			_inputIndex++;
 			SavePlayerInput(input);
+
+			MMGameEvent.Trigger(GameDefine.FocusModeEvents.EventName, stringParameter: GameDefine.FocusModeEvents.State_Typing);
 			return;
 		}
 		if (_spellToType == null) return;
@@ -174,6 +177,12 @@ public class Player : MonoBehaviour
 				OnSpellTyped?.Invoke();
 
 				_playerDisplay.TriggerFocusVFXAnimation(_spellToType);
+
+				MMGameEvent.Trigger(GameDefine.FocusModeEvents.EventName, stringParameter: GameDefine.FocusModeEvents.State_Success);
+			}
+			else
+			{
+				MMGameEvent.Trigger(GameDefine.FocusModeEvents.EventName, stringParameter: GameDefine.FocusModeEvents.State_Typing);
 			}
 		}
 		else
@@ -182,6 +191,8 @@ public class Player : MonoBehaviour
 			_inputIndex = 0;
 			_spellToType = null;
 			ClearInputSequence();
+
+			MMGameEvent.Trigger(GameDefine.FocusModeEvents.EventName, stringParameter: GameDefine.FocusModeEvents.State_Reset);
 		}
 	}
 
@@ -229,6 +240,8 @@ public class Player : MonoBehaviour
 	public void EnterFocusMode()
 	{
 		_isFocusModeActive = true;
+
+		MMGameEvent.Trigger(GameDefine.FocusModeEvents.EventName, stringParameter: GameDefine.FocusModeEvents.State_Enter);
 	}
 
 	public void ExitFocusMode()

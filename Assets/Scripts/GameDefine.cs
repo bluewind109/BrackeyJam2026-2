@@ -22,4 +22,13 @@ public class GameDefine
         public const string State_PhaseTransition = "BossState.PhaseTransition";
         public const string State_Dash_Start = "BossState.Dash_Start";
     }
+    public class FocusModeEvents
+    {
+        public const string EventName = "FocusModeEvents";
+        public const string State_Enter = "FocusMode.Open";
+        public const string State_Typing = "FocusMode.Typing";
+        public const string State_Success = "FocusMode.Success";
+        public const string State_Reset = "FocusMode.Reset";
+        public const string State_TimeOut = "FocusMode.TimeOut";
+    }
 }
