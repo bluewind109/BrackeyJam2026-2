@@ -20,5 +20,5 @@ MonoBehaviour:
   projectilesPerShot: 10
   projectileSpeed: 2.5
   shotInterval: 0.25
-  radialPatternConfig: {fileID: 11400000, guid: fb6984cc5b2e8a94b8cca36361199c5f, type: 2}
+  radialPatternConfig: {fileID: 11400000, guid: 0360830054e474842b6da8b08277f86b, type: 2}
   sidewayPatternConfig: {fileID: 11400000, guid: 4aaa63768b9943f4ebe3749afc840eaf, type: 2}

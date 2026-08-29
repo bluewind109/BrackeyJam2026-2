@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7783cc1475abcae4e9f20e1d15180fea, type: 3}
-  m_Name: SpiralPatternConfig_1stBoss_1stPhase
+  m_Name: 1stPhase_SpiralPatternConfig_1stBoss
   m_EditorClassIdentifier: Assembly-CSharp::SpiralPatternConfig
   projectileDamage: 1
   projectileSpeed: 5

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0555000f10660d140a4c884b6bfbe3ca, type: 3}
   m_Name: ChaseStateConfig_1stBoss
   m_EditorClassIdentifier: Assembly-CSharp::ChaseStateConfig
-  chaseSpeed: 4
+  chaseSpeed: 2
   chaseDuration: 2

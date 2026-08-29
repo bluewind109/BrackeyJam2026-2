@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea3e487f9185fe74399e2441951ba557, type: 3}
-  m_Name: SidewayPatternConfig_1stBoss
-  m_EditorClassIdentifier: Assembly-CSharp::SidewayPatternConfig
+  m_Script: {fileID: 11500000, guid: e77409427613df743adf90c17987ac70, type: 3}
+  m_Name: 1stPhase_FanPatternConfig_1stBoss
+  m_EditorClassIdentifier: Assembly-CSharp::FanPatternConfig
   projectileDamage: 1
-  projectileSpeed: 5
-  shotInterval: 0.25
-  duration: 2
+  projectileSpeed: 4
+  shotInterval: 0.2
+  projectilesPerShot: 7
+  spreadAngle: 45
+  numberOfShots: 4
