@@ -14,4 +14,12 @@ public class GameDefine
         public const string Spell_IceLances = "Spell.IceLances";
         public const string Spell_WindStep = "Spell.WindStep";
     }
+    public class BossEvents
+    {
+        public const string EventName = "BossEvents";
+        public const string State_Spawning = "BossState.Spawning";
+        public const string State_SpawnFinished = "BossState.SpawnFinished";
+        public const string State_PhaseTransition = "BossState.PhaseTransition";
+        public const string State_Dash_Start = "BossState.Dash_Start";
+    }
 }

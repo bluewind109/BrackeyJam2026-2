@@ -19,8 +19,8 @@ public class FirstBoss : Enemy
 
     [SerializeField] private List<EnemyState> _attackStates = new List<EnemyState>();
 
-    private const float HEALTH_THRESHOLD_PHASE_2 = 5f / 6f;
-    private const float HEALTH_THRESHOLD_PHASE_3 = 3f / 6f;
+    private const float HEALTH_THRESHOLD_PHASE_2 = 4f / 5f;
+    private const float HEALTH_THRESHOLD_PHASE_3 = 2f / 5f;
 
     private EnemyState _currentState;
     private int _currentPhase = 1;

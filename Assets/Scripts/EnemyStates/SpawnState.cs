@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using MoreMountains.Tools;
 namespace EnemyStates
 {
 	public class SpawnState : EnemyState
@@ -23,6 +23,8 @@ namespace EnemyStates
                 _bossSpriteRenderer.color.b, 
                 0f
             );
+
+            MMGameEvent.Trigger(GameDefine.BossEvents.EventName, stringParameter: GameDefine.BossEvents.State_Spawning);
         }
 
 		public override void Exit()

@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using MoreMountains.Tools;
 namespace EnemyStates
 {
     public class IdleState : EnemyState
@@ -24,6 +24,8 @@ namespace EnemyStates
             if (_idleTimer >= _idleDuration)
             {
                 OnStateFinished();
+                
+                MMGameEvent.Trigger(GameDefine.BossEvents.EventName, stringParameter: GameDefine.BossEvents.State_SpawnFinished);
             }
         }
     }
