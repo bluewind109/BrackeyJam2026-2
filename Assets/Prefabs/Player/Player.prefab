@@ -52,10 +52,7 @@ MonoBehaviour:
   _playerStats: {fileID: 11400000, guid: 06f75a25a8b1f9d4cac247d0941fe1b7, type: 2}
   _inputHandler: {fileID: 4817366234634584827}
   _typedInput: {fileID: 0}
-  _spells:
-  - {fileID: 11400000, guid: 0599556b9050acd40815914c8be97e19, type: 2}
-  - {fileID: 11400000, guid: beb02d716ca25af4dacd7aa35941efbb, type: 2}
-  - {fileID: 11400000, guid: 6c7c8cc1d13af274291564ae6853887d, type: 2}
+  _spellDictionary: {fileID: 11400000, guid: d64ba8f2dbe586c4cbc5c7069d7fdf51, type: 2}
 --- !u!95 &5410740418311892778
 Animator:
   serializedVersion: 7

@@ -82,8 +82,8 @@ public abstract class Enemy : MonoBehaviour
 
     }
 
-    protected virtual void OnHealthChanged(int value)
+    protected virtual void OnHealthChanged(int currentHealth)
     {
-
+        Debug.Log($"{gameObject.name} health changed to {currentHealth}");
     }
 }
