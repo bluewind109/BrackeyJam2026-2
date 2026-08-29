@@ -46,11 +46,11 @@ TagManager:
   - name: Ground
     uniqueID: 2527030575
     locked: 0
-  - name: Enemy
-    uniqueID: 3848336235
-    locked: 0
   - name: PredictionZone
     uniqueID: 1675016143
+    locked: 0
+  - name: Enemy
+    uniqueID: 3848336235
     locked: 0
   - name: PlayerShadow
     uniqueID: 1299171687

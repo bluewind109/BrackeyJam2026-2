@@ -140,6 +140,7 @@ MonoBehaviour:
   _phaseConfigs:
   - {fileID: 11400000, guid: aba309f44428055428f7a6e463d24aef, type: 2}
   - {fileID: 11400000, guid: b2bd751455313b645bd8b9d3b19a7200, type: 2}
+  _predictionLinePrefab: {fileID: 7095520720234735969, guid: 2e82f68e0d5ff9a4d927e6b2b0984529, type: 3}
 --- !u!1 &5742486627938187004
 GameObject:
   m_ObjectHideFlags: 0
@@ -986,20 +987,24 @@ PrefabInstance:
       objectReference: {fileID: 3549842154859728259}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _attackStates.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: '_attackStates.Array.data[0]'
       value: 
-      objectReference: {fileID: 6305990441899281335}
+      objectReference: {fileID: 5919872402068557067}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: '_attackStates.Array.data[1]'
       value: 
-      objectReference: {fileID: 5919872402068557067}
+      objectReference: {fileID: 6305990441899281335}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: '_attackStates.Array.data[2]'
       value: 
-      objectReference: {fileID: 5919872402068557067}
+      objectReference: {fileID: 4144934245156963055}
+    - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: '_attackStates.Array.data[3]'
+      value: 
+      objectReference: {fileID: 4194479015732547997}
     - target: {fileID: 2954071230119703291, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1126,6 +1131,12 @@ PrefabInstance:
       addedObject: {fileID: 2825990294987032118}
     - targetCorrespondingSourceObject: {fileID: 4189074171661111726, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1821095227589534868}
+    - targetCorrespondingSourceObject: {fileID: 4189074171661111726, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3472314378029999696}
+    - targetCorrespondingSourceObject: {fileID: 4189074171661111726, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 5864339443782428081}
     - targetCorrespondingSourceObject: {fileID: 4189074171661111726, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       insertIndex: -1
@@ -1139,12 +1150,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4189074171661111726, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3215623339076595237}
-    - targetCorrespondingSourceObject: {fileID: 4189074171661111726, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1821095227589534868}
-    - targetCorrespondingSourceObject: {fileID: 4189074171661111726, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3472314378029999696}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
 --- !u!4 &152684261516999017 stripped
