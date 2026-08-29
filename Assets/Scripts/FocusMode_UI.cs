@@ -1,9 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class FocusMode_UI : MonoBehaviour
 {
+    public static Action<SpellType, List<InputDirection>> UpdateSpellToType;
+    public static Action ResetSpellToType;
+
     [SerializeField] private Image _focusBarFill;
     [SerializeField] private SpellToType_UI _spellToTypeUI_FireBall;
     [SerializeField] private SpellToType_UI _spellToTypeUI_IceLances;
@@ -12,6 +16,51 @@ public class FocusMode_UI : MonoBehaviour
     [SerializeField] private Sprite _spriteFrame_Lvl1;
     [SerializeField] private Sprite _spriteFrame_Lvl2;
     [SerializeField] private Sprite _spriteFrame_Lvl3;
+
+    private Dictionary<SpellType, SpellToType_UI> _currentSpellDatas = new Dictionary<SpellType, SpellToType_UI>();
+
+    void Awake()
+    {
+        _currentSpellDatas.Add(SpellType.FireBall, _spellToTypeUI_FireBall);
+        _currentSpellDatas.Add(SpellType.IceLances, _spellToTypeUI_IceLances);
+        _currentSpellDatas.Add(SpellType.WindStep, _spellToTypeUI_WindStep);
+        UpdateSpellToType += UpdateCurrentSpellToType;
+        ResetSpellToType += ResetAllSpellUIs;
+    }
+
+    void OnDestroy()
+    {
+        UpdateSpellToType -= UpdateCurrentSpellToType;
+        ResetSpellToType -= ResetAllSpellUIs;
+    }
+
+    private void UpdateCurrentSpellToType(
+        SpellType spellType,
+        List<InputDirection> playerInputDirections)
+    {
+        if (_currentSpellDatas.TryGetValue(spellType, out SpellToType_UI spellUI))
+        {
+            spellUI.UpdateInputSequence(playerInputDirections);
+
+            // Hide the other spell UIs
+            foreach (var kvp in _currentSpellDatas)
+            {
+                if (kvp.Key != spellType)
+                {
+                    kvp.Value.gameObject.SetActive(false);
+                }
+            }
+        }
+    }
+
+    private void ResetAllSpellUIs()
+    {
+        foreach (var kvp in _currentSpellDatas)
+        {
+            kvp.Value.ResetInputSequence();
+            kvp.Value.gameObject.SetActive(true);
+        }
+    }
 
     public void Show(List<SpellToType_UI_Data> spellDatas)
     {
@@ -35,8 +84,8 @@ public class FocusMode_UI : MonoBehaviour
 
         Sprite frameSprite = GetFrameSpriteForLevel(spellData.Level);
         spellUI.UpdateSpellToTypeUI(
-            spellData.SpellIcon, 
-            frameSprite, 
+            spellData.SpellIcon,
+            frameSprite,
             spellData.InputDirections
         );
     }

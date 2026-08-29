@@ -8,19 +8,27 @@ public class SpellToType_UI : MonoBehaviour
     [SerializeField] private Image _spellFrame;
     [SerializeField] private List<Image> _inputSequenceImage;
 
+    private List<InputDirection> _currentInputDirections = new List<InputDirection>();
+
     public void UpdateSpellToTypeUI(
-        Sprite spellIcon, 
-        Sprite spellFrame, 
+        Sprite spellIcon,
+        Sprite spellFrame,
         List<InputDirection> inputDirections)
     {
+        _currentInputDirections = new List<InputDirection>(inputDirections);
+
         _spellIcon.sprite = spellIcon;
         _spellFrame.sprite = spellFrame;
+        ResetInputSprites();
+    }
 
+    private void ResetInputSprites()
+    {
         for (int i = 0; i < _inputSequenceImage.Count; i++)
         {
-            if (i < inputDirections.Count)
+            if (i < _currentInputDirections.Count)
             {
-                InputDirection inputDirection = inputDirections[i];
+                InputDirection inputDirection = _currentInputDirections[i];
                 Sprite inputSprite = InputSpriteManager.Instance.GetInputSprite_FocusMode(inputDirection);
                 _inputSequenceImage[i].sprite = inputSprite;
                 _inputSequenceImage[i].gameObject.SetActive(true);
@@ -30,6 +38,24 @@ public class SpellToType_UI : MonoBehaviour
                 _inputSequenceImage[i].gameObject.SetActive(false);
             }
         }
+    }
+
+    public void UpdateInputSequence(List<InputDirection> playerInputDirections)
+    {
+        for (int i = 0; i < _inputSequenceImage.Count; i++)
+        {
+            if (i < playerInputDirections.Count)
+            {
+                InputDirection inputDirection = playerInputDirections[i];
+                Sprite inputSprite = InputSpriteManager.Instance.GetInputSprite_FocusMode_Typed(inputDirection);
+                _inputSequenceImage[i].sprite = inputSprite;
+            }
+        }
+    }
+
+    public void ResetInputSequence()
+    {
+        ResetInputSprites();
     }
 }
 

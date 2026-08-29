@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
 		_inputHandler.InputReceived -= OnInputReceived;
 	}
 
-	public void GameUpdate(bool isFocusModeActive)
+	public void GameUpdate()
 	{
 		_typedInput.UpdateTypedInput(_playerInputs);
 
@@ -153,7 +153,7 @@ public class Player : MonoBehaviour
 				return;
 			}
 			_inputIndex++;
-			_playerInputs.Add(input);
+			SavePlayerInput(input);
 			return;
 		}
 		if (_spellToType == null) return;
@@ -162,7 +162,7 @@ public class Player : MonoBehaviour
 		if (_spellToType.IsInputMatched(input, currentLevel, _inputIndex))
 		{
 			_inputIndex++;
-			_playerInputs.Add(input);
+			SavePlayerInput(input);
 			// Debug.Log($"Correct input: {input}. Current sequence: {string.Join(", ", _playerInputs)}");
 			bool isSequenceComplete = _inputIndex >= _spellToType.GetLevelInfo(currentLevel).InputSequence.Length;
 			if (isSequenceComplete)
@@ -170,7 +170,7 @@ public class Player : MonoBehaviour
 				// Debug.Log("<color=green>Input sequence completed!</color>");
 				_inputIndex = 0;
 				SaveTypedSpell(_spellToType);
-				_playerInputs.Clear();
+				ClearInputSequence();
 				OnSpellTyped?.Invoke();
 
 				_playerDisplay.TriggerFocusVFXAnimation(_spellToType);
@@ -181,14 +181,20 @@ public class Player : MonoBehaviour
 			// Debug.Log("Incorrect input. Resetting sequence.");
 			_inputIndex = 0;
 			_spellToType = null;
-			_playerInputs.Clear();
+			ClearInputSequence();
 		}
+	}
+
+	private void SavePlayerInput(InputDirection input)
+	{
+		_playerInputs.Add(input);
+		FocusMode_UI.UpdateSpellToType?.Invoke(_spellToType.SpellType, _playerInputs);
 	}
 
 	public void ClearInputSequence()
 	{
-		_inputIndex = 0;
 		_playerInputs.Clear();
+		FocusMode_UI.ResetSpellToType?.Invoke();
 	}
 
 	private void SaveTypedSpell(SpellInfo spell)
@@ -228,6 +234,7 @@ public class Player : MonoBehaviour
 	public void ExitFocusMode()
 	{
 		_isFocusModeActive = false;
+		_inputIndex = 0;
 		ClearInputSequence();
 	}
 }

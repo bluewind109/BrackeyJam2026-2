@@ -38,7 +38,7 @@ namespace PlayerModes
 
 		public override void Update()
 		{
-			_player.GameUpdate(true);
+			_player.GameUpdate();
 			_focusTimer.UpdateTime();
 		}
 

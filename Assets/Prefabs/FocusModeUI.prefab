@@ -1549,6 +1549,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6816405502459548508}
   - component: {fileID: 3957962006948259155}
+  - component: {fileID: 1854124509329570481}
   m_Layer: 5
   m_Name: SpellToType_WindStep
   m_TagString: Untagged
@@ -1600,6 +1601,26 @@ MonoBehaviour:
   - {fileID: 527288742680724409}
   - {fileID: 7317948913670859360}
   - {fileID: 6336001083450298289}
+--- !u!114 &1854124509329570481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3686095267014041485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.LayoutElement
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: 100
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: 0
+  m_LayoutPriority: 1
 --- !u!1 &4175566262402190583
 GameObject:
   m_ObjectHideFlags: 0
@@ -2004,6 +2025,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6625629241992755925}
   - component: {fileID: 6351166924643691743}
+  - component: {fileID: 7135585707160637720}
   m_Layer: 5
   m_Name: SpellToType_IceLances
   m_TagString: Untagged
@@ -2055,6 +2077,26 @@ MonoBehaviour:
   - {fileID: 547676351702506446}
   - {fileID: 4490665011697711658}
   - {fileID: 6320105294593677261}
+--- !u!114 &7135585707160637720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5293002149835833365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.LayoutElement
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: 100
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: 0
+  m_LayoutPriority: 1
 --- !u!1 &5505761511275405819
 GameObject:
   m_ObjectHideFlags: 0
@@ -2760,6 +2802,7 @@ GameObject:
   m_Component:
   - component: {fileID: 478826711712531318}
   - component: {fileID: 1765468160686880221}
+  - component: {fileID: 8325078604821223206}
   m_Layer: 5
   m_Name: SpellList
   m_TagString: Untagged
@@ -2786,8 +2829,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 160}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1765468160686880221
 MonoBehaviour:
@@ -2815,6 +2858,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &8325078604821223206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7865328117766531537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!1 &7890458056608966601
 GameObject:
   m_ObjectHideFlags: 0
@@ -2975,6 +3032,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5810471227130846708}
   - component: {fileID: 2019355521571048102}
+  - component: {fileID: 7025192899964328911}
   m_Layer: 5
   m_Name: SpellToType_FireBall
   m_TagString: Untagged
@@ -3026,6 +3084,26 @@ MonoBehaviour:
   - {fileID: 5792718268023429291}
   - {fileID: 3159660650949888208}
   - {fileID: 8064925992763199310}
+--- !u!114 &7025192899964328911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8775888549294329726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.LayoutElement
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: 100
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: 0
+  m_LayoutPriority: 1
 --- !u!1 &8928840998713313891
 GameObject:
   m_ObjectHideFlags: 0
