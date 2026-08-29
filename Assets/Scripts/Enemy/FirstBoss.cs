@@ -7,6 +7,7 @@ public class FirstBoss : Enemy
 {
     [SerializeField] private SpriteRenderer _spriteRenderer;
 
+
     [SerializeField] private EnemyState _spawnState;
     [SerializeField] private EnemyState _idleState;
     [SerializeField] private EnemyState _chaseState;
@@ -17,7 +18,8 @@ public class FirstBoss : Enemy
     [SerializeField] private EnemyState _recoverState;
     [SerializeField] private EnemyState _phaseTransitionState;
 
-    [SerializeField] private List<EnemyState> _attackStates = new List<EnemyState>();
+    [SerializeField] private List<EnemyPhaseData> _phaseDatas = new List<EnemyPhaseData>();
+    private List<EnemyState> _attackStates = new List<EnemyState>();
 
     private const float HEALTH_THRESHOLD_PHASE_2 = 4f / 5f;
     private const float HEALTH_THRESHOLD_PHASE_3 = 2f / 5f;
@@ -128,10 +130,28 @@ public class FirstBoss : Enemy
 
     private void SetRandomAttackState()
     {
+        _attackStates = GetCurrentPhaseAttackStates();
         if (_attackStates.Count == 0) return;
-
         int randomIndex = UnityEngine.Random.Range(0, _attackStates.Count);
         SetState(_attackStates[randomIndex]);
+    }
+
+    private List<EnemyState> GetCurrentPhaseAttackStates()
+    {
+        int phaseIndex = _currentPhase - 1;
+        if (phaseIndex < 0)
+        {
+            Debug.LogWarning($"Invalid phase index {phaseIndex}. Returning empty attack states.");
+            return new List<EnemyState>();
+        }
+
+        if (phaseIndex >= _phaseDatas.Count)
+        {
+            Debug.LogWarning($"Phase index {phaseIndex} exceeds available phase data. Returning last phase's attack states.");
+            phaseIndex = _phaseDatas.Count - 1;
+        }
+
+        return _phaseDatas[phaseIndex].AttackStates;
     }
 
     private void OnShootStateFinished()
