@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: d4620259c48e2404488ebd7dac2f717e
+guid: fdb2de1e6a7a938499c36158634cfb2f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3879825554932417381
-    second: UI_Heart-Sheet_0
+      213: -7335141138228804518
+    second: Big_Sign_Sheet_0
+  - first:
+      213: -446822019660707537
+    second: Big_Sign_Sheet_1
+  - first:
+      213: 5988030411124121710
+    second: Big_Sign_Sheet_2
+  - first:
+      213: -1287101398648754289
+    second: Big_Sign_Sheet_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +84,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,12 +109,34 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_Heart-Sheet_0
+      name: Big_Sign_Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a54848e7ff7543a90800000000000000
+      internalID: -7335141138228804518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Sign_Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 1
+        width: 32
         height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -115,8 +146,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b9c35c7c637182ac0800000000000000
-      internalID: -3879825554932417381
+      spriteID: f290d409db19cc9f0800000000000000
+      internalID: -446822019660707537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Sign_Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e602a47dee1c91350800000000000000
+      internalID: 5988030411124121710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Sign_Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8fe1a7e81c432ee0800000000000000
+      internalID: -1287101398648754289
       vertices: []
       indices: 
       edges: []
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      UI_Heart-Sheet_0: -3879825554932417381
+      Big_Sign_Sheet_0: -7335141138228804518
+      Big_Sign_Sheet_1: -446822019660707537
+      Big_Sign_Sheet_2: 5988030411124121710
+      Big_Sign_Sheet_3: -1287101398648754289
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

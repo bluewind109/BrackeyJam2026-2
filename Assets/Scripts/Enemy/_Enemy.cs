@@ -5,7 +5,7 @@ public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] protected BossStats _bossStats;
 
-    private Health _health;
+    protected Health _health;
     private Hurtbox _hurtbox;
     private Hitbox _hitbox;
     private Player _player;
@@ -82,7 +82,7 @@ public abstract class Enemy : MonoBehaviour
 
     }
 
-    private void OnHealthChanged(int value)
+    protected virtual void OnHealthChanged(int value)
     {
 
     }

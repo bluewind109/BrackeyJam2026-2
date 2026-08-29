@@ -15,10 +15,15 @@ public class FirstBoss : Enemy
     [SerializeField] private EnemyState _slamAttackState;
     [SerializeField] private EnemyState _dashState;
     [SerializeField] private EnemyState _recoverState;
+    [SerializeField] private EnemyState _phaseTransitionState;
 
     [SerializeField] private List<EnemyState> _attackStates = new List<EnemyState>();
 
+    private const float HEALTH_THRESHOLD_PHASE_2 = 5f / 6f;
+    private const float HEALTH_THRESHOLD_PHASE_3 = 3f / 6f;
+
     private EnemyState _currentState;
+    private int _currentPhase = 1;
 
     void Start()
     {
@@ -30,6 +35,7 @@ public class FirstBoss : Enemy
         _slamAttackState.StateFinished += OnSlamAttackStateFinished;
         _dashState.StateFinished += OnDashStateFinished;
         _recoverState.StateFinished += OnRecoverStateFinished;
+        _phaseTransitionState.StateFinished += OnPhaseTransitionStateFinished;
     }
 
     void OnDestroy()
@@ -42,6 +48,7 @@ public class FirstBoss : Enemy
         _slamAttackState.StateFinished -= OnSlamAttackStateFinished;
         _dashState.StateFinished -= OnDashStateFinished;
         _recoverState.StateFinished -= OnRecoverStateFinished;
+        _phaseTransitionState.StateFinished -= OnPhaseTransitionStateFinished;
     }
 
     public override void Initialize(Player player)
@@ -51,7 +58,8 @@ public class FirstBoss : Enemy
         ((ChaseState)_chaseState).Initialize(this, player);
         ((DashState)_dashState).Initialize(this, player);
         ((ShootState)_shootState).Initialize(player);
-        ((MeteorRainState)_meteorRainState).Initialize(player, 8);
+        ((MeteorRainState)_meteorRainState).Initialize(player);
+        ((SlamAttackState)_slamAttackState).Initialize();
         SetState(_spawnState);
     }
 
@@ -68,6 +76,39 @@ public class FirstBoss : Enemy
     public override void GameUpdate()
     {
         _currentState?.UpdateState();
+    }
+
+    protected override void OnHealthChanged(int value)
+    {
+        base.OnHealthChanged(value);
+
+        float healthPercentage = _health.HealthPercentage;
+
+        if (healthPercentage <= HEALTH_THRESHOLD_PHASE_3 && _currentPhase < 3)
+        {
+            SetPhase(3);
+        }
+        else if (healthPercentage <= HEALTH_THRESHOLD_PHASE_2 && _currentPhase < 2)
+        {
+            SetPhase(2);
+        }
+    }
+
+    private void SetPhase(int phase)
+    {
+        if (phase <= _currentPhase) return;
+
+        SetState(_phaseTransitionState);
+        _currentPhase = phase;
+
+        int phaseIndex = _currentPhase - 1;
+
+        ((DashState)_dashState).SetPhaseConfig(phaseIndex);
+        ((ShootState)_shootState).SetPhaseConfig(phaseIndex);
+        ((MeteorRainState)_meteorRainState).SetPhaseConfig(phaseIndex);
+        ((SlamAttackState)_slamAttackState).SetPhaseConfig(phaseIndex);
+
+        Debug.Log($"Boss Phase changed to: {_currentPhase}");
     }
 
     private void OnSpawnStateFinished()
@@ -114,5 +155,10 @@ public class FirstBoss : Enemy
     private void OnRecoverStateFinished()
     {
         SetState(_chaseState);
+    }
+
+    private void OnPhaseTransitionStateFinished()
+    {
+        SetState(_recoverState);
     }
 }

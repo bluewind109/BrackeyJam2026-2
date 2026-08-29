@@ -1,8 +1,9 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "MeteorRainStateConfig", menuName = "Enemy State Configs/Meteor Rain State Config")]
-public class MeteorRainStateConfig : ScriptableObject
+public class MeteorRainStateConfig : EnemyStateConfig
 {
+	[SerializeField] private int numberOfMeteors = 8;
 	[SerializeField] private float minSpawnRadius = 0.9f;
 	[SerializeField] private float maxSpawnRadius = 2.4f;
 	[SerializeField] private float baseDelayDuration = 1f;
@@ -13,6 +14,7 @@ public class MeteorRainStateConfig : ScriptableObject
 	[SerializeField] private float minSpawnDistanceBetweenAttacks = 0.65f;
 	[SerializeField] private int meteorDamage = 1;
 
+	public int NumberOfMeteors => numberOfMeteors;
 	public float MinSpawnRadius => minSpawnRadius;
 	public float MaxSpawnRadius => maxSpawnRadius;
 	public float BaseDelayDuration => baseDelayDuration;

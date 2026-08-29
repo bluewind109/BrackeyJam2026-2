@@ -6,7 +6,8 @@ namespace EnemyStates
 {
     public class ShootState : EnemyState
     {
-        [SerializeField] private List<ShootPatternInfo> _possiblePatterns;
+        [SerializeField] private List<ShootStateConfig> _phaseConfigs;
+        private ShootStateConfig _currentStateConfig;
 
         private int _currentShotCount = 0;
         private float _shotTimer = 0f;
@@ -18,6 +19,7 @@ namespace EnemyStates
         public void Initialize(Player player)
         {
             _player = player;
+           SetPhaseConfig(0);
         }
 
         public override void Enter()
@@ -25,7 +27,7 @@ namespace EnemyStates
             Debug.Log("Entering Shoot State");
             _shotTimer = 0f;
             _currentShotCount = 0;
-            _currentPatternInfo = GetRandomPatternInfo();
+            _currentPatternInfo = _currentStateConfig.GetRandomPatternInfo();
             Debug.Log($"Selected Pattern: <color=yellow>{_currentPatternInfo.PatternType}</color>");
             _currentPattern = PatternFactory.CreatePattern(_currentPatternInfo);
         }
@@ -44,24 +46,12 @@ namespace EnemyStates
                 _currentShotCount++;
                 // Shoot(_currentShotCount * (360f / _numberOfShots));
                 Shoot();
-                if (_currentPatternInfo.Config is IShotBasedPattern shotBasedPattern && 
+                if (_currentPatternInfo.Config is IShotBasedPattern shotBasedPattern &&
                     _currentShotCount >= shotBasedPattern.NumberOfShots)
                 {
                     OnStateFinished();
                 }
             }
-        }
-
-        private ShootPatternInfo GetRandomPatternInfo()
-        {
-            if (_possiblePatterns.Count == 0)
-            {
-                Debug.LogError("No shoot patterns available.");
-                return null;
-            }
-
-            int randomIndex = Random.Range(0, _possiblePatterns.Count);
-            return _possiblePatterns[randomIndex];
         }
 
         private void Shoot()
@@ -77,6 +67,23 @@ namespace EnemyStates
                 Vector3 direction = (_player.transform.position - transform.position).normalized;
                 directionalPattern.Shoot(transform.position, direction);
             }
+        }
+
+        public void SetPhaseConfig(int phaseIndex)
+        {
+            if (phaseIndex < 0 || _phaseConfigs == null || _phaseConfigs.Count == 0)
+            {
+                Debug.LogWarning($"Invalid phase index {phaseIndex}. Using default config.");
+                return;
+            }
+
+            if (phaseIndex >= _phaseConfigs.Count)
+            {
+                Debug.LogWarning($"Phase index {phaseIndex} exceeds available configs. Using last config.");
+                phaseIndex = _phaseConfigs.Count - 1;
+            }
+
+            _currentStateConfig = _phaseConfigs[phaseIndex];
         }
     }
 
