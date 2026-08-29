@@ -37,5 +37,27 @@ public class InputSpriteManager : MonoBehaviour
 
         return _inputSpriteConfig.GetInputSprite(inputDirection);
     }
+
+    public Sprite GetInputSprite_FocusMode(InputDirection inputDirection)
+    {
+        if (_inputSpriteConfig == null)
+        {
+            Debug.LogError("InputSpriteConfig is not assigned in the InputSpriteManager.");
+            return null;
+        }
+
+        return _inputSpriteConfig.GetInputSprite_FocusMode(inputDirection);
+    }
+
+    public Sprite GetInputSprite_FocusMode_Typed(InputDirection inputDirection)
+    {
+        if (_inputSpriteConfig == null)
+        {
+            Debug.LogError("InputSpriteConfig is not assigned in the InputSpriteManager.");
+            return null;
+        }
+
+        return _inputSpriteConfig.GetInputSprite_FocusMode_Typed(inputDirection);
+    }
 }
 
