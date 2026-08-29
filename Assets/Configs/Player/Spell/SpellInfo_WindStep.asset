@@ -29,5 +29,5 @@ MonoBehaviour:
     _experienceRequired: 20
     _inputSequence: {fileID: 11400000, guid: 649893e968394f24c9a031c3a4645b72, type: 2}
   _playerShadowPrefab: {fileID: 3876492527447626472, guid: 1c92f1ad44caf0346a7c34b753dc24f6, type: 3}
-  _castRange: 5
+  _castRange: 999
   _shadowSpeed: 30
