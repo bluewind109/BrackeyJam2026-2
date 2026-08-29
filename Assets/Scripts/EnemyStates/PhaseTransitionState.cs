@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using MoreMountains.Tools;
 namespace EnemyStates
 {
 	public class PhaseTransitionState : EnemyState
@@ -13,6 +13,7 @@ namespace EnemyStates
             _transitionTimer = 0f;
 
             // TODO play scream anim
+            MMGameEvent.Trigger(GameDefine.BossEvents.EventName, stringParameter: GameDefine.BossEvents.State_PhaseTransition);
         }
 
 		public override void Exit()

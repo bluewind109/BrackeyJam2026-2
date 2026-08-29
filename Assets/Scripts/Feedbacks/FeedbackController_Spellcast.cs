@@ -14,7 +14,7 @@ public partial class FeedbackController_Spellcast : MonoBehaviour, MMEventListen
     {
         MMEventManager.AddListener<MMGameEvent>(this);
     }
-    void Oestroy()
+    void OnDestroy()
     {
         MMEventManager.RemoveListener<MMGameEvent>(this);           
     }
