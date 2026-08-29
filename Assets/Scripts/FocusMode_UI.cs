@@ -42,12 +42,11 @@ public class FocusMode_UI : MonoBehaviour
         {
             spellUI.UpdateInputSequence(playerInputDirections);
 
-            // Hide the other spell UIs
             foreach (var kvp in _currentSpell_UIs)
             {
                 if (kvp.Key != spellType)
                 {
-                    kvp.Value.gameObject.SetActive(false);
+                    kvp.Value.ToggleAvailability(false);
                 }
             }
         }
@@ -61,7 +60,7 @@ public class FocusMode_UI : MonoBehaviour
 
             // Show all spell UIs if not on coooldown
             bool isOnCooldown = kvp.Value.IsOnCooldown;
-            kvp.Value.gameObject.SetActive(!isOnCooldown);
+            kvp.Value.ToggleAvailability(!isOnCooldown);
         }
     }
 
@@ -95,11 +94,11 @@ public class FocusMode_UI : MonoBehaviour
 
         if (spellData.IsOnCooldown)
         {
-            spellUI.gameObject.SetActive(false);
+            spellUI.ToggleAvailability(false);
         }
         else
         {
-            spellUI.gameObject.SetActive(true);
+            spellUI.ToggleAvailability(true);
         }
     }
 

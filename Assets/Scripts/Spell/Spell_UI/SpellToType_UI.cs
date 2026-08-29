@@ -62,6 +62,11 @@ public class SpellToType_UI : MonoBehaviour
     {
         ResetInputSprites();
     }
+
+    public void ToggleAvailability(bool isAvailable)
+    {
+        gameObject.GetComponent<CanvasGroup>().alpha = isAvailable ? 1f : 0.25f;
+    }
 }
 
 public class SpellToType_UI_Data
