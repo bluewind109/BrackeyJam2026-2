@@ -1,19 +1,28 @@
 fileFormatVersion: 2
-guid: bf798f331825019449d3b16409e84d92
+guid: 92095120a9a60eb4ca15be54d253d8f7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2551121464439468152
-    second: Arrow-Sheet_0
+      213: -8797496854422602767
+    second: Release-Sheet_0
   - first:
-      213: -5706348425010501792
-    second: Arrow-Sheet_1
+      213: -2561774209023115181
+    second: Release-Sheet_1
   - first:
-      213: 1875165894917319495
-    second: Arrow-Sheet_2
+      213: 4665648838422092385
+    second: Release-Sheet_2
   - first:
-      213: -2988362740719702747
-    second: Arrow-Sheet_3
+      213: -5388081845474727614
+    second: Release-Sheet_3
+  - first:
+      213: -4691945631054217548
+    second: Release-Sheet_4
+  - first:
+      213: -5842851937777664530
+    second: Release-Sheet_5
+  - first:
+      213: -6375194083694842176
+    second: Release-Sheet_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -60,7 +69,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 15
+  spritePixelsToUnits: 48
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -105,43 +114,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Arrow-Left
+      name: Release-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 15
-        height: 15
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +133,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 870f9ca9477676320800000000000000
-      internalID: 2551121464439468152
+      spriteID: 1fb3687d83309e580800000000000000
+      internalID: -8797496854422602767
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arrow-Up
+      name: Release-Sheet_1
       rect:
         serializedVersion: 2
-        x: 15
+        x: 48
         y: 0
-        width: 15
-        height: 15
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,20 +155,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 067a3aa475afec0b0800000000000000
-      internalID: -5706348425010501792
+      spriteID: 3508b640eefb27cd0800000000000000
+      internalID: -2561774209023115181
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arrow-Right
+      name: Release-Sheet_2
       rect:
         serializedVersion: 2
-        x: 30
+        x: 96
         y: 0
-        width: 15
-        height: 15
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,20 +177,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 74b6975427de50a10800000000000000
-      internalID: 1875165894917319495
+      spriteID: 16adcdc16e6bfb040800000000000000
+      internalID: 4665648838422092385
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arrow-Down
+      name: Release-Sheet_3
       rect:
         serializedVersion: 2
-        x: 45
+        x: 144
         y: 0
-        width: 15
-        height: 15
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,8 +199,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 52da36b9be33786d0800000000000000
-      internalID: -2988362740719702747
+      spriteID: 2496fbbdb10b935b0800000000000000
+      internalID: -5388081845474727614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Release-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4be319bbe4cd2eeb0800000000000000
+      internalID: -4691945631054217548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Release-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eed3f8d8e150aeea0800000000000000
+      internalID: -5842851937777664530
       vertices: []
       indices: 
       edges: []
@@ -226,7 +253,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 6fcf6886a56c21942a11f02461bb80ff
+    spriteID: 1b1a0dcc49c912447842425319c004fa
     internalID: 0
     vertices: []
     indices: 
@@ -236,12 +263,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":1.0},"gridSpriteSize":{"x":15.0,"y":15.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":6.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":48.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Arrow-Down: -2988362740719702747
-      Arrow-Left: 2551121464439468152
-      Arrow-Right: 1875165894917319495
-      Arrow-Up: -5706348425010501792
+      Release-Sheet_0: -8797496854422602767
+      Release-Sheet_1: -2561774209023115181
+      Release-Sheet_2: 4665648838422092385
+      Release-Sheet_3: -5388081845474727614
+      Release-Sheet_4: -4691945631054217548
+      Release-Sheet_5: -5842851937777664530
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
