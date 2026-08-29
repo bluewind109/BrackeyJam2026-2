@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 170300af6330c4343b3f1e1165557e0e, type: 3}
-  m_Name: MeteorRainStateConfig_1stBoss_2ndPhase
+  m_Name: 3rdPhase_MeteorRainStateConfig_1stBoss
   m_EditorClassIdentifier: Assembly-CSharp::MeteorRainStateConfig
   numberOfMeteors: 16
   minSpawnRadius: 0.9

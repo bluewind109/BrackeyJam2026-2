@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: SpellInfo_IceLances
   m_EditorClassIdentifier: Assembly-CSharp::Spell_IceLances
   _spellType: 1
+  _spellIcon: {fileID: 21300000, guid: df3e903199e32364dbf4a8b790c1487d, type: 3}
   _spellName: Ice Lances
-  _spellIcon: {fileID: 0}
-  _level: 0
   _levelInfos:
   - _damage: 5
     _cooldown: 3

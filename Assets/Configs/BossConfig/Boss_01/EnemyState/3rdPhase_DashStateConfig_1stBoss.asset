@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67fd2741bd40a08429e32dd1aabe1214, type: 3}
-  m_Name: DashStateConfig_1stBoss_2ndPhase
+  m_Name: 3rdPhase_DashStateConfig_1stBoss
   m_EditorClassIdentifier: Assembly-CSharp::DashStateConfig
   delayDuration: 1
   dashSpeed: 12

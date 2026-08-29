@@ -37,6 +37,7 @@ namespace PlayerModes
 		{
 			_player.GameUpdate(false);
 			_enemy.GameUpdate();
+			SpellManager.Instance.GameUpdate();
 			PlayerProjectileManager.Instance.GameUpdate();
 			EnemyProjectileManager.Instance.GameUpdate();
 			AoeAttackManager.Instance.GameUpdate();

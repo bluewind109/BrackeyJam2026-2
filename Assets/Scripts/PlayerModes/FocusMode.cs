@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace PlayerModes
@@ -7,11 +8,13 @@ namespace PlayerModes
 	{
 		public event Action FocusModeComplete;
 
+		private FocusMode_UI _focusModeUI;
 		private float _focusDuration = 3f;
 		private Timer _focusTimer;
 
-		public FocusMode(Player player, Timer timer) : base(player, timer)
+		public FocusMode(Player player, FocusMode_UI focusModeUI, Timer timer) : base(player, timer)
 		{
+			_focusModeUI = focusModeUI;
 			_focusTimer = timer;
 		}
 
@@ -20,12 +23,15 @@ namespace PlayerModes
 			_player.EnterFocusMode();
 			_player.OnSpellTyped += OnSpellTyped;
 			
+			List<SpellToType_UI_Data> spellDatas = GenerateSpellDatas();
+			_focusModeUI.Show(spellDatas);
 			_focusTimer.Begin(_focusDuration);
 			_focusTimer.onTimerComplete += OnFocusTimerComplete;
 		}
 
 		public override void Exit()
 		{
+			_focusModeUI.Hide();
 			_focusTimer.onTimerComplete -= OnFocusTimerComplete;
 			_player.OnSpellTyped -= OnSpellTyped;
 		}
@@ -34,6 +40,12 @@ namespace PlayerModes
 		{
 			_player.GameUpdate(true);
 			_focusTimer.UpdateTime();
+		}
+
+		private List<SpellToType_UI_Data> GenerateSpellDatas()
+		{
+			List<SpellToType_UI_Data> spellDatas = SpellManager.Instance.GetSpellDataForUI();
+			return spellDatas;
 		}
 
 		private void OnSpellTyped()

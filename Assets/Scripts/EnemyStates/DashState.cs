@@ -13,6 +13,7 @@ namespace EnemyStates
 
         private Vector3 _dashDirection;
         private Vector3 _startPosition;
+        private Vector3 _endPosition;
 
         private int _currentShotCount = 0;
 
@@ -34,6 +35,7 @@ namespace EnemyStates
             Debug.Log("Entering Dash State");
             _delayTimer = 0f;
             _dashDirection = Vector3.zero;
+            _endPosition = _player.transform.position;
 
             _dashTimer = 0f;
             _shotTimer = _currentStateConfig.ShotInterval;
@@ -68,7 +70,7 @@ namespace EnemyStates
         private void StartDash()
         {
             _startPosition = _enemy.transform.position;
-            _dashDirection = (_player.transform.position - _enemy.transform.position).normalized;
+            _dashDirection = (_endPosition - _enemy.transform.position).normalized;
 
             MMGameEvent.Trigger(GameDefine.BossEvents.EventName, stringParameter: GameDefine.BossEvents.State_Dash_Start);
         }
