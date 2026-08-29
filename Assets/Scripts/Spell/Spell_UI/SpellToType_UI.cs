@@ -8,17 +8,22 @@ public class SpellToType_UI : MonoBehaviour
     [SerializeField] private Image _spellFrame;
     [SerializeField] private List<Image> _inputSequenceImage;
 
+    private bool _isOnCooldown;
+    public bool IsOnCooldown => _isOnCooldown;
+
     private List<InputDirection> _currentInputDirections = new List<InputDirection>();
 
     public void UpdateSpellToTypeUI(
         Sprite spellIcon,
         Sprite spellFrame,
-        List<InputDirection> inputDirections)
+        List<InputDirection> inputDirections,
+        bool isOnCooldown)
     {
         _currentInputDirections = new List<InputDirection>(inputDirections);
 
         _spellIcon.sprite = spellIcon;
         _spellFrame.sprite = spellFrame;
+        _isOnCooldown = isOnCooldown;
         ResetInputSprites();
     }
 
@@ -65,16 +70,19 @@ public class SpellToType_UI_Data
     public Sprite SpellIcon;
     public int Level;
     public List<InputDirection> InputDirections;
+    public bool IsOnCooldown;
 
     public SpellToType_UI_Data(
         SpellType spellType,
         Sprite spellIcon,
         int level,
-        List<InputDirection> inputDirections)
+        List<InputDirection> inputDirections,
+        bool isOnCooldown)
     {
         SpellType = spellType;
         SpellIcon = spellIcon;
         Level = level;
         InputDirections = inputDirections;
+        IsOnCooldown = isOnCooldown;
     }
 }
