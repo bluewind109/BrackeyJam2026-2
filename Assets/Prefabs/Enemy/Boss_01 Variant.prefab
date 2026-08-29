@@ -457,7 +457,7 @@ PrefabInstance:
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _spriteRenderer
       value: 
-      objectReference: {fileID: 7915424087615280481}
+      objectReference: {fileID: 7695553585247262085}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _meteorRainState
       value: 
@@ -542,6 +542,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss_01 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5865813457685334382, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7365094172161161967, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: m_Size.x
       value: 3
@@ -595,8 +599,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4189074171661111726, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
   m_PrefabInstance: {fileID: 4052365850602940615}
   m_PrefabAsset: {fileID: 0}
---- !u!212 &7915424087615280481 stripped
+--- !u!212 &7695553585247262085 stripped
 SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 6189591858222316966, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5976554279991328066, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
   m_PrefabInstance: {fileID: 4052365850602940615}
   m_PrefabAsset: {fileID: 0}

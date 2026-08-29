@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 21199a0f98044c1448b15fa914537f87
+guid: 05c2067eb1cc27e4c86c5a014f5ef623
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1426666553488855073
-    second: tile_0085_0
+      213: -6107997100635411168
+    second: Big_Sign_Finished-Sheet_0
+  - first:
+      213: -4901081051567333582
+    second: Big_Sign_Finished-Sheet_1
+  - first:
+      213: -6685141605320810441
+    second: Big_Sign_Finished-Sheet_2
+  - first:
+      213: -1482600550124855457
+    second: Big_Sign_Finished-Sheet_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,12 +55,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.5, y: 0}
-  spritePixelsToUnits: 16
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,23 +109,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tile_0085_0
+      name: Big_Sign_Finished-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 12052adeba98cc310800000000000000
-      internalID: 1426666553488855073
+      spriteID: 02da28f9ff80c3ba0800000000000000
+      internalID: -6107997100635411168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Sign_Finished-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 1
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23f5ee920ccdbfbb0800000000000000
+      internalID: -4901081051567333582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Sign_Finished-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7302bad112b9933a0800000000000000
+      internalID: -6685141605320810441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Sign_Finished-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5f5202a7aebc6be0800000000000000
+      internalID: -1482600550124855457
       vertices: []
       indices: 
       edges: []
@@ -125,8 +200,8 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    spriteID: 
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      tile_0085_0: 1426666553488855073
+      Big_Sign_Finished-Sheet_0: -6107997100635411168
+      Big_Sign_Finished-Sheet_1: -4901081051567333582
+      Big_Sign_Finished-Sheet_2: -6685141605320810441
+      Big_Sign_Finished-Sheet_3: -1482600550124855457
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

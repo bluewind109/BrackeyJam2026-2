@@ -6,8 +6,8 @@ public class PlayerHealth : Health_UI
 {
     [SerializeField] private List<Image> healthImages = new List<Image>();
 
-    [SerializeField] private Color noHealthColor;
-    [SerializeField] private Color fullHealthColor;
+    [SerializeField] private Sprite noHealth;
+    [SerializeField] private Sprite fullHealth;
 
 	public override void GameUpdate(int currentHealth, int maxHealth)
 	{
@@ -15,11 +15,11 @@ public class PlayerHealth : Health_UI
         {
             if (i < currentHealth)
             {
-                healthImages[i].color = fullHealthColor;
+                healthImages[i].sprite = fullHealth;
             }
             else
             {
-                healthImages[i].color = noHealthColor;
+                healthImages[i].sprite = noHealth;
             }
         }
 	}
