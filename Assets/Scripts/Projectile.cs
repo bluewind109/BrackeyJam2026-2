@@ -9,7 +9,7 @@ public abstract class Projectile : MonoBehaviour
 	protected Hitbox _hitbox;
 	private float _speed = 10f;
 	private int _damage = 10;
-	private Vector3 _direction;
+	protected Vector3 _direction;
 
 	private bool _isActive = false;
 	public bool IsActive => _isActive;
@@ -37,7 +37,7 @@ public abstract class Projectile : MonoBehaviour
 		}
 	}
 
-	public void GameUpdate()
+	public virtual void GameUpdate()
 	{
 		if (!_isActive) return;
 
