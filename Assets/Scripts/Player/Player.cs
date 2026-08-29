@@ -226,9 +226,15 @@ public class Player : MonoBehaviour
 
 		if (_inputIndex == 0)
 		{
-			_inputIndex++;
 			_spellToType = _spellDictionary.GetSpellByFirstInput(input);
 			// Debug.Log($"First input: {input}. Spell to type: {_spellToType?.name ?? "None"}");
+			if (_spellToType == null)
+			{
+				Debug.LogWarning($"No spell found for input {input}. Resetting input sequence.");
+				_inputIndex = 0;
+				return;
+			}
+			_inputIndex++;
 			_playerInputs.Add(input);
 			return;
 		}
