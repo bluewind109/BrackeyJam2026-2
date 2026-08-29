@@ -10,6 +10,11 @@ public class EnemyPhaseData
 
     public List<StateData> StateData => _stateData;
 
+    public EnemyPhaseData(List<StateData> stateData)
+    {
+        _stateData = stateData;
+    }
+
     public int GetTotalWeight()
     {
         int totalWeight = 0;
@@ -28,5 +33,9 @@ public class StateData
     [SerializeField] private int _baseWeight = 1;
 
     public EnemyState State => _state;
-    public int BaseWeight => _baseWeight;
+    public int BaseWeight
+    {
+        get => _baseWeight;
+        set => _baseWeight = value;
+    }
 }

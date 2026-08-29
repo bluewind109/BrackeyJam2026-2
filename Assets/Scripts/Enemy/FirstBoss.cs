@@ -19,7 +19,7 @@ public class FirstBoss : Enemy
     [SerializeField] private EnemyState _phaseTransitionState;
 
     [SerializeField] private List<EnemyPhaseData> _phaseDatas = new List<EnemyPhaseData>();
-   
+
     private EnemyPhaseData _currentPhaseData;
     private List<StateData> _currentStateDatas = new List<StateData>();
 
@@ -132,10 +132,11 @@ public class FirstBoss : Enemy
 
     private void SetRandomAttackState()
     {
-        _currentPhaseData = GetCurrentPhaseData();
-        if (_currentPhaseData == null) return;
+        var phaseData = GetCurrentPhaseData();
+        if (phaseData == null) return;
 
-        _currentStateDatas = _currentPhaseData.StateData;
+        _currentPhaseData = new EnemyPhaseData(phaseData.StateData);
+        _currentStateDatas = new List<StateData>(_currentPhaseData.StateData);
         int totalWeight = _currentPhaseData.GetTotalWeight();
 
         if (totalWeight <= 0)
@@ -146,7 +147,7 @@ public class FirstBoss : Enemy
 
         int randomValue = UnityEngine.Random.Range(0, totalWeight);
         int cumulativeWeight = 0;
-
+        EnemyState selectedState = null;
         foreach (var stateData in _currentStateDatas)
         {
             if (stateData == null || stateData.State == null) continue;
@@ -154,12 +155,38 @@ public class FirstBoss : Enemy
             cumulativeWeight += Mathf.Max(0, stateData.BaseWeight);
             if (randomValue < cumulativeWeight)
             {
-                SetState(stateData.State);
-                return;
+                selectedState = stateData.State;
+                SetState(selectedState);
+                break;
             }
         }
 
-        SetState(_currentStateDatas[_currentStateDatas.Count - 1].State);
+        if (selectedState == null)
+        {
+            Debug.LogWarning("No valid state selected. Defaulting to the last state in the list.");
+            SetState(_currentStateDatas[_currentStateDatas.Count - 1].State);
+        }
+
+        UpdatePhaseDataWeights(selectedState);
+    }
+
+    private void UpdatePhaseDataWeights(EnemyState selectedState)
+    {
+        // Reset selected state data's weight to 1
+        // Increase the weight of all other state data by 1
+        foreach (var stateData in _currentStateDatas)
+        {
+            if (stateData == null) continue;
+
+            if (stateData.State == selectedState)
+            {
+                stateData.BaseWeight = 1;
+            }
+            else
+            {
+                stateData.BaseWeight += 1;
+            }
+        }
     }
 
     private EnemyPhaseData GetCurrentPhaseData()
