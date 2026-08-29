@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Spell_IceLances", menuName = "Spell/IceLances")]
-public class Spell_IceLances : Spell
+[CreateAssetMenu(fileName = "SpellInfo_IceLances", menuName = "Spell/IceLances")]
+public class SpellInfo_IceLances : SpellInfo
 {
 	[Header("IceLances Settings")]
 	[SerializeField] private int _numberOfLances = 5;

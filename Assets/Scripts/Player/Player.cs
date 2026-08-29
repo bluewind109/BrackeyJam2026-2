@@ -11,14 +11,14 @@ public class Player : MonoBehaviour
 	[SerializeField] private PlayerStats _playerStats;
 	[SerializeField] private PlayerInputHandler _inputHandler;
 	[SerializeField] private PlayerTypedInput _typedInput;
-	[SerializeField] private List<Spell> _spells = new List<Spell>();
+	[SerializeField] private List<SpellInfo> _spells = new List<SpellInfo>();
 
 	private Health _health;
 	private Hurtbox _hurtbox;
 
 	private int _inputIndex = 0;
-	private Spell _currentSpell = null;
-	private Spell _spellToType = null;
+	private SpellInfo _currentSpell = null;
+	private SpellInfo _spellToType = null;
 	private List<InputDirection> _playerInputs = new List<InputDirection>();
 	private bool _isFocusModeActive = false;
 
@@ -177,7 +177,7 @@ public class Player : MonoBehaviour
 		_playerInputs.Clear();
 	}
 
-	private void SaveTypedSpell(Spell spell)
+	private void SaveTypedSpell(SpellInfo spell)
 	{
 		_currentSpell = spell;
 	}

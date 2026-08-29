@@ -12,10 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e3720ebfac65f4c8faee7c32322c43, type: 3}
   m_Name: Spell_FireBall
   m_EditorClassIdentifier: Assembly-CSharp::Spell_FireBall
+  _spellType: 0
   _spellName: Fire Ball
   _spellIcon: {fileID: 0}
-  _damage: 1
-  _castRange: 20
+  _level: 0
+  _damage: 5
   _cooldown: 3
   _inputSequence: {fileID: 11400000, guid: e779ee6cb9c8ba14185d22867dd3ed22, type: 2}
-  _fireBallPrefab: {fileID: 154287132794706339, guid: ba2daca15ff83db4a8904f0344d2d55c, type: 3}
+  _levelInfos:
+  - _damage: 5
+    _cooldown: 3
+    _experienceRequired: 10
+    _inputSequence: {fileID: 11400000, guid: e779ee6cb9c8ba14185d22867dd3ed22, type: 2}
+  - _damage: 7
+    _cooldown: 3
+    _experienceRequired: 15
+    _inputSequence: {fileID: 11400000, guid: e779ee6cb9c8ba14185d22867dd3ed22, type: 2}
+  - _damage: 10
+    _cooldown: 2
+    _experienceRequired: 20
+    _inputSequence: {fileID: 11400000, guid: e779ee6cb9c8ba14185d22867dd3ed22, type: 2}
+  projectileSpeed: 10
