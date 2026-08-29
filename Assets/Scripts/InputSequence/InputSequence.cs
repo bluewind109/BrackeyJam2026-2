@@ -9,6 +9,11 @@ public class InputSequence : ScriptableObject
 	public List<InputDirection> Inputs => _inputs;
 	public int Length => _inputs.Count;
 
+	public List<InputDirection> GetInputs()
+	{
+		return new List<InputDirection>(_inputs);
+	}
+
 	public InputDirection GetInputAt(int index)
 	{
 		if (index < 0 || index >= _inputs.Count) return InputDirection.None;

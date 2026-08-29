@@ -105,11 +105,37 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Arrow-Sheet_0
+      name: Arrow-Left
       rect:
         serializedVersion: 2
         x: 0
@@ -131,7 +157,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arrow-Sheet_1
+      name: Arrow-Up
       rect:
         serializedVersion: 2
         x: 15
@@ -153,7 +179,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arrow-Sheet_2
+      name: Arrow-Right
       rect:
         serializedVersion: 2
         x: 30
@@ -175,7 +201,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arrow-Sheet_3
+      name: Arrow-Down
       rect:
         serializedVersion: 2
         x: 45
@@ -212,10 +238,10 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":1.0},"gridSpriteSize":{"x":15.0,"y":15.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Arrow-Sheet_0: 2551121464439468152
-      Arrow-Sheet_1: -5706348425010501792
-      Arrow-Sheet_2: 1875165894917319495
-      Arrow-Sheet_3: -2988362740719702747
+      Arrow-Down: -2988362740719702747
+      Arrow-Left: 2551121464439468152
+      Arrow-Right: 1875165894917319495
+      Arrow-Up: -5706348425010501792
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
