@@ -6,12 +6,24 @@ public class SpellToType_UI : MonoBehaviour
 {
     [SerializeField] private Image _spellIcon;
     [SerializeField] private Image _spellFrame;
-    [SerializeField] private List<Image> _inputSequenceImage;
+    [SerializeField] private Transform _inputSignsParent;
+    [SerializeField] private List<FocusModeSign> _inputSigns;
 
     private bool _isOnCooldown;
     public bool IsOnCooldown => _isOnCooldown;
 
     private List<InputDirection> _currentInputDirections = new List<InputDirection>();
+
+    void Awake()
+    {
+        if (_inputSignsParent == null)
+        {
+            Debug.LogError("Input Signs Parent is not assigned in the inspector.");
+            return;
+        }
+
+        _inputSigns = new List<FocusModeSign>(_inputSignsParent.GetComponentsInChildren<FocusModeSign>());
+    }
 
     public void UpdateSpellToTypeUI(
         Sprite spellIcon,
@@ -29,31 +41,32 @@ public class SpellToType_UI : MonoBehaviour
 
     private void ResetInputSprites()
     {
-        for (int i = 0; i < _inputSequenceImage.Count; i++)
+        for (int i = 0; i < _inputSigns.Count; i++)
         {
             if (i < _currentInputDirections.Count)
             {
                 InputDirection inputDirection = _currentInputDirections[i];
                 Sprite inputSprite = InputSpriteManager.Instance.GetInputSprite_FocusMode(inputDirection);
-                _inputSequenceImage[i].sprite = inputSprite;
-                _inputSequenceImage[i].gameObject.SetActive(true);
+                _inputSigns[i].UpdateSprite(inputSprite);
+                _inputSigns[i].gameObject.SetActive(true);
             }
             else
             {
-                _inputSequenceImage[i].gameObject.SetActive(false);
+                _inputSigns[i].gameObject.SetActive(false);
             }
         }
     }
 
     public void UpdateInputSequence(List<InputDirection> playerInputDirections)
     {
-        for (int i = 0; i < _inputSequenceImage.Count; i++)
+        for (int i = 0; i < _inputSigns.Count; i++)
         {
             if (i < playerInputDirections.Count)
             {
                 InputDirection inputDirection = playerInputDirections[i];
                 Sprite inputSprite = InputSpriteManager.Instance.GetInputSprite_FocusMode_Typed(inputDirection);
-                _inputSequenceImage[i].sprite = inputSprite;
+                _inputSigns[i].UpdateSprite(inputSprite);
+                _inputSigns[i].ShakeImage();
             }
         }
     }

@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
 	[SerializeField] private PlayerDisplay _playerDisplay;
 	[SerializeField] private PlayerStats _playerStats;
 	[SerializeField] private PlayerInputHandler _inputHandler;
-	[SerializeField] private PlayerTypedInput _typedInput;
 
 	private Health _health;
 	private Hurtbox _hurtbox;
@@ -80,8 +79,6 @@ public class Player : MonoBehaviour
 
 	public void GameUpdate()
 	{
-		_typedInput.UpdateTypedInput(_playerInputs);
-
 		if (_inputHandler)
 		{
 			_inputHandler.UpdateMouseInput();
