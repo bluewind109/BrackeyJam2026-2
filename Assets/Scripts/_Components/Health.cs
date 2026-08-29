@@ -10,6 +10,7 @@ public class Health : MonoBehaviour
 
     private int maxHealth = 1;
     private int currentHealth;
+    public float HealthPercentage => (float)currentHealth / maxHealth;
 
     public void Initialize(int health)
     {

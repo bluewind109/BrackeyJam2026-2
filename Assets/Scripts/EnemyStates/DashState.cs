@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using ShootPatterns;
 using UnityEngine;
 
@@ -5,9 +6,8 @@ namespace EnemyStates
 {
     public class DashState : EnemyState
     {
-        [SerializeField] private DashStateConfig _config;
-        [SerializeField] private RadialPatternConfig _radialPatternConfig;
-        [SerializeField] private SidewayPatternConfig _sidewayPatternConfig;
+        [SerializeField] private List<DashStateConfig> _phaseConfigs = new List<DashStateConfig>();
+        private DashStateConfig _currentStateConfig;
 
         private float _delayTimer = 0f;
 
@@ -17,8 +17,6 @@ namespace EnemyStates
         private int _currentShotCount = 0;
 
         private float _shotTimer = 0f;
-
-        private float _dashDuration = 2f;
         private float _dashTimer = 0f;
 
         private Enemy _enemy;
@@ -28,6 +26,7 @@ namespace EnemyStates
         {
             _enemy = enemy;
             _player = player;
+           SetPhaseConfig(0);
         }
 
         public override void Enter()
@@ -37,7 +36,7 @@ namespace EnemyStates
             _dashDirection = Vector3.zero;
 
             _dashTimer = 0f;
-            _shotTimer = _config.ShotInterval;
+            _shotTimer = _currentStateConfig.ShotInterval;
             _currentShotCount = 0;
         }
 
@@ -49,7 +48,7 @@ namespace EnemyStates
         {
             UpdateDash();
 
-            bool isDelayFinished = _delayTimer >= _config.DelayDuration;
+            bool isDelayFinished = _delayTimer >= _currentStateConfig.DelayDuration;
             if (!isDelayFinished) _delayTimer += Time.deltaTime;
             if (isDelayFinished && _dashDirection == Vector3.zero)
             {
@@ -59,7 +58,7 @@ namespace EnemyStates
             if (isDelayFinished && _dashDirection != Vector3.zero)
             {
                 _dashTimer += Time.deltaTime;
-                if (_dashTimer >= _dashDuration)
+                if (_dashTimer >= _currentStateConfig.DashDuration)
                 {
                     OnDashFinished();
                 }
@@ -75,10 +74,10 @@ namespace EnemyStates
         private void UpdateDash()
         {
             if (_dashDirection == Vector3.zero) return;
-            _enemy.Move(_dashDirection * _config.DashSpeed * Time.deltaTime);
+            _enemy.Move(_dashDirection * _currentStateConfig.DashSpeed * Time.deltaTime);
 
             _shotTimer += Time.deltaTime;
-            if (_shotTimer >= _config.ShotInterval)
+            if (_shotTimer >= _currentStateConfig.ShotInterval)
             {
                 _shotTimer = 0f;
                 _currentShotCount++;
@@ -86,7 +85,7 @@ namespace EnemyStates
             }
 
             float traveledDistance = Vector3.Distance(_enemy.transform.position, _startPosition);
-            bool hasReachedDashDistance = traveledDistance >= _config.DashDistance;
+            bool hasReachedDashDistance = traveledDistance >= _currentStateConfig.DashDistance;
             if (hasReachedDashDistance)
             {
                 OnDashFinished();
@@ -101,14 +100,31 @@ namespace EnemyStates
 
         private void ShootSideway()
         {
-            SidewayPattern sidewayPattern = new SidewayPattern(_sidewayPatternConfig);
+            SidewayPattern sidewayPattern = new SidewayPattern(_currentStateConfig.SidewayPatternConfig);
             sidewayPattern.Shoot(_enemy.transform.position, _dashDirection);
         }
 
         private void ShootRadial()
         {
-            RadialPattern radialPattern = new RadialPattern(_radialPatternConfig);
+            RadialPattern radialPattern = new RadialPattern(_currentStateConfig.RadialPatternConfig);
             radialPattern.Shoot(_enemy.transform.position);
+        }
+
+        public void SetPhaseConfig(int phaseIndex)
+        {
+            if (phaseIndex < 0 || _phaseConfigs.Count == 0)
+            {
+                Debug.LogWarning($"Invalid phase index {phaseIndex}. Using default config.");
+                return;
+            }
+
+            if (phaseIndex >= _phaseConfigs.Count)
+            {
+                Debug.LogWarning($"Phase index {phaseIndex} exceeds available configs. Using last config.");
+                phaseIndex = _phaseConfigs.Count - 1;
+            }
+
+            _currentStateConfig = _phaseConfigs[phaseIndex];
         }
     }
 }

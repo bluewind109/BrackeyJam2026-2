@@ -4,7 +4,8 @@ namespace EnemyStates
 {
 	public class RecoverState : EnemyState
 	{
-        private float _recoveryDuration = 1f;
+		[SerializeField] private RecoverStateConfig _config;
+
         private float _recoveryTimer = 0f;
 
 		public override void Enter()
@@ -20,7 +21,7 @@ namespace EnemyStates
 		public override void UpdateState()
 		{
 			_recoveryTimer += Time.deltaTime;
-			if (_recoveryTimer >= _recoveryDuration)
+			if (_recoveryTimer >= _config.RecoverDuration)
 			{
 				OnStateFinished();
 			}
