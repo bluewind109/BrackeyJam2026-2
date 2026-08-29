@@ -16,9 +16,6 @@ MonoBehaviour:
   dashSpeed: 12
   dashDistance: 10
   dashDuration: 2
-  projectileDamage: 1
-  projectilesPerShot: 10
-  projectileSpeed: 3.5
-  shotInterval: 0.125
+  shotInterval: 0.2
   radialPatternConfig: {fileID: 11400000, guid: 693c42377bb98fe49b176992283193e4, type: 2}
   sidewayPatternConfig: {fileID: 11400000, guid: b1a656c93b94556478f9b84b0eb728fb, type: 2}

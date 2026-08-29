@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using MoreMountains.Tools;
 
 public class FocusMode_UI : MonoBehaviour
 {
@@ -78,6 +79,8 @@ public class FocusMode_UI : MonoBehaviour
         UpdateSpellUI(windStepSpellData, _spellToTypeUI_WindStep);
 
         gameObject.SetActive(true);
+
+        MMGameEvent.Trigger(GameDefine.FocusModeEvents.State_Enter);
     }
 
     private void UpdateSpellUI(SpellToType_UI_Data spellData, SpellToType_UI spellUI)

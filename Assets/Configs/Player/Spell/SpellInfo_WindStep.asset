@@ -16,15 +16,15 @@ MonoBehaviour:
   _spellIcon: {fileID: 21300000, guid: 3123e28135bd8ac4ab794ef7480d9b10, type: 3}
   _spellName: Wind Step
   _levelInfos:
-  - _damage: 6
+  - _damage: 7
     _cooldown: 3
     _experienceRequired: 10
     _inputSequence: {fileID: 11400000, guid: ab84ad29d25442c42955878808554b23, type: 2}
-  - _damage: 10
+  - _damage: 12
     _cooldown: 2.5
     _experienceRequired: 15
     _inputSequence: {fileID: 11400000, guid: c8b92ac63ace4d04a863388dd413bd43, type: 2}
-  - _damage: 14
+  - _damage: 17
     _cooldown: 2
     _experienceRequired: 20
     _inputSequence: {fileID: 11400000, guid: 649893e968394f24c9a031c3a4645b72, type: 2}
