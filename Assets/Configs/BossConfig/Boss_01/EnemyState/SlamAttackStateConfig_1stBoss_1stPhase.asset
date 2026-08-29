@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a631df6c2928c344aa6c4dd70742f2f, type: 3}
-  m_Name: BossStats_FirstBoss
-  m_EditorClassIdentifier: Assembly-CSharp::BossStats
-  maxHealth: 50
-  moveSpeed: 4
+  m_Script: {fileID: 11500000, guid: 7947275f8f5e7cb4bb02aa178b93751b, type: 3}
+  m_Name: SlamAttackStateConfig_1stBoss_1stPhase
+  m_EditorClassIdentifier: Assembly-CSharp::SlamAttackStateConfig

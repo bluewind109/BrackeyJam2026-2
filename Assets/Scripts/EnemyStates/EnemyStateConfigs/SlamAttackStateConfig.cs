@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SlamAttackStateConfig", menuName = "Enemy State Configs/Slam Attack State Config")]
-public class SlamAttackStateConfig : ScriptableObject
+public class SlamAttackStateConfig : EnemyStateConfig
 {
     [SerializeField] private float slamAttackDelay = 1f;
 	[SerializeField] private float slamAttackPersistenceDuration = 0.1f;

@@ -9,6 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7947275f8f5e7cb4bb02aa178b93751b, type: 3}
-  m_Name: SlamAttackStateConfig_FirstBoss
-  m_EditorClassIdentifier: Assembly-CSharp::SlamAttackStateConfig
+  m_Script: {fileID: 11500000, guid: ea3e487f9185fe74399e2441951ba557, type: 3}
+  m_Name: SidewayPatternConfig_1stBoss
+  m_EditorClassIdentifier: Assembly-CSharp::SidewayPatternConfig
+  projectileDamage: 1
+  projectileSpeed: 5
+  shotInterval: 0.25
+  duration: 2

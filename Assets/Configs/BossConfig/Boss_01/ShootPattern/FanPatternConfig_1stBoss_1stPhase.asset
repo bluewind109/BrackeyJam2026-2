@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7783cc1475abcae4e9f20e1d15180fea, type: 3}
-  m_Name: SpiralPatternConfig_FirstBoss
-  m_EditorClassIdentifier: Assembly-CSharp::SpiralPatternConfig
+  m_Script: {fileID: 11500000, guid: e77409427613df743adf90c17987ac70, type: 3}
+  m_Name: FanPatternConfig_1stBoss_1stPhase
+  m_EditorClassIdentifier: Assembly-CSharp::FanPatternConfig
   projectileDamage: 1
-  numberOfShots: 8
-  projectilesPerShot: 10
-  projectileSpeed: 5
+  projectileSpeed: 7.5
   shotInterval: 0.25
-  angleIncrement: 15
+  projectilesPerShot: 5
+  spreadAngle: 45
+  numberOfShots: 4

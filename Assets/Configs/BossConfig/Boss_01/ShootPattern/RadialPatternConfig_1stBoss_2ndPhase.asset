@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea3e487f9185fe74399e2441951ba557, type: 3}
-  m_Name: SidewayPatternConfig_FirstBoss
-  m_EditorClassIdentifier: Assembly-CSharp::SidewayPatternConfig
+  m_Script: {fileID: 11500000, guid: 37d4ddcd321a9bd4c81ad75f6f453e38, type: 3}
+  m_Name: RadialPatternConfig_1stBoss_2ndPhase
+  m_EditorClassIdentifier: Assembly-CSharp::RadialPatternConfig
   projectileDamage: 1
-  projectileSpeed: 5
+  projectileSpeed: 7.5
   shotInterval: 0.25
-  duration: 2
+  projectilesPerShot: 10
+  numberOfShots: 8
