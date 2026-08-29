@@ -10,13 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97e711257c2841a438ed4a93aa47d1b0, type: 3}
-  m_Name: Spell_IceLances
+  m_Name: SpellInfo_IceLances
   m_EditorClassIdentifier: Assembly-CSharp::Spell_IceLances
+  _spellType: 1
   _spellName: Ice Lances
   _spellIcon: {fileID: 0}
   _level: 0
-  _damage: 1
+  _damage: 5
   _cooldown: 3
   _inputSequence: {fileID: 11400000, guid: 9a7b35ff1f12b3241b4503a743801632, type: 2}
-  _iceLancePrefab: {fileID: 1266967946362938931, guid: 6a90db0b983ed9e4dbe3494a1b1618d0, type: 3}
+  _levelInfos:
+  - _damage: 5
+    _cooldown: 3
+    _experienceRequired: 10
+    _inputSequence: {fileID: 11400000, guid: 9a7b35ff1f12b3241b4503a743801632, type: 2}
+  - _damage: 7
+    _cooldown: 3
+    _experienceRequired: 15
+    _inputSequence: {fileID: 11400000, guid: 9a7b35ff1f12b3241b4503a743801632, type: 2}
+  - _damage: 9
+    _cooldown: 3
+    _experienceRequired: 20
+    _inputSequence: {fileID: 11400000, guid: 9a7b35ff1f12b3241b4503a743801632, type: 2}
   _numberOfLances: 5

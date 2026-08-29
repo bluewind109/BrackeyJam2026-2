@@ -56,8 +56,8 @@ MonoBehaviour:
   - {fileID: 1840424814112719471}
   - {fileID: 3043391652148186734}
   - {fileID: 191514330918954879}
-  noHealthColor: {r: 0.7568628, g: 0.72156864, b: 0.72156864, a: 1}
-  fullHealthColor: {r: 1, g: 0.61960787, b: 0.61960787, a: 1}
+  noHealth: {fileID: 1349662233, guid: 7bae0f42544ae2945bc873d5fc236c8f, type: 3}
+  fullHealth: {fileID: 7377135689432530015, guid: 7bae0f42544ae2945bc873d5fc236c8f, type: 3}
 --- !u!114 &8909083521165925696
 MonoBehaviour:
   m_ObjectHideFlags: 0
