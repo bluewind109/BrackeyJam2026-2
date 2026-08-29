@@ -22,6 +22,7 @@ public class SpellInfo_WindStep : SpellInfo
 
 		PlayerShadow playerShadow = Instantiate(_playerShadowPrefab, player.transform.position, Quaternion.identity);
 		playerShadow.Initialize(player, _shadowSpeed, damage);
+		PlayerShadowManager.Instance.RegisterPlayerShadow(playerShadow);
 
 		Vector3 direction = (to - player.transform.position).normalized;
 		Vector3 targetPosition = player.transform.position + direction * distance;

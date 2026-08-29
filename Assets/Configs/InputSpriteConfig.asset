@@ -21,3 +21,21 @@ MonoBehaviour:
     Sprite: {fileID: 2551121464439468152, guid: bf798f331825019449d3b16409e84d92, type: 3}
   - InputDirection: 3
     Sprite: {fileID: 1875165894917319495, guid: bf798f331825019449d3b16409e84d92, type: 3}
+  _inputSprites_FocusMode:
+  - InputDirection: 0
+    Sprite: {fileID: -446822019660707537, guid: fdb2de1e6a7a938499c36158634cfb2f, type: 3}
+  - InputDirection: 1
+    Sprite: {fileID: -1287101398648754289, guid: fdb2de1e6a7a938499c36158634cfb2f, type: 3}
+  - InputDirection: 2
+    Sprite: {fileID: -7335141138228804518, guid: fdb2de1e6a7a938499c36158634cfb2f, type: 3}
+  - InputDirection: 3
+    Sprite: {fileID: 5988030411124121710, guid: fdb2de1e6a7a938499c36158634cfb2f, type: 3}
+  _inputSprites_FocusMode_Typed:
+  - InputDirection: 0
+    Sprite: {fileID: -4901081051567333582, guid: 05c2067eb1cc27e4c86c5a014f5ef623, type: 3}
+  - InputDirection: 1
+    Sprite: {fileID: -1482600550124855457, guid: 05c2067eb1cc27e4c86c5a014f5ef623, type: 3}
+  - InputDirection: 2
+    Sprite: {fileID: -6107997100635411168, guid: 05c2067eb1cc27e4c86c5a014f5ef623, type: 3}
+  - InputDirection: 3
+    Sprite: {fileID: -6685141605320810441, guid: 05c2067eb1cc27e4c86c5a014f5ef623, type: 3}

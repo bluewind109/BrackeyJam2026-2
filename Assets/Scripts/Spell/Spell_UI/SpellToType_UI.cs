@@ -21,7 +21,7 @@ public class SpellToType_UI : MonoBehaviour
             if (i < inputDirections.Count)
             {
                 InputDirection inputDirection = inputDirections[i];
-                Sprite inputSprite = InputSpriteManager.Instance.GetInputSprite(inputDirection);
+                Sprite inputSprite = InputSpriteManager.Instance.GetInputSprite_FocusMode(inputDirection);
                 _inputSequenceImage[i].sprite = inputSprite;
                 _inputSequenceImage[i].gameObject.SetActive(true);
             }
