@@ -35,7 +35,7 @@ namespace PlayerModes
 
 		public override void Update()
 		{
-			_player.GameUpdate();
+			_player.GameUpdate(false);
 			_enemy.GameUpdate();
 			PlayerProjectileManager.Instance.GameUpdate();
 			EnemyProjectileManager.Instance.GameUpdate();
