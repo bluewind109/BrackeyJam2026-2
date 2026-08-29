@@ -92,6 +92,7 @@ MonoBehaviour:
   _phaseConfigs:
   - {fileID: 11400000, guid: 08d6d8af741515a49ba738aef7a05743, type: 2}
   - {fileID: 11400000, guid: b14a978d61e26cf41b5fa30b5c3ac510, type: 2}
+  - {fileID: 11400000, guid: 44dec6ecce6c39840bcdbf4f0e3deac6, type: 2}
 --- !u!1 &3834184620517093811
 GameObject:
   m_ObjectHideFlags: 0

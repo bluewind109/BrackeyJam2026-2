@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1ccd86454f40ee4c892242cf2950ce4, type: 3}
-  m_Name: RecoverStateConfig_1stBoss_1stPhase
-  m_EditorClassIdentifier: Assembly-CSharp::RecoverStateConfig
-  recoverDuration: 1
+  m_Script: {fileID: 11500000, guid: 0555000f10660d140a4c884b6bfbe3ca, type: 3}
+  m_Name: 2ndPhase_ChaseStateConfig_1stBoss
+  m_EditorClassIdentifier: Assembly-CSharp::ChaseStateConfig
+  chaseSpeed: 3
+  chaseDuration: 1.3333334

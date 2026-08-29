@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb83eb36ded1b7444ac0e6785cbd35f6, type: 3}
-  m_Name: ShootStateConfig_1stBoss_3rdPhase
+  m_Name: 2ndPhase_ShootStateConfig_1stBoss
   m_EditorClassIdentifier: Assembly-CSharp::ShootStateConfig
   possiblePatterns:
   - PatternType: 0
