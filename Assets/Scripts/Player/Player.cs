@@ -157,11 +157,14 @@ public class Player : MonoBehaviour
 		_inputHandler.InputReceived -= OnInputReceived;
 	}
 
-	public void GameUpdate()
+	public void GameUpdate(bool isFocusModeActive)
 	{
-		foreach (var spellProgressionInfo in _spellProgressionInfos.Values)
+		if (!isFocusModeActive)
 		{
-			spellProgressionInfo.GameUpdate();
+			foreach (var spellProgressionInfo in _spellProgressionInfos.Values)
+			{
+				spellProgressionInfo.GameUpdate();
+			}
 		}
 
 		_typedInput.UpdateTypedInput(_playerInputs);

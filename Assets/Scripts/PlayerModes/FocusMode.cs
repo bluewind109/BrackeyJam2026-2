@@ -32,7 +32,7 @@ namespace PlayerModes
 
 		public override void Update()
 		{
-			_player.GameUpdate();
+			_player.GameUpdate(true);
 			_focusTimer.UpdateTime();
 		}
 
