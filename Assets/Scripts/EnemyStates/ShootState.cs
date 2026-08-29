@@ -14,12 +14,10 @@ namespace EnemyStates
         private ShootPatternInfo _currentPatternInfo;
         private Pattern _currentPattern;
 
-        private Player _player;
-
-        public void Initialize(Player player)
+        public override void Initialize(Enemy enemy, Player player)
         {
-            _player = player;
-           SetPhaseConfig(0);
+            base.Initialize(enemy, player);
+            SetPhaseConfig(0);
         }
 
         public override void Enter()

@@ -8,9 +8,9 @@ namespace EnemyStates
         [SerializeField] private List<SlamAttackStateConfig> _phaseConfigs = new List<SlamAttackStateConfig>();
         private SlamAttackStateConfig _currentStateConfig;
 
-
-        public void Initialize()
+        public override void Initialize(Enemy enemy, Player player)
         {
+            base.Initialize(enemy, player);
             SetPhaseConfig(0);
         }
 
@@ -27,6 +27,7 @@ namespace EnemyStates
 
         public override void UpdateState()
         {
+            
         }
 
         private void ExecuteSlamAttack()

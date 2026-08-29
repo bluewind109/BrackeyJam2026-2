@@ -7,6 +7,15 @@ namespace EnemyStates
     {
         public event Action StateFinished;
 
+        protected Enemy _enemy;
+        protected Player _player;
+
+        public virtual void Initialize(Enemy enemy, Player player)
+        {
+            _enemy = enemy;
+            _player = player;
+        }
+
         public abstract void Enter();
         public abstract void Exit();
         public abstract void UpdateState();

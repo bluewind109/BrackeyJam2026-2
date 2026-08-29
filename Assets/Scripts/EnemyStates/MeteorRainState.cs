@@ -28,11 +28,10 @@ namespace EnemyStates
         private MeteorRainStateConfig _currentStateConfig;
 
         private int _positionRetryCount = 6;
-        private Player _player;
-
-        public void Initialize(Player player)
+        
+        public override void Initialize(Enemy enemy, Player player)
         {
-            _player = player;
+            base.Initialize(enemy, player);
             SetPhaseConfig(0);
         }
 

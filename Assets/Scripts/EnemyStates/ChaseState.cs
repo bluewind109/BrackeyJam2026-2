@@ -8,15 +8,6 @@ namespace EnemyStates
 
         private float _chaseTimer = 0f;
 
-        private Enemy _enemy;
-        private Player _player;
-
-        public void Initialize(Enemy enemy, Player player)
-        {
-            _enemy = enemy;
-            _player = player;
-        }
-
         public override void Enter()
         {
             Debug.Log("Entering Chase State");
@@ -30,7 +21,8 @@ namespace EnemyStates
 
         public override void UpdateState()
         {
-            ChasePlayer();
+            Vector3 chaseDirection = ChasePlayer();
+            _enemy.EnemyDisplay.UpdateMoving(chaseDirection);
 
             _chaseTimer += Time.deltaTime;
             if (_chaseTimer >= _config.ChaseDuration)
@@ -39,11 +31,12 @@ namespace EnemyStates
             }
         }
 
-        private void ChasePlayer()
+        private Vector3 ChasePlayer()
         {
-            if (_player == null) return;
+            if (_player == null) return Vector3.zero;
             Vector3 direction = (_player.transform.position - _enemy.transform.position).normalized;
             _enemy.Move(direction * Time.deltaTime * _config.ChaseSpeed);
+            return direction;
         }
     }
 }

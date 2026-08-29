@@ -4,6 +4,9 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] protected BossStats _bossStats;
+    [SerializeField] protected EnemyDisplay _enemyDisplay;
+
+    public EnemyDisplay EnemyDisplay => _enemyDisplay;
 
     protected Health _health;
     private Hurtbox _hurtbox;

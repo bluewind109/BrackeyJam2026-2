@@ -59,11 +59,12 @@ public class FirstBoss : Enemy
     {
         base.Initialize(player);
         ((SpawnState)_spawnState).Initialize(_spriteRenderer);
+        ((IdleState)_idleState).Initialize(this, player);
         ((ChaseState)_chaseState).Initialize(this, player);
         ((DashState)_dashState).Initialize(this, player);
-        ((ShootState)_shootState).Initialize(player);
-        ((MeteorRainState)_meteorRainState).Initialize(player);
-        ((SlamAttackState)_slamAttackState).Initialize();
+        ((ShootState)_shootState).Initialize(this, player);
+        ((MeteorRainState)_meteorRainState).Initialize(this, player);
+        ((SlamAttackState)_slamAttackState).Initialize(this, player);
         SetState(_spawnState);
     }
 

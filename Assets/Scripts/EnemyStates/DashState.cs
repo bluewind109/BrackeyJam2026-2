@@ -23,13 +23,9 @@ namespace EnemyStates
         private float _shotTimer = 0f;
         private float _dashTimer = 0f;
 
-        private Enemy _enemy;
-        private Player _player;
-
-        public void Initialize(Enemy enemy, Player player)
+        public override void Initialize(Enemy enemy, Player player)
         {
-            _enemy = enemy;
-            _player = player;
+            base.Initialize(enemy, player);
             SetPhaseConfig(0);
         }
 
