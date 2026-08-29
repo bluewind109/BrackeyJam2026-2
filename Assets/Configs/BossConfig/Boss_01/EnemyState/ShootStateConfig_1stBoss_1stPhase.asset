@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb83eb36ded1b7444ac0e6785cbd35f6, type: 3}
+  m_Name: ShootStateConfig_1stBoss_1stPhase
+  m_EditorClassIdentifier: Assembly-CSharp::ShootStateConfig
+  possiblePatterns:
+  - PatternType: 0
+    Config: {fileID: 11400000, guid: fb6984cc5b2e8a94b8cca36361199c5f, type: 2}
+  - PatternType: 1
+    Config: {fileID: 11400000, guid: cfbdd1bd8a1a6de4898873d3a444cd13, type: 2}
+  - PatternType: 2
+    Config: {fileID: 11400000, guid: 4e4433d2c1e7ace4e9a3b60280dae7e9, type: 2}

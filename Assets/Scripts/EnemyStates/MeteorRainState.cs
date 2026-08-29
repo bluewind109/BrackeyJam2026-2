@@ -24,16 +24,16 @@ namespace EnemyStates
     /// </summary>
     public class MeteorRainState : EnemyState
     {
-        [SerializeField] private MeteorRainStateConfig _config;
-        [SerializeField] private int _positionRetryCount = 6;
+        [SerializeField] private List<MeteorRainStateConfig> _phaseConfigs = new List<MeteorRainStateConfig>();
+        private MeteorRainStateConfig _currentStateConfig;
 
+        private int _positionRetryCount = 6;
         private Player _player;
-        private int _numberOfMeteors = 8;
 
-        public void Initialize(Player player, int numberOfMeteors)
+        public void Initialize(Player player)
         {
             _player = player;
-            _numberOfMeteors = numberOfMeteors;
+            SetPhaseConfig(0);
         }
 
         public override void Enter()
@@ -60,7 +60,7 @@ namespace EnemyStates
 
         private void SpawnMeteorsAroundPlayer()
         {
-            if (_numberOfMeteors <= 0)
+            if (_currentStateConfig.NumberOfMeteors <= 0)
             {
                 Debug.LogWarning("MeteorRainState skipped spawning because number of meteors is not positive.");
                 return;
@@ -73,26 +73,26 @@ namespace EnemyStates
             }
 
             Vector3 playerPosition = _player.transform.position;
-            List<Vector3> existingSpawnPositions = new List<Vector3>(_numberOfMeteors);
+            List<Vector3> existingSpawnPositions = new List<Vector3>(_currentStateConfig.NumberOfMeteors);
             float accumulatedStagger = 0f;
 
-            float centerRandomDelay = Random.Range(0f, Mathf.Max(0f, _config.SpawnDelayJitter));
-            float centerDelayDuration = Mathf.Max(0f, _config.BaseDelayDuration + centerRandomDelay);
-            AoeAttackManager.Instance.SpawnAoeAttack(centerDelayDuration, _config.MeteorDamage, _config.SpawnRadius, playerPosition);
+            float centerRandomDelay = Random.Range(0f, Mathf.Max(0f, _currentStateConfig.SpawnDelayJitter));
+            float centerDelayDuration = Mathf.Max(0f, _currentStateConfig.BaseDelayDuration + centerRandomDelay);
+            AoeAttackManager.Instance.SpawnAoeAttack(centerDelayDuration, _currentStateConfig.MeteorDamage, _currentStateConfig.SpawnRadius, playerPosition);
             existingSpawnPositions.Add(playerPosition);
 
-            for (int i = 1; i < _numberOfMeteors; i++)
+            for (int i = 1; i < _currentStateConfig.NumberOfMeteors; i++)
             {
                 Vector3 spawnPosition = GetSpawnPosition(playerPosition, existingSpawnPositions);
                 existingSpawnPositions.Add(spawnPosition);
 
-                float randomDelay = Random.Range(0f, Mathf.Max(0f, _config.SpawnDelayJitter));
-                float delayDuration = Mathf.Max(0f, _config.BaseDelayDuration + randomDelay + accumulatedStagger);
-                AoeAttackManager.Instance.SpawnAoeAttack(delayDuration, _config.MeteorDamage, _config.SpawnRadius, spawnPosition);
+                float randomDelay = Random.Range(0f, Mathf.Max(0f, _currentStateConfig.SpawnDelayJitter));
+                float delayDuration = Mathf.Max(0f, _currentStateConfig.BaseDelayDuration + randomDelay + accumulatedStagger);
+                AoeAttackManager.Instance.SpawnAoeAttack(delayDuration, _currentStateConfig.MeteorDamage, _currentStateConfig.SpawnRadius, spawnPosition);
 
                 float staggerStep = Random.Range(
-                    Mathf.Max(0f, _config.SpawnStaggerMin),
-                    Mathf.Max(_config.SpawnStaggerMin, _config.SpawnStaggerMax));
+                    Mathf.Max(0f, _currentStateConfig.SpawnStaggerMin),
+                    Mathf.Max(_currentStateConfig.SpawnStaggerMin, _currentStateConfig.SpawnStaggerMax));
                 accumulatedStagger += staggerStep;
             }
         }
@@ -100,7 +100,7 @@ namespace EnemyStates
         private Vector3 GetSpawnPosition(Vector3 playerPosition, List<Vector3> existingSpawnPositions)
         {
             int retries = Mathf.Max(1, _positionRetryCount);
-            float minDistance = Mathf.Max(0f, _config.MinSpawnDistanceBetweenAttacks);
+            float minDistance = Mathf.Max(0f, _currentStateConfig.MinSpawnDistanceBetweenAttacks);
             Vector3 fallbackPosition = SampleSpawnPosition(playerPosition);
 
             for (int attempt = 0; attempt < retries; attempt++)
@@ -120,8 +120,8 @@ namespace EnemyStates
 
         private Vector3 SampleSpawnPosition(Vector3 playerPosition)
         {
-            float minRadius = Mathf.Max(0f, Mathf.Min(_config.MinSpawnRadius, _config.MaxSpawnRadius));
-            float maxRadius = Mathf.Max(minRadius, _config.MaxSpawnRadius);
+            float minRadius = Mathf.Max(0f, Mathf.Min(_currentStateConfig.MinSpawnRadius, _currentStateConfig.MaxSpawnRadius));
+            float maxRadius = Mathf.Max(minRadius, _currentStateConfig.MaxSpawnRadius);
             float angleRad = Random.Range(0f, Mathf.PI * 2f);
             float radius = Random.Range(minRadius, maxRadius);
 
@@ -144,6 +144,23 @@ namespace EnemyStates
             }
 
             return true;
+        }
+
+        public void SetPhaseConfig(int phaseIndex)
+        {
+            if (phaseIndex < 0 || _phaseConfigs.Count == 0)
+            {
+                Debug.LogWarning($"Invalid phase index {phaseIndex}. Using default config.");
+                return;
+            }
+
+            if (phaseIndex >= _phaseConfigs.Count)
+            {
+                Debug.LogWarning($"Phase index {phaseIndex} exceeds available configs. Using last config.");
+                phaseIndex = _phaseConfigs.Count - 1;
+            }
+
+            _currentStateConfig = _phaseConfigs[phaseIndex];
         }
     }
 }

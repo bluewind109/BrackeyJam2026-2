@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 170300af6330c4343b3f1e1165557e0e, type: 3}
-  m_Name: MeteorRainStateConfig_FirstBoss
+  m_Name: MeteorRainStateConfig_1stBoss_1stPhase
   m_EditorClassIdentifier: Assembly-CSharp::MeteorRainStateConfig
   minSpawnRadius: 0.9
   maxSpawnRadius: 2.4
