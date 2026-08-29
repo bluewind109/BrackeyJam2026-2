@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using MoreMountains.Tools;
 [CreateAssetMenu(fileName = "SpellInfo_IceLances", menuName = "Spell/IceLances")]
 public class SpellInfo_IceLances : SpellInfo
 {
@@ -19,5 +19,7 @@ public class SpellInfo_IceLances : SpellInfo
 			Vector3 rotatedDirection = Quaternion.Euler(0, 0, angleOffset) * direction;
 			PlayerProjectileManager.Instance.SpawnProjectile<IceLance>(from, rotatedDirection, _projectileSpeed, damage);
 		}
+
+		MMGameEvent.Trigger(GameDefine.SpellEvents.OnSpellCast, stringParameter: GameDefine.SpellEvents.Spell_IceLances);
 	}
 }
