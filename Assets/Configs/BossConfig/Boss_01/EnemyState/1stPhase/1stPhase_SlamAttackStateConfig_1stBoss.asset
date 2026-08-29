@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7947275f8f5e7cb4bb02aa178b93751b, type: 3}
   m_Name: 1stPhase_SlamAttackStateConfig_1stBoss
   m_EditorClassIdentifier: Assembly-CSharp::SlamAttackStateConfig
+  slamAttackDelay: 3
+  slamAttackPersistenceDuration: 0.1
+  slamAttackDamage: 1
+  slamAttackRadius: 16
