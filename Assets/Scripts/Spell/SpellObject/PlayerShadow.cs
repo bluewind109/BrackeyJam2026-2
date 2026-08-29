@@ -12,7 +12,7 @@ public class PlayerShadow : MonoBehaviour
     [SerializeField] private float _waitDuration = 1f;
     private float _waitTimer = 0f;
     private float _speed = 10f;
-    private int _damage = 10;
+    private int _damage = 1;
 
     private Player _player;
     private Hitbox _hitbox;
@@ -30,11 +30,12 @@ public class PlayerShadow : MonoBehaviour
         }
     }
 
-    public void Initialize(Player player, float speed)
+    public void Initialize(Player player, float speed, int damage)
     {
         _player = player;
         _waitTimer = 0f;
         _speed = speed;
+        _damage = damage;
         _isInitialized = true;
     }
 

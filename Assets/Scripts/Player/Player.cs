@@ -11,7 +11,9 @@ public class Player : MonoBehaviour
 	[SerializeField] private PlayerStats _playerStats;
 	[SerializeField] private PlayerInputHandler _inputHandler;
 	[SerializeField] private PlayerTypedInput _typedInput;
-	[SerializeField] private List<SpellInfo> _spells = new List<SpellInfo>();
+	[SerializeField] private SpellDictionary _spellDictionary;
+
+	Dictionary<SpellType, SpellProgressionInfo> _spellProgressionInfos = new Dictionary<SpellType, SpellProgressionInfo>();
 
 	private Health _health;
 	private Hurtbox _hurtbox;
@@ -27,6 +29,8 @@ public class Player : MonoBehaviour
 		_health = GetComponentInChildren<Health>();
 		_hurtbox = GetComponentInChildren<Hurtbox>();
 
+		InitializeSpellProgression();
+
 		if (_health != null)
 		{
 			_health.Initialize(_playerStats.MaxHealth);
@@ -38,6 +42,62 @@ public class Player : MonoBehaviour
 		{
 			_hurtbox.Initialize(_health);
 		}
+	}
+
+	private void InitializeSpellProgression()
+	{
+		int startLevel = 1;
+
+		SpellInfo fireBallSpellInfo = _spellDictionary.GetSpellByType(SpellType.FireBall);
+		SpellLevelInfo fireBallLevelInfo = fireBallSpellInfo.GetLevelInfo(startLevel);
+		SpellProgressionInfo fireBallProgress = new SpellProgressionInfo(
+			SpellType.FireBall, 
+			startLevel, 
+			fireBallSpellInfo.MaxLevel, 
+			fireBallLevelInfo.ExperienceRequired
+		);
+		_spellProgressionInfos[SpellType.FireBall] = fireBallProgress;
+		fireBallProgress.OnLevelUp += OnSpellLevelUp;
+		fireBallProgress.OnMaxLevelReached += OnSpellMaxLevelReached;
+
+		SpellInfo iceLancesSpellInfo = _spellDictionary.GetSpellByType(SpellType.IceLances);
+		SpellLevelInfo iceLancesLevelInfo = iceLancesSpellInfo.GetLevelInfo(startLevel);
+		SpellProgressionInfo iceLancesProgress = new SpellProgressionInfo(
+			SpellType.IceLances, 
+			startLevel, 
+			iceLancesSpellInfo.MaxLevel, 
+			iceLancesLevelInfo.ExperienceRequired
+		);
+		_spellProgressionInfos[SpellType.IceLances] = iceLancesProgress;
+		iceLancesProgress.OnLevelUp += OnSpellLevelUp;
+		iceLancesProgress.OnMaxLevelReached += OnSpellMaxLevelReached;
+
+		SpellInfo windStepSpellInfo = _spellDictionary.GetSpellByType(SpellType.WindStep);
+		SpellLevelInfo windStepLevelInfo = windStepSpellInfo.GetLevelInfo(startLevel);
+		SpellProgressionInfo windStepProgress = new SpellProgressionInfo(
+			SpellType.WindStep, 
+			startLevel, 
+			windStepSpellInfo.MaxLevel, 
+			windStepLevelInfo.ExperienceRequired
+		);
+		_spellProgressionInfos[SpellType.WindStep] = windStepProgress;
+		windStepProgress.OnLevelUp += OnSpellLevelUp;
+		windStepProgress.OnMaxLevelReached += OnSpellMaxLevelReached;
+	}
+
+	private void OnSpellLevelUp(SpellProgressionInfo spellProgressionInfo)
+	{
+		Debug.Log($"Spell {spellProgressionInfo.SpellType} leveled up!");
+		spellProgressionInfo.LevelUp();
+
+		// TODO update spell UI
+	}
+
+	private void OnSpellMaxLevelReached(SpellType spellType)
+	{
+		Debug.Log($"Spell {spellType} reached max level!");
+
+		// TODO player die => game over
 	}
 
 	private void OnDeath()
@@ -115,7 +175,8 @@ public class Player : MonoBehaviour
 		if (_currentSpell == null) return;
 		Vector3 targetPosition = GetMouseWorldPosition();
 		targetPosition.z = 0f;
-		_currentSpell.Cast(this, targetPosition);
+		int currentLevel = _spellProgressionInfos[_currentSpell.SpellType].Level;
+		_currentSpell.Cast(currentLevel, this, targetPosition);
 		_currentSpell = null; // Reset the current spell after casting
 	}
 
@@ -140,19 +201,20 @@ public class Player : MonoBehaviour
 		if (_inputIndex == 0)
 		{
 			_inputIndex++;
-			_spellToType = _spells.Find(spell => spell.IsInputMatched(input, 0));
+			_spellToType = _spellDictionary.GetSpellByFirstInput(input);
 			// Debug.Log($"First input: {input}. Spell to type: {_spellToType?.name ?? "None"}");
 			_playerInputs.Add(input);
 			return;
 		}
 		if (_spellToType == null) return;
 
-		if (_spellToType.IsInputMatched(input, _inputIndex))
+		int currentLevel = _spellProgressionInfos[_spellToType.SpellType].Level;
+		if (_spellToType.IsInputMatched(input, currentLevel, _inputIndex))
 		{
 			_inputIndex++;
 			_playerInputs.Add(input);
 			// Debug.Log($"Correct input: {input}. Current sequence: {string.Join(", ", _playerInputs)}");
-			bool isSequenceComplete = _inputIndex >= _spellToType.InputSequence.Length;
+			bool isSequenceComplete = _inputIndex >= _spellToType.GetLevelInfo(currentLevel).InputSequence.Length;
 			if (isSequenceComplete)
 			{
 				// Debug.Log("<color=green>Input sequence completed!</color>");

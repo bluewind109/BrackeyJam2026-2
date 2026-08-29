@@ -4,19 +4,20 @@ using UnityEngine;
 public class SpellInfo_IceLances : SpellInfo
 {
 	[Header("IceLances Settings")]
+	[SerializeField] private float _projectileSpeed = 10f;
 	[SerializeField] private int _numberOfLances = 5;
 
-	public override void Cast(Player player, Vector3 to)
+	public override void Cast(int level, Player player, Vector3 to)
 	{
 		Vector3 from = player.transform.position;
 		Vector3 direction = (to - from).normalized;
-		float speed = 10f;
+		int damage = GetLevelInfo(level)?.Damage ?? 1;
 
 		for (int i = 0; i < _numberOfLances; i++)
 		{
 			float angleOffset = (i - (_numberOfLances - 1) / 2f) * 10f; // Adjust the angle offset for each lance
 			Vector3 rotatedDirection = Quaternion.Euler(0, 0, angleOffset) * direction;
-			PlayerProjectileManager.Instance.SpawnProjectile<IceLance>(from, rotatedDirection, speed, Damage);
+			PlayerProjectileManager.Instance.SpawnProjectile<IceLance>(from, rotatedDirection, _projectileSpeed, damage);
 		}
 	}
 }

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97e711257c2841a438ed4a93aa47d1b0, type: 3}
-  m_Name: Spell_IceLances
+  m_Name: SpellInfo_IceLances
   m_EditorClassIdentifier: Assembly-CSharp::Spell_IceLances
-  _spellType: 0
+  _spellType: 1
   _spellName: Ice Lances
   _spellIcon: {fileID: 0}
   _level: 0
