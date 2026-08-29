@@ -19,7 +19,9 @@ public class FirstBoss : Enemy
     [SerializeField] private EnemyState _phaseTransitionState;
 
     [SerializeField] private List<EnemyPhaseData> _phaseDatas = new List<EnemyPhaseData>();
-    private List<EnemyState> _attackStates = new List<EnemyState>();
+   
+    private EnemyPhaseData _currentPhaseData;
+    private List<StateData> _currentStateDatas = new List<StateData>();
 
     private const float HEALTH_THRESHOLD_PHASE_2 = 4f / 5f;
     private const float HEALTH_THRESHOLD_PHASE_3 = 2f / 5f;
@@ -130,28 +132,52 @@ public class FirstBoss : Enemy
 
     private void SetRandomAttackState()
     {
-        _attackStates = GetCurrentPhaseAttackStates();
-        if (_attackStates.Count == 0) return;
-        int randomIndex = UnityEngine.Random.Range(0, _attackStates.Count);
-        SetState(_attackStates[randomIndex]);
+        _currentPhaseData = GetCurrentPhaseData();
+        if (_currentPhaseData == null) return;
+
+        _currentStateDatas = _currentPhaseData.StateData;
+        int totalWeight = _currentPhaseData.GetTotalWeight();
+
+        if (totalWeight <= 0)
+        {
+            SetState(_currentStateDatas[0].State);
+            return;
+        }
+
+        int randomValue = UnityEngine.Random.Range(0, totalWeight);
+        int cumulativeWeight = 0;
+
+        foreach (var stateData in _currentStateDatas)
+        {
+            if (stateData == null || stateData.State == null) continue;
+
+            cumulativeWeight += Mathf.Max(0, stateData.BaseWeight);
+            if (randomValue < cumulativeWeight)
+            {
+                SetState(stateData.State);
+                return;
+            }
+        }
+
+        SetState(_currentStateDatas[_currentStateDatas.Count - 1].State);
     }
 
-    private List<EnemyState> GetCurrentPhaseAttackStates()
+    private EnemyPhaseData GetCurrentPhaseData()
     {
         int phaseIndex = _currentPhase - 1;
         if (phaseIndex < 0)
         {
-            Debug.LogWarning($"Invalid phase index {phaseIndex}. Returning empty attack states.");
-            return new List<EnemyState>();
+            Debug.LogWarning($"Invalid phase index {phaseIndex}. Returning null.");
+            return null;
         }
 
         if (phaseIndex >= _phaseDatas.Count)
         {
-            Debug.LogWarning($"Phase index {phaseIndex} exceeds available phase data. Returning last phase's attack states.");
+            Debug.LogWarning($"Phase index {phaseIndex} exceeds available phase data. Returning last phase's data.");
             phaseIndex = _phaseDatas.Count - 1;
         }
 
-        return _phaseDatas[phaseIndex].AttackStates;
+        return _phaseDatas[phaseIndex];
     }
 
     private void OnShootStateFinished()
