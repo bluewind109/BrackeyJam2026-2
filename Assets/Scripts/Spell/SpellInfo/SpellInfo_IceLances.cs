@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using MoreMountains.Tools;
 [CreateAssetMenu(fileName = "SpellInfo_IceLances", menuName = "Spell/IceLances")]
 public class SpellInfo_IceLances : SpellInfo
 {
@@ -26,5 +26,7 @@ public class SpellInfo_IceLances : SpellInfo
 				damagePerLance
 			);
 		}
+
+		MMGameEvent.Trigger(GameDefine.SpellEvents.OnSpellCast, stringParameter: GameDefine.SpellEvents.Spell_IceLances);
 	}
 }

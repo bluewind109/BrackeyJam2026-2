@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 170300af6330c4343b3f1e1165557e0e, type: 3}
+  m_Name: MeteorRainStateConfig_1stBoss_3rdPhase
+  m_EditorClassIdentifier: Assembly-CSharp::MeteorRainStateConfig
+  numberOfMeteors: 16
+  minSpawnRadius: 0.9
+  maxSpawnRadius: 2.4
+  baseDelayDuration: 1
+  spawnRadius: 1.5
+  spawnDelayJitter: 0.5
+  spawnStaggerMin: 0.03
+  spawnStaggerMax: 0.12
+  minSpawnDistanceBetweenAttacks: 0.65
+  meteorDamage: 1

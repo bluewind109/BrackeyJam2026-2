@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using MoreMountains.Tools;
 [CreateAssetMenu(fileName = "SpellInfo_WindStep", menuName = "Spell/WindStep")]
 public class SpellInfo_WindStep : SpellInfo
 {
@@ -26,5 +26,7 @@ public class SpellInfo_WindStep : SpellInfo
 		Vector3 direction = (to - player.transform.position).normalized;
 		Vector3 targetPosition = player.transform.position + direction * distance;
 		player.SetPosition(targetPosition);
+
+		MMGameEvent.Trigger(GameDefine.SpellEvents.OnSpellCast, stringParameter: GameDefine.SpellEvents.Spell_WindStep);
 	}
 }

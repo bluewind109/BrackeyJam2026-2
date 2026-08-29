@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DashStateConfig_1stBoss_2ndPhase
   m_EditorClassIdentifier: Assembly-CSharp::DashStateConfig
   delayDuration: 1
-  dashSpeed: 20
+  dashSpeed: 12
   dashDistance: 10
   dashDuration: 2
   projectileDamage: 1

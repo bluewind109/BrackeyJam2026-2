@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67fd2741bd40a08429e32dd1aabe1214, type: 3}
+  m_Name: DashStateConfig_1stBoss_3rdPhase
+  m_EditorClassIdentifier: Assembly-CSharp::DashStateConfig
+  delayDuration: 1
+  dashSpeed: 12
+  dashDistance: 10
+  dashDuration: 2
+  projectileDamage: 1
+  projectilesPerShot: 10
+  projectileSpeed: 3.5
+  shotInterval: 0.125
+  radialPatternConfig: {fileID: 11400000, guid: fb6984cc5b2e8a94b8cca36361199c5f, type: 2}
+  sidewayPatternConfig: {fileID: 11400000, guid: 4aaa63768b9943f4ebe3749afc840eaf, type: 2}
