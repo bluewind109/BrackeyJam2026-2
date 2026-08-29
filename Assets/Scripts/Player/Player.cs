@@ -12,13 +12,6 @@ public class Player : MonoBehaviour
 	[SerializeField] private PlayerStats _playerStats;
 	[SerializeField] private PlayerInputHandler _inputHandler;
 	[SerializeField] private PlayerTypedInput _typedInput;
-	[SerializeField] private SpellDictionary _spellDictionary;
-
-	[SerializeField] private Spell_UIElement _fireBall_UIElement;
-	[SerializeField] private Spell_UIElement _iceLances_UIElement;
-	[SerializeField] private Spell_UIElement _windStep_UIElement;
-
-	Dictionary<SpellType, SpellProgressionInfo> _spellProgressionInfos = new Dictionary<SpellType, SpellProgressionInfo>();
 
 	private Health _health;
 	private Hurtbox _hurtbox;
@@ -34,8 +27,6 @@ public class Player : MonoBehaviour
 		_health = GetComponentInChildren<Health>();
 		_hurtbox = GetComponentInChildren<Hurtbox>();
 
-		InitializeSpellProgression();
-
 		if (_health != null)
 		{
 			_health.Initialize(_playerStats.MaxHealth);
@@ -47,78 +38,6 @@ public class Player : MonoBehaviour
 		{
 			_hurtbox.Initialize(_health);
 		}
-	}
-
-	private void InitializeSpellProgression()
-	{
-		int startLevel = 1;
-
-		SpellInfo fireBallSpellInfo = _spellDictionary.GetSpellByType(SpellType.FireBall);
-		SpellLevelInfo fireBallLevelInfo = fireBallSpellInfo.GetLevelInfo(startLevel);
-		SpellProgressionInfo fireBallProgress = new SpellProgressionInfo(
-			SpellType.FireBall,
-			startLevel,
-			fireBallSpellInfo.MaxLevel,
-			fireBallLevelInfo.ExperienceRequired,
-			fireBallLevelInfo.Cooldown,
-			_fireBall_UIElement
-		);
-		_spellProgressionInfos[SpellType.FireBall] = fireBallProgress;
-		fireBallProgress.OnLevelUp += OnSpellLevelUp;
-
-		SpellInfo iceLancesSpellInfo = _spellDictionary.GetSpellByType(SpellType.IceLances);
-		SpellLevelInfo iceLancesLevelInfo = iceLancesSpellInfo.GetLevelInfo(startLevel);
-		SpellProgressionInfo iceLancesProgress = new SpellProgressionInfo(
-			SpellType.IceLances,
-			startLevel,
-			iceLancesSpellInfo.MaxLevel,
-			iceLancesLevelInfo.ExperienceRequired,
-			iceLancesLevelInfo.Cooldown,
-			_iceLances_UIElement
-		);
-		_spellProgressionInfos[SpellType.IceLances] = iceLancesProgress;
-		iceLancesProgress.OnLevelUp += OnSpellLevelUp;
-
-		SpellInfo windStepSpellInfo = _spellDictionary.GetSpellByType(SpellType.WindStep);
-		SpellLevelInfo windStepLevelInfo = windStepSpellInfo.GetLevelInfo(startLevel);
-		SpellProgressionInfo windStepProgress = new SpellProgressionInfo(
-			SpellType.WindStep,
-			startLevel,
-			windStepSpellInfo.MaxLevel,
-			windStepLevelInfo.ExperienceRequired,
-			windStepLevelInfo.Cooldown,
-			_windStep_UIElement
-		);
-		_spellProgressionInfos[SpellType.WindStep] = windStepProgress;
-		windStepProgress.OnLevelUp += OnSpellLevelUp;
-
-		_fireBall_UIElement.Initialize(startLevel, fireBallLevelInfo.InputSequence.GetInputs());
-		_iceLances_UIElement.Initialize(startLevel, iceLancesLevelInfo.InputSequence.GetInputs());
-		_windStep_UIElement.Initialize(startLevel, windStepLevelInfo.InputSequence.GetInputs());
-	}
-
-	private void OnSpellLevelUp(SpellProgressionInfo spellProgressionInfo)
-	{
-		Debug.Log($"Spell {spellProgressionInfo.SpellType} leveled up!");
-		SpellType spellType = spellProgressionInfo.SpellType;
-		SpellInfo spellInfo = _spellDictionary.GetSpellByType(spellType);
-		spellProgressionInfo.LevelUp();
-		if (spellProgressionInfo.IsMaxLevel())
-		{
-			OnSpellMaxLevelReached();
-			return;
-		}
-
-		int newExperienceRequired = spellInfo.GetLevelInfo(spellProgressionInfo.Level).ExperienceRequired;
-		spellProgressionInfo.UpdateExperienceRequired(newExperienceRequired);
-
-		List<InputDirection> inputDirections = spellInfo.GetLevelInfo(spellProgressionInfo.Level).InputSequence.GetInputs();
-		spellProgressionInfo.UpdateUI(inputDirections);
-	}
-
-	private void OnSpellMaxLevelReached()
-	{
-		// TODO player die => game over
 	}
 
 	private void OnDeath()
@@ -160,14 +79,6 @@ public class Player : MonoBehaviour
 
 	public void GameUpdate(bool isFocusModeActive)
 	{
-		if (!isFocusModeActive)
-		{
-			foreach (var spellProgressionInfo in _spellProgressionInfos.Values)
-			{
-				spellProgressionInfo.GameUpdate();
-			}
-		}
-
 		_typedInput.UpdateTypedInput(_playerInputs);
 
 		if (_inputHandler)
@@ -204,9 +115,10 @@ public class Player : MonoBehaviour
 		if (_currentSpell == null) return;
 		Vector3 targetPosition = GetMouseWorldPosition();
 		targetPosition.z = 0f;
-		int currentLevel = _spellProgressionInfos[_currentSpell.SpellType].Level;
+		SpellProgressionInfo spellProgressionInfo = SpellManager.Instance.GetSpellProgressionInfo(_currentSpell.SpellType);
+		int currentLevel = spellProgressionInfo.Level;
 		_currentSpell.Cast(currentLevel, this, targetPosition);
-		_spellProgressionInfos[_currentSpell.SpellType].OnCasted();
+		spellProgressionInfo.OnCasted();
 		_currentSpell = null; // Reset the current spell after casting
 
 		_playerDisplay.PlayCastSpellAnimation();
@@ -232,7 +144,7 @@ public class Player : MonoBehaviour
 
 		if (_inputIndex == 0)
 		{
-			_spellToType = _spellDictionary.GetSpellByFirstInput(input);
+			_spellToType = SpellManager.Instance.GetSpellByFirstInput(input);
 			// Debug.Log($"First input: {input}. Spell to type: {_spellToType?.name ?? "None"}");
 			if (_spellToType == null)
 			{
@@ -246,7 +158,7 @@ public class Player : MonoBehaviour
 		}
 		if (_spellToType == null) return;
 
-		int currentLevel = _spellProgressionInfos[_spellToType.SpellType].Level;
+		int currentLevel = SpellManager.Instance.GetSpellProgressionInfo(_spellToType.SpellType).Level;
 		if (_spellToType.IsInputMatched(input, currentLevel, _inputIndex))
 		{
 			_inputIndex++;

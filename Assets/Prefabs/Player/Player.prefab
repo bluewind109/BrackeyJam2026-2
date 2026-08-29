@@ -881,6 +881,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4743374280355344987, guid: 2b33d347d38c1964eb5d44d4f07df2c7, type: 3}
+      propertyPath: managedReferences[6639741378587787526].BoundSpriteRenderer
+      value: 
+      objectReference: {fileID: 5322462700554679006}
     - target: {fileID: 6469356340683932716, guid: 2b33d347d38c1964eb5d44d4f07df2c7, type: 3}
       propertyPath: m_Name
       value: Feedback_Hurt

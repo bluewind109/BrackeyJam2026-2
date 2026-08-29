@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private Player _player;
 	[SerializeField] private Enemy _enemy;
 	[SerializeField] private Timer _focusTimer;
+	[SerializeField] private FocusMode_UI _focusModeUI;
 
 	private GameState _currentState;
 	public GameState InitState { get; private set; }
@@ -16,9 +17,11 @@ public class GameManager : MonoBehaviour
 
 	void Start()
 	{
+		_focusModeUI.Hide();
+
 		InitState = new InitState(this, _player, _enemy);
 		IntroState = new IntroState(this);
-		GameplayState = new GameplayState(this, _player, _enemy, _focusTimer);
+		GameplayState = new GameplayState(this, _player, _enemy, _focusModeUI, _focusTimer);
 		PauseState = new PauseState(this);
 		GameOverState = new GameOverState(this);
 

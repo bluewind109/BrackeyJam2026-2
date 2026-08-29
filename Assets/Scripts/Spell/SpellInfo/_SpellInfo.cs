@@ -5,6 +5,7 @@ public abstract class SpellInfo : ScriptableObject
 {
 	[Header("Spell Settings")]
 	[SerializeField] private SpellType _spellType;
+	[SerializeField] private Sprite _spellIcon;
 	[SerializeField] private string _spellName;
 
 	[Header("Spell Level Info")]
@@ -12,8 +13,19 @@ public abstract class SpellInfo : ScriptableObject
 	public List<SpellLevelInfo> LevelInfos => _levelInfos;
 
 	public SpellType SpellType => _spellType;
+	public Sprite SpellIcon => _spellIcon;
 	public string SpellName => _spellName;
 	public int MaxLevel => _levelInfos.Count;
+
+	public InputSequence GetInputSequence(int level)
+	{
+		if (level < 1 || level > _levelInfos.Count)
+		{
+			Debug.LogWarning($"Invalid level {level} for spell {_spellName}. Returning null.");
+			return null;
+		}
+		return _levelInfos[level - 1].InputSequence;
+	}
 
 	public bool IsInputMatched(InputDirection playerInput, int level, int index)
 	{
