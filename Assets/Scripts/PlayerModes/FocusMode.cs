@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
+using MoreMountains.Tools;
 namespace PlayerModes
 {
 	public class FocusMode : PlayerMode
@@ -58,6 +58,8 @@ namespace PlayerModes
 		private void OnFocusTimerComplete()
 		{
 			FocusModeComplete?.Invoke();
+
+			MMGameEvent.Trigger(GameDefine.FocusModeEvents.EventName, stringParameter: GameDefine.FocusModeEvents.State_TimeOut);
 		}
 	}
 }
