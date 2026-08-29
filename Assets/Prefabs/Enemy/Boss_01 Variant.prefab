@@ -455,6 +455,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 152684261516999017}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: _spriteRenderer
+      value: 
+      objectReference: {fileID: 7695553585247262085}
+    - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _meteorRainState
       value: 
       objectReference: {fileID: 4144934245156963055}
@@ -593,5 +597,10 @@ PrefabInstance:
 --- !u!4 &152684261516999017 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4189074171661111726, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+  m_PrefabInstance: {fileID: 4052365850602940615}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &7695553585247262085 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5976554279991328066, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
   m_PrefabInstance: {fileID: 4052365850602940615}
   m_PrefabAsset: {fileID: 0}
