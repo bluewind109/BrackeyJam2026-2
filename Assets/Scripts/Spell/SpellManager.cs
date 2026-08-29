@@ -143,7 +143,8 @@ public class SpellManager : MonoBehaviour
                 progressionInfo.SpellType,
                 spellIcon,
                 progressionInfo.Level,
-                spellInfo.GetInputSequence(progressionInfo.Level).GetInputs()
+                spellInfo.GetInputSequence(progressionInfo.Level).GetInputs(),
+                progressionInfo.IsOnCooldown()
             );
             spellToTypeUIDataList.Add(spellToTypeUIData);
         }

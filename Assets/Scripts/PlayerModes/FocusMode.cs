@@ -40,6 +40,7 @@ namespace PlayerModes
 		{
 			_player.GameUpdate();
 			_focusTimer.UpdateTime();
+			_focusModeUI.UpdateFocusBar(_focusTimer.GetRemainingTime() / _focusDuration);
 		}
 
 		private List<SpellToType_UI_Data> GenerateSpellDatas()

@@ -153,6 +153,15 @@ public class Player : MonoBehaviour
 				_inputIndex = 0;
 				return;
 			}
+
+			bool isOnCooldown = SpellManager.Instance.GetSpellProgressionInfo(_spellToType.SpellType).IsOnCooldown();
+			if (isOnCooldown)
+			{
+				Debug.LogWarning($"Spell {_spellToType.name} is on cooldown. Resetting input sequence.");
+				_inputIndex = 0;
+				return;
+			}
+
 			_inputIndex++;
 			SavePlayerInput(input);
 

@@ -6,6 +6,7 @@ public class SpellInfo_IceLances : SpellInfo
 	[Header("IceLances Settings")]
 	[SerializeField] private float _projectileSpeed = 10f;
 	[SerializeField] private int _numberOfLances = 5;
+	[SerializeField] private int _damagePerLance = 1;
 
 	public override void Cast(int level, Player player, Vector3 to)
 	{
@@ -13,7 +14,6 @@ public class SpellInfo_IceLances : SpellInfo
 		Vector3 direction = (to - from).normalized;
 		int damage = GetLevelInfo(level)?.Damage ?? 1;
 		_numberOfLances = damage;
-		int damagePerLance = 1;
 
 		for (int i = 0; i < _numberOfLances; i++)
 		{
@@ -23,7 +23,7 @@ public class SpellInfo_IceLances : SpellInfo
 				from, 
 				rotatedDirection, 
 				_projectileSpeed, 
-				damagePerLance
+				_damagePerLance
 			);
 		}
 

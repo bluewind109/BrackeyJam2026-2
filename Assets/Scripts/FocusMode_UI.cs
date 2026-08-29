@@ -18,13 +18,13 @@ public class FocusMode_UI : MonoBehaviour
     [SerializeField] private Sprite _spriteFrame_Lvl2;
     [SerializeField] private Sprite _spriteFrame_Lvl3;
 
-    private Dictionary<SpellType, SpellToType_UI> _currentSpellDatas = new Dictionary<SpellType, SpellToType_UI>();
+    private Dictionary<SpellType, SpellToType_UI> _currentSpell_UIs = new Dictionary<SpellType, SpellToType_UI>();
 
     void Awake()
     {
-        _currentSpellDatas.Add(SpellType.FireBall, _spellToTypeUI_FireBall);
-        _currentSpellDatas.Add(SpellType.IceLances, _spellToTypeUI_IceLances);
-        _currentSpellDatas.Add(SpellType.WindStep, _spellToTypeUI_WindStep);
+        _currentSpell_UIs.Add(SpellType.FireBall, _spellToTypeUI_FireBall);
+        _currentSpell_UIs.Add(SpellType.IceLances, _spellToTypeUI_IceLances);
+        _currentSpell_UIs.Add(SpellType.WindStep, _spellToTypeUI_WindStep);
         UpdateSpellToType += UpdateCurrentSpellToType;
         ResetSpellToType += ResetAllSpellUIs;
     }
@@ -39,16 +39,15 @@ public class FocusMode_UI : MonoBehaviour
         SpellType spellType,
         List<InputDirection> playerInputDirections)
     {
-        if (_currentSpellDatas.TryGetValue(spellType, out SpellToType_UI spellUI))
+        if (_currentSpell_UIs.TryGetValue(spellType, out SpellToType_UI spellUI))
         {
             spellUI.UpdateInputSequence(playerInputDirections);
 
-            // Hide the other spell UIs
-            foreach (var kvp in _currentSpellDatas)
+            foreach (var kvp in _currentSpell_UIs)
             {
                 if (kvp.Key != spellType)
                 {
-                    kvp.Value.gameObject.SetActive(false);
+                    kvp.Value.ToggleAvailability(false);
                 }
             }
         }
@@ -56,10 +55,13 @@ public class FocusMode_UI : MonoBehaviour
 
     private void ResetAllSpellUIs()
     {
-        foreach (var kvp in _currentSpellDatas)
+        foreach (var kvp in _currentSpell_UIs)
         {
             kvp.Value.ResetInputSequence();
-            kvp.Value.gameObject.SetActive(true);
+
+            // Show all spell UIs if not on coooldown
+            bool isOnCooldown = kvp.Value.IsOnCooldown;
+            kvp.Value.ToggleAvailability(!isOnCooldown);
         }
     }
 
@@ -89,8 +91,18 @@ public class FocusMode_UI : MonoBehaviour
         spellUI.UpdateSpellToTypeUI(
             spellData.SpellIcon,
             frameSprite,
-            spellData.InputDirections
+            spellData.InputDirections,
+            spellData.IsOnCooldown
         );
+
+        if (spellData.IsOnCooldown)
+        {
+            spellUI.ToggleAvailability(false);
+        }
+        else
+        {
+            spellUI.ToggleAvailability(true);
+        }
     }
 
     public void Hide()
