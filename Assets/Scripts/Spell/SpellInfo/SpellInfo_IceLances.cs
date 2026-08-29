@@ -12,12 +12,19 @@ public class SpellInfo_IceLances : SpellInfo
 		Vector3 from = player.transform.position;
 		Vector3 direction = (to - from).normalized;
 		int damage = GetLevelInfo(level)?.Damage ?? 1;
+		_numberOfLances = damage;
+		int damagePerLance = 1;
 
 		for (int i = 0; i < _numberOfLances; i++)
 		{
 			float angleOffset = (i - (_numberOfLances - 1) / 2f) * 10f; // Adjust the angle offset for each lance
 			Vector3 rotatedDirection = Quaternion.Euler(0, 0, angleOffset) * direction;
-			PlayerProjectileManager.Instance.SpawnProjectile<IceLance>(from, rotatedDirection, _projectileSpeed, damage);
+			PlayerProjectileManager.Instance.SpawnProjectile<IceLance>(
+				from, 
+				rotatedDirection, 
+				_projectileSpeed, 
+				damagePerLance
+			);
 		}
 	}
 }
