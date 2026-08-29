@@ -30,6 +30,14 @@ public class PlayerShadow : MonoBehaviour
         }
     }
 
+    void OnDestroy()
+    {
+        if (_hitbox != null)
+        {
+            _hitbox.OnHit -= OnHit;
+        }
+    }
+
     public void Initialize(Player player, float speed, int damage)
     {
         _player = player;
@@ -39,7 +47,7 @@ public class PlayerShadow : MonoBehaviour
         _isInitialized = true;
     }
 
-    void Update()
+    public void GameUpdate()
     {
         if (!_isInitialized) return;
 
@@ -93,9 +101,15 @@ public class PlayerShadow : MonoBehaviour
         if (Vector3.Distance(transform.position, _player.transform.position) < 0.1f)
         {
             _player = null;
-            this.gameObject.SetActive(false);
-            Destroy(this.gameObject, 0.1f);
+            Release();
         }
+    }
+
+    private void Release()
+    {
+        PlayerShadowManager.Instance.UnregisterPlayerShadow(this);
+        this.gameObject.SetActive(false);
+        Destroy(this.gameObject);
     }
 
     private void OnHit(Hurtbox hurtbox)

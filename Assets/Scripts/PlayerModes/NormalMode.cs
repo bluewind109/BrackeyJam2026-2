@@ -39,6 +39,7 @@ namespace PlayerModes
 			_enemy.GameUpdate();
 			SpellManager.Instance.GameUpdate();
 			PlayerProjectileManager.Instance.GameUpdate();
+			PlayerShadowManager.Instance.GameUpdate();
 			EnemyProjectileManager.Instance.GameUpdate();
 			AoeAttackManager.Instance.GameUpdate();
 			_focusCooldownTimer.UpdateTime();
@@ -46,7 +47,7 @@ namespace PlayerModes
 
 		private void OnRightMouseClicked()
 		{
-			Debug.Log("Right mouse clicked in NormalMode");
+			// Debug.Log("Right mouse clicked in NormalMode");
 			if (_focusCooldownTimer.IsRunning) return;
 			FocusModeRequested?.Invoke();
 		}
