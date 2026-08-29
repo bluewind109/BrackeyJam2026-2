@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: SpellInfo_WindStep
   m_EditorClassIdentifier: Assembly-CSharp::Spell_WindStep
   _spellType: 2
+  _spellIcon: {fileID: 21300000, guid: 3123e28135bd8ac4ab794ef7480d9b10, type: 3}
   _spellName: Wind Step
-  _spellIcon: {fileID: 0}
-  _level: 0
   _levelInfos:
   - _damage: 2
     _cooldown: 3

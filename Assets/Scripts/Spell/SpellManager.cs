@@ -131,6 +131,25 @@ public class SpellManager : MonoBehaviour
         return null;
     }
 
+    public List<SpellToType_UI_Data> GetSpellDataForUI()
+    {
+        List<SpellToType_UI_Data> spellToTypeUIDataList = new List<SpellToType_UI_Data>();
+        foreach (var progressionInfo in _spellProgressionInfos.Values)
+        {
+            SpellInfo spellInfo = _spellDictionary.GetSpellByType(progressionInfo.SpellType);
+            Sprite spellIcon = spellInfo.SpellIcon;
+
+            SpellToType_UI_Data spellToTypeUIData = new SpellToType_UI_Data(
+                progressionInfo.SpellType,
+                spellIcon,
+                progressionInfo.Level,
+                spellInfo.GetInputSequence(progressionInfo.Level).GetInputs()
+            );
+            spellToTypeUIDataList.Add(spellToTypeUIData);
+        }
+        return spellToTypeUIDataList;
+    }
+
     public void GameUpdate()
     {
         foreach (var spellProgressionInfo in _spellProgressionInfos.Values)

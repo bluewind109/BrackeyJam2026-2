@@ -14,14 +14,17 @@ namespace GameStates
 
 		private Player _player;
 		private Enemy _enemy;
+		private FocusMode_UI _focusModeUI;
 
-		public GameplayState(GameManager gameManager, Player player, Enemy enemy, Timer timer) : base(gameManager)
+		public GameplayState(GameManager gameManager, Player player, Enemy enemy, FocusMode_UI focusModeUI, Timer timer) : base(gameManager)
 		{
 			_player = player;
 			_enemy = enemy;
 			_focusTimer = timer;
+			_focusModeUI = focusModeUI;
+
 			_normalMode = new NormalMode(_player, _enemy, _focusTimer);
-			_focusMode = new FocusMode(_player, _focusTimer);
+			_focusMode = new FocusMode(_player, _focusModeUI, _focusTimer);
 			SwitchPlayerMode(_normalMode);
 		}
 

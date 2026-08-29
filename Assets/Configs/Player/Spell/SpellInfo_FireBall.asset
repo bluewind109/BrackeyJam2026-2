@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: SpellInfo_FireBall
   m_EditorClassIdentifier: Assembly-CSharp::Spell_FireBall
   _spellType: 0
+  _spellIcon: {fileID: 21300000, guid: d673d41ba9dd5924a82496d3a6ca60ed, type: 3}
   _spellName: Fire Ball
-  _spellIcon: {fileID: 0}
-  _level: 0
   _levelInfos:
   - _damage: 5
     _cooldown: 3

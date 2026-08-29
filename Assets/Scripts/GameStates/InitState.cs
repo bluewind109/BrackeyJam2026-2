@@ -15,6 +15,7 @@ namespace GameStates
 
 		public override void Enter()
 		{
+			SpellManager.Instance.Initialize();
 			PlayerProjectileManager.Instance.Initialize();
 			EnemyProjectileManager.Instance.Initialize();
 			AoeAttackManager.Instance.Initialize();
