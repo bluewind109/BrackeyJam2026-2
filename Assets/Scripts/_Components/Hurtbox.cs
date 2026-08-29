@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Hurtbox : MonoBehaviour
 {
+    [SerializeField] UnityEngine.Events.UnityEvent<int> onTakeDamage;
     private Health _health;
 
     public void Initialize(Health health)
@@ -13,5 +14,6 @@ public class Hurtbox : MonoBehaviour
     {
         // Debug.Log($"Hurtbox took {damage} damage.");
         _health?.TakeDamage(damage);
+        onTakeDamage?.Invoke(damage);
     }
 }
