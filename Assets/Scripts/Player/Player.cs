@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 	public event Action OnRightMouseClicked;
 	public event Action OnSpellTyped;
 
+	[SerializeField] private PlayerDisplay _playerDisplay;
 	[SerializeField] private PlayerStats _playerStats;
 	[SerializeField] private PlayerInputHandler _inputHandler;
 	[SerializeField] private PlayerTypedInput _typedInput;
@@ -207,6 +208,8 @@ public class Player : MonoBehaviour
 		_currentSpell.Cast(currentLevel, this, targetPosition);
 		_spellProgressionInfos[_currentSpell.SpellType].OnCasted();
 		_currentSpell = null; // Reset the current spell after casting
+
+		_playerDisplay.PlayCastSpellAnimation();
 	}
 
 	private void HandleRightClick()
@@ -257,6 +260,8 @@ public class Player : MonoBehaviour
 				SaveTypedSpell(_spellToType);
 				_playerInputs.Clear();
 				OnSpellTyped?.Invoke();
+
+				_playerDisplay.TriggerFocusVFXAnimation(_spellToType);
 			}
 		}
 		else
@@ -281,6 +286,7 @@ public class Player : MonoBehaviour
 
 	private void HandleNormalModeMovement(Vector2 movementInput)
 	{
+		_playerDisplay.UpdateMoving(movementInput);
 		if (movementInput == Vector2.zero) return;
 
 		Vector3 movement = new Vector3(movementInput.x, movementInput.y, 0f);
