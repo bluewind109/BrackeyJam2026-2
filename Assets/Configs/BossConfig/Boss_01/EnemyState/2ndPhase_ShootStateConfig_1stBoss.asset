@@ -14,8 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShootStateConfig
   possiblePatterns:
   - PatternType: 0
-    Config: {fileID: 11400000, guid: 6c11c658d159e5f498c8863fadc7a37e, type: 2}
-  - PatternType: 1
-    Config: {fileID: 11400000, guid: 2727dedb515c8db47818af9fcfbbdee0, type: 2}
+    Config: {fileID: 11400000, guid: 023b62a3cdf4b2a47b62c9c4213fd9a5, type: 2}
+  - PatternType: 0
+    Config: {fileID: 11400000, guid: 889bb821e3eb84e469f3b11906f1dd58, type: 2}
+  - PatternType: 0
+    Config: {fileID: 11400000, guid: fa4c4596f45a6d441a0d8f14e2e21ad8, type: 2}
   - PatternType: 2
-    Config: {fileID: 11400000, guid: 1779464ce45a02b4c9272edc642ddfcb, type: 2}
+    Config: {fileID: 11400000, guid: 8fe6608955ddea64886dff1dd7f06b41, type: 2}
+  - PatternType: 2
+    Config: {fileID: 11400000, guid: 46209539527abf14f90977d445caac48, type: 2}
+  - PatternType: 2
+    Config: {fileID: 11400000, guid: fbfd9b86512fa6649826262a92d20567, type: 2}
