@@ -13,6 +13,11 @@ public class Timer : MonoBehaviour
     public bool IsPaused { get; private set; }
     public bool IsRunning => timer > 0 && !IsPaused;
 
+    public float GetRemainingTime()
+    {
+        return timer;
+    }
+
     public void UpdateTime(float timeScale = 1f)
     {
         if (IsPaused) return;
