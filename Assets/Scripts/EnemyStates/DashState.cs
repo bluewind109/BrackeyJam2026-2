@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using ShootPatterns;
 using UnityEngine;
-
+using MoreMountains.Tools;
 namespace EnemyStates
 {
     public class DashState : EnemyState
@@ -69,6 +69,8 @@ namespace EnemyStates
         {
             _startPosition = _enemy.transform.position;
             _dashDirection = (_player.transform.position - _enemy.transform.position).normalized;
+
+            MMGameEvent.Trigger(GameDefine.BossEvents.EventName, stringParameter: GameDefine.BossEvents.State_Dash_Start);
         }
 
         private void UpdateDash()
