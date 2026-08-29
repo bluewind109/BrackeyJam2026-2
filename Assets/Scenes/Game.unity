@@ -8542,14 +8542,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1157343045819988581, guid: c88e070b4d41c024fa89610b7b39c90e, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1157343045819988581, guid: c88e070b4d41c024fa89610b7b39c90e, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1157343045819988581, guid: c88e070b4d41c024fa89610b7b39c90e, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -8567,14 +8559,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6146322267643200095, guid: c88e070b4d41c024fa89610b7b39c90e, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6146322267643200095, guid: c88e070b4d41c024fa89610b7b39c90e, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6146322267643200095, guid: c88e070b4d41c024fa89610b7b39c90e, type: 3}
-      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6146322267643200095, guid: c88e070b4d41c024fa89610b7b39c90e, type: 3}
@@ -8671,14 +8655,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8097008346742832205, guid: c88e070b4d41c024fa89610b7b39c90e, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8097008346742832205, guid: c88e070b4d41c024fa89610b7b39c90e, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8097008346742832205, guid: c88e070b4d41c024fa89610b7b39c90e, type: 3}
-      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8097008346742832205, guid: c88e070b4d41c024fa89610b7b39c90e, type: 3}
