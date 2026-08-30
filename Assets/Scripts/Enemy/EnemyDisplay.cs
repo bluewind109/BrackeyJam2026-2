@@ -1,10 +1,14 @@
 using UnityEngine;
-
-public class EnemyDisplay : MonoBehaviour
+using System;
+using System.Collections.Generic;
+using MoreMountains.Feedbacks;
+using Alchemy.Serialization;
+[AlchemySerialize]
+public partial class EnemyDisplay : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Animator _animatorPlayer;
-
+    [AlchemySerializeField, NonSerialized] private Dictionary<string, MMF_Player> _spellCasting = new();
     private Enemy _enemy;
 
     public void Initialize(Enemy enemy)
@@ -41,10 +45,19 @@ public class EnemyDisplay : MonoBehaviour
         _animatorPlayer.Play(animationName);
     }
 
-    public void PlayCastAnimation()
+    public void PlayCastAnimation(string spellName)
     {
         string animationName = $"Lv{_enemy.CurrentPhase}_Skill_Cast";
         _animatorPlayer.Play(animationName);
+
+        if (_spellCasting.TryGetValue(spellName, out MMF_Player castingFeedback))
+        {
+            castingFeedback.PlayFeedbacks();
+        }
+        else
+        {
+            Debug.LogWarning($"Casting feedback for spell name {spellName} not found.");
+        }
     }
 
     public void PlayTransformAnimation()

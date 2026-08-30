@@ -22,6 +22,14 @@ public class GameDefine
         public const string State_PhaseTransition = "BossState.PhaseTransition";
         public const string State_Dash_Start = "BossState.Dash_Start";
     }
+    public class BossAttackEvents
+    {
+        public const string EventName = "BossAttackEvents";
+        public const string State_Meteor = "BossAttack.Meteor";
+        public const string State_SlamAttack = "BossAttack.SlamAttack";
+        public const string State_Shoot = "BossAttack.Shoot";
+        public const string State_Dash = "BossAttack.Dash";
+    }
     public class FocusModeEvents
     {
         public const string EventName = "FocusModeEvents";

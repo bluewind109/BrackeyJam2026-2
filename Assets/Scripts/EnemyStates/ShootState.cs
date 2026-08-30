@@ -57,7 +57,7 @@ namespace EnemyStates
         {
             if (_currentPattern == null) return;
 
-            _enemy.EnemyDisplay.PlayCastAnimation();
+            _enemy.EnemyDisplay.PlayCastAnimation(GameDefine.BossAttackEvents.State_Shoot);
             if (_currentPattern is IStaticPattern staticPattern)
             {
                 staticPattern.Shoot(transform.position);

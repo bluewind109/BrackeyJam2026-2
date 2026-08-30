@@ -47,7 +47,7 @@ namespace EnemyStates
             }
 
            _waitTimer = 0f; 
-           _enemy.EnemyDisplay.PlayCastAnimation();
+           _enemy.EnemyDisplay.PlayCastAnimation(GameDefine.BossAttackEvents.State_Meteor);
             SpawnMeteorsAroundPlayer();
         }
 

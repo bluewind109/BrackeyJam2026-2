@@ -103,7 +103,7 @@ namespace EnemyStates
             _dashDirection = (_endPosition - _enemy.transform.position).normalized;
 
             MMGameEvent.Trigger(GameDefine.BossEvents.EventName, stringParameter: GameDefine.BossEvents.State_Dash_Start);
-            _enemy.EnemyDisplay.PlayCastAnimation();
+            _enemy.EnemyDisplay.PlayCastAnimation(GameDefine.BossAttackEvents.State_Dash);
         }
 
         private void UpdateDash()

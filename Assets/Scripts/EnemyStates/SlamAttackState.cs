@@ -35,7 +35,7 @@ namespace EnemyStates
             _waitTimer += Time.deltaTime;
             if (_waitTimer >= _currentStateConfig.SlamAttackDelay && !_hasPlayedCastAnimation)
             {
-                _enemy.EnemyDisplay.PlayCastAnimation();
+                _enemy.EnemyDisplay.PlayCastAnimation(GameDefine.BossAttackEvents.State_SlamAttack);
                 _hasPlayedCastAnimation = true;
             }
             

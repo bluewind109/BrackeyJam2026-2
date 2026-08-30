@@ -1,9 +1,15 @@
 using UnityEngine;
+using MoreMountains.Tools;
+using MoreMountains.Feedbacks;
 
 public class AoeAttack_Meteor : AoeAttack
 {
     [SerializeField] private SpriteRenderer _meteorSpriteRenderer;
     [SerializeField] private ParticleSystem _impactVfxPrefab;
+
+    [SerializeField] MMF_Player _feedback_channeling;
+    [SerializeField] MMF_Player _feedback_casting;
+    [SerializeField] MMF_Player _feedback_impact;
 
     [SerializeField] private float _fallDuration = 0.5f;
     [SerializeField] private float _baseScale = 1.0f;
@@ -28,6 +34,8 @@ public class AoeAttack_Meteor : AoeAttack
 
         _meteorSpriteRenderer.gameObject.SetActive(false);
         _meteorSpriteRenderer.transform.localScale = Vector3.one * (_baseScale + Random.Range(-_scaleOffset, _scaleOffset));
+
+        _feedback_channeling?.PlayFeedbacks();
     }
 
     public void SetDirectionToTarget(Vector3 direction)
@@ -47,6 +55,7 @@ public class AoeAttack_Meteor : AoeAttack
     {
         base.ExecuteAoeAttack();
         _meteorSpriteRenderer.gameObject.SetActive(true);
+        _feedback_casting?.PlayFeedbacks();
     }
 
 	protected override void UpdateExecuting(float deltaTime)
@@ -69,6 +78,7 @@ public class AoeAttack_Meteor : AoeAttack
            StartPersisting();
            // TODO: Add impact effects, sound when the meteor hits the ground.
             _impactVfx?.Play();
+            _feedback_impact?.PlayFeedbacks();
         }
     }
 }
