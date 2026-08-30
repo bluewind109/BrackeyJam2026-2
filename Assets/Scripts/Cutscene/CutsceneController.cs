@@ -21,6 +21,8 @@ public class CutsceneController : MonoBehaviour
     private eCutsceneType currentCutsceneType = eCutsceneType.Intro;
     private bool ftuePlayerChoiceMade = true;
     private bool isBlocking = true; // Prevents input during cutscenes or dialogs
+    private bool isTyping = false; // True while the current sentence is still being typed out
+    private Coroutine typeTextCoroutine;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     // [SerializeField] private eCutsceneType testCutscene = eCutsceneType.Intro;
@@ -38,14 +40,39 @@ public class CutsceneController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
         {
-            ftuePlayerChoiceMade = true;
-            NextSentence();
+            if (isTyping)
+            {
+                CompleteCurrentSentence();
+            }
+            else
+            {
+                ftuePlayerChoiceMade = true;
+                NextSentence();
+            }
         }
         if (Input.GetMouseButtonDown(1))
         {
-            ftuePlayerChoiceMade = false;
-            NextSentence();
+            if (isTyping)
+            {
+                CompleteCurrentSentence();
+            }
+            else
+            {
+                ftuePlayerChoiceMade = false;
+                NextSentence();
+            }
         }
+    }
+
+    private void CompleteCurrentSentence()
+    {
+        if (typeTextCoroutine != null)
+        {
+            StopCoroutine(typeTextCoroutine);
+            typeTextCoroutine = null;
+        }
+        dialogText.maxVisibleCharacters = dialogText.text.Length;
+        isTyping = false;
     }
 
     private void CutsceneCheck(eCutsceneType cutsceneType)
@@ -54,42 +81,33 @@ public class CutsceneController : MonoBehaviour
         switch (cutsceneType)
         {
             case eCutsceneType.Intro:
-                isBlocking = true;
-                cutsceneScript.PlayCutscene(cutsceneType, 
-                    () => {
-                        isBlocking = false;
-                        PlayDialog(currentDialog);
-                    });
+                PlayCutscene(currentCutsceneType, 
+                () => {
+                    PlayDialog(currentDialog);
+                });
                 break;
             case eCutsceneType.Intro_Accept:
-                isBlocking = false;
                 PlayDialog(currentDialog);
                 break;
             case eCutsceneType.Intro_Refuse:
-                isBlocking = false;
-                cutsceneScript.PlayCutscene(cutsceneType, 
+                PlayCutscene(currentCutsceneType, 
                 () => {
                     PlayDialog(currentDialog);
                 });
                 break;
             case eCutsceneType.Ending_Death:
-                isBlocking = false;
-                cutsceneScript.PlayCutscene(cutsceneType, 
+                PlayCutscene(currentCutsceneType, 
                 () => {
-                    isBlocking = false;
                     PlayDialog(currentDialog);
                 });
                 break;
             case eCutsceneType.Ending_Exploded:
-                isBlocking = false;
-                cutsceneScript.PlayCutscene(cutsceneType, 
+                PlayCutscene(currentCutsceneType, 
                 () => {
-                    isBlocking = false;
                     PlayDialog(currentDialog);
                 });
                 break;
             case eCutsceneType.Ending_Win:
-                isBlocking = false;
                 PlayDialog(currentDialog);
                 break;
             default:
@@ -102,13 +120,14 @@ public class CutsceneController : MonoBehaviour
     {
         if (dialogConfig != null)
         {
+            isBlocking = false;
             dialogTextCanvasGroup.DOFade(1, 0.5f);
             currentSentenceIndex = 0;
             currentSentenceData = dialogConfig.SentenceDataList[currentSentenceIndex];
             if (currentSentenceData != null)
             {
                 characterNameText.text = currentSentenceData.CharacterName.ToString();
-                PlayText(dialogText, currentSentenceData.SentenceText, 0.05f);
+                PlayText(dialogText, currentSentenceData.SentenceText, 0.02f);
                 choiceMessageGameObject.SetActive(!string.IsNullOrEmpty(currentSentenceData.ChoiceMessage));
                 choiceMessageText.text = currentSentenceData.ChoiceMessage;
             }
@@ -124,7 +143,7 @@ public class CutsceneController : MonoBehaviour
             if (currentSentenceData != null)
             {
                 characterNameText.text = currentSentenceData.CharacterName.ToString();
-                PlayText(dialogText, currentSentenceData.SentenceText, 0.05f);
+                PlayText(dialogText, currentSentenceData.SentenceText, 0.02f);
                 choiceMessageGameObject.SetActive(!string.IsNullOrEmpty(currentSentenceData.ChoiceMessage));
                 choiceMessageText.text = currentSentenceData.ChoiceMessage;
             }
@@ -192,8 +211,7 @@ public class CutsceneController : MonoBehaviour
 
     private void OnIntroAcceptDialogFinished()
     {
-        isBlocking = true;
-        cutsceneScript.PlayCutscene(currentCutsceneType, 
+        PlayCutscene(currentCutsceneType, 
         () => {
             SceneManager.LoadScene("Game");
         });
@@ -233,21 +251,30 @@ public class CutsceneController : MonoBehaviour
 
     private void OnEndingWinDialogFinished()
     {
-        isBlocking = false;
-        cutsceneScript.PlayCutscene(currentCutsceneType, 
+        PlayCutscene(currentCutsceneType, 
         () => {
             SceneManager.LoadScene("MainMenu");
         });
     }
 
-    //TEXT
-    public void PlayText(TMP_Text textBox, string message, float speed = 0.05f)
+    private void PlayCutscene(eCutsceneType cutsceneType, Action onCutsceneFinished = null)
     {
-        StopAllCoroutines();
-        StartCoroutine(TypeText(textBox, message, speed));
+        isBlocking = true;
+        cutsceneScript.PlayCutscene(cutsceneType, 
+        () => {
+            onCutsceneFinished?.Invoke();
+        });
     }
 
-    private IEnumerator TypeText(TMP_Text textBox, string message, float speed = 0.05f)
+    //TEXT
+    public void PlayText(TMP_Text textBox, string message, float speed = 0.02f)
+    {
+        StopAllCoroutines();
+        isTyping = true;
+        typeTextCoroutine = StartCoroutine(TypeText(textBox, message, speed));
+    }
+
+    private IEnumerator TypeText(TMP_Text textBox, string message, float speed = 0.02f)
     {
         textBox.text = message;
         textBox.maxVisibleCharacters = 0;
@@ -257,5 +284,7 @@ public class CutsceneController : MonoBehaviour
             textBox.maxVisibleCharacters = i;
             yield return new WaitForSeconds(speed);
         }
+        isTyping = false;
+        typeTextCoroutine = null;
     }
 }
