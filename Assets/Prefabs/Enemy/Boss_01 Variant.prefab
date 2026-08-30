@@ -1347,7 +1347,7 @@ PrefabInstance:
     - target: {fileID: 7626238642388107312, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: __alchemySerializationData_EnemyDisplay._spellCasting.data
       value: "{\n    \"BossAttack.Meteor\": 0,\n    \"BossAttack.SlamAttack\": 0,\n   
-        \"BossAttack.Shoot\": null,\n    \"BossAttack.Dash\": null\n}"
+        \"BossAttack.Shoot\": 0,\n    \"BossAttack.Dash\": 0\n}"
       objectReference: {fileID: 0}
     - target: {fileID: 7626238642388107312, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: __alchemySerializationData_EnemyDisplay.unityObjectReferences.Array.size
