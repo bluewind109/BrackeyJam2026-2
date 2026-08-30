@@ -11,7 +11,7 @@ namespace EnemyStates
         {
             Debug.Log("Entering Phase Transition State");
             _transitionTimer = 0f;
-
+            _enemy.EnemyDisplay.PlayTransformAnimation();
             // TODO play scream anim
             MMGameEvent.Trigger(GameDefine.BossEvents.EventName, stringParameter: GameDefine.BossEvents.State_PhaseTransition);
         }

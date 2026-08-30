@@ -28,6 +28,7 @@ namespace EnemyStates
             _currentPatternInfo = _currentStateConfig.GetRandomPatternInfo();
             Debug.Log($"Selected Pattern: <color=yellow>{_currentPatternInfo.PatternType}</color>");
             _currentPattern = PatternFactory.CreatePattern(_currentPatternInfo);
+            _enemy.EnemyDisplay.PlayPrepareAnimation();
         }
 
         public override void Exit()
@@ -56,6 +57,7 @@ namespace EnemyStates
         {
             if (_currentPattern == null) return;
 
+            _enemy.EnemyDisplay.PlayCastAnimation();
             if (_currentPattern is IStaticPattern staticPattern)
             {
                 staticPattern.Shoot(transform.position);

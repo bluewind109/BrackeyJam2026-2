@@ -8,10 +8,14 @@ public abstract class Enemy : MonoBehaviour
 
     public EnemyDisplay EnemyDisplay => _enemyDisplay;
 
+
     protected Health _health;
     private Hurtbox _hurtbox;
     private Hitbox _hitbox;
     private Player _player;
+
+    protected int _currentPhase = 1;
+    public int CurrentPhase => _currentPhase;
 
     void Awake()
     {
@@ -36,6 +40,8 @@ public abstract class Enemy : MonoBehaviour
             _hitbox.Initialize("Player");
             _hitbox.OnHit += OnHitPlayer;
         }
+
+        _enemyDisplay.Initialize(this);
     }
 
     void OnDestroy()
@@ -80,9 +86,8 @@ public abstract class Enemy : MonoBehaviour
         playerHurtbox.TakeDamage(1);
     }
 
-    private void OnDeath()
+    protected virtual void OnDeath()
     {
-
     }
 
     protected virtual void OnHealthChanged(int currentHealth)

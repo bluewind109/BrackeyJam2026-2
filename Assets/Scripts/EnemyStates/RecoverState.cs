@@ -12,6 +12,7 @@ namespace EnemyStates
 		{
             Debug.Log("Entering Recover State");
 			_recoveryTimer = 0f;
+            _enemy.EnemyDisplay.PlayIdleAnimation();
 		}
 
 		public override void Exit()

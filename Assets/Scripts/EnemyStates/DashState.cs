@@ -62,6 +62,8 @@ namespace EnemyStates
             _dashTimer = 0f;
             _shotTimer = _currentStateConfig.ShotInterval;
             _currentShotCount = 0;
+
+            _enemy.EnemyDisplay.PlayPrepareAnimation();
         }
 
         public override void Exit()
@@ -101,6 +103,7 @@ namespace EnemyStates
             _dashDirection = (_endPosition - _enemy.transform.position).normalized;
 
             MMGameEvent.Trigger(GameDefine.BossEvents.EventName, stringParameter: GameDefine.BossEvents.State_Dash_Start);
+            _enemy.EnemyDisplay.PlayCastAnimation();
         }
 
         private void UpdateDash()

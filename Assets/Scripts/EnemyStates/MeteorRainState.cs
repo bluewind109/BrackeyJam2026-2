@@ -46,6 +46,8 @@ namespace EnemyStates
                 return;
             }
 
+           _waitTimer = 0f; 
+           _enemy.EnemyDisplay.PlayCastAnimation();
             SpawnMeteorsAroundPlayer();
         }
 
