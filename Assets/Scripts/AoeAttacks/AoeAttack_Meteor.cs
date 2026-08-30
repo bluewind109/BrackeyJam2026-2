@@ -3,10 +3,13 @@ using UnityEngine;
 public class AoeAttack_Meteor : AoeAttack
 {
     [SerializeField] private SpriteRenderer _meteorSpriteRenderer;
+    [SerializeField] private ParticleSystem _impactVfxPrefab;
 
     [SerializeField] private float _fallDuration = 0.5f;
     [SerializeField] private float _baseScale = 1.0f;
     [SerializeField] private float _scaleOffset = 0.5f;
+
+    ParticleSystem _impactVfx;
 
     private float _fallTimer = 0.0f;
     private Vector3 _startPosition = new Vector3(3f, 6f, 0);
@@ -18,6 +21,11 @@ public class AoeAttack_Meteor : AoeAttack
     {
         base.Initialize(delayDuration, damage, spawnRadius);
         _fallTimer = 0.0f;
+        _impactVfx = Instantiate(_impactVfxPrefab);
+        _impactVfx.transform.position = transform.position;
+        var impactShape = _impactVfx.shape;
+        impactShape.radius = spawnRadius / 2; // Set the radius of the particle system to match the hitbox radius
+
         _meteorSpriteRenderer.gameObject.SetActive(false);
         _meteorSpriteRenderer.transform.localScale = Vector3.one * (_baseScale + Random.Range(-_scaleOffset, _scaleOffset));
     }
@@ -60,6 +68,7 @@ public class AoeAttack_Meteor : AoeAttack
             // Meteor has reached the target position, transition to persisting state
            StartPersisting();
            // TODO: Add impact effects, sound when the meteor hits the ground.
+            _impactVfx?.Play();
         }
     }
 }

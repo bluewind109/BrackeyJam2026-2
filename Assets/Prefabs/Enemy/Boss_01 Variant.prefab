@@ -987,7 +987,7 @@ PrefabInstance:
       objectReference: {fileID: 3549842154859728259}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _phaseDatas.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _attackStates.Array.size
@@ -1011,11 +1011,11 @@ PrefabInstance:
       objectReference: {fileID: 4194479015732547997}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _phaseDatas.Array.data[0]._stateData.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _phaseDatas.Array.data[1]._stateData.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _phaseDatas.Array.data[2]._stateData.Array.size
@@ -1080,7 +1080,7 @@ PrefabInstance:
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _phaseDatas.Array.data[0]._stateData.Array.data[0]._state
       value: 
-      objectReference: {fileID: 4194479015732547997}
+      objectReference: {fileID: 5919872402068557067}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _phaseDatas.Array.data[0]._stateData.Array.data[1]._state
       value: 

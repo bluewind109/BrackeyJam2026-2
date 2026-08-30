@@ -28,6 +28,7 @@ namespace EnemyStates
         private MeteorRainStateConfig _currentStateConfig;
 
         private int _positionRetryCount = 6;
+        private float _waitTimer = 0f;
 
         public override void Initialize(Enemy enemy, Player player)
         {
@@ -46,7 +47,6 @@ namespace EnemyStates
             }
 
             SpawnMeteorsAroundPlayer();
-            OnStateFinished();
         }
 
         public override void Exit()
@@ -55,6 +55,11 @@ namespace EnemyStates
 
         public override void UpdateState()
         {
+            _waitTimer += Time.deltaTime;
+            if (_waitTimer >= _currentStateConfig.BaseDelayDuration)
+            {
+                OnStateFinished();
+            }
         }
 
         private void SpawnMeteorsAroundPlayer()
