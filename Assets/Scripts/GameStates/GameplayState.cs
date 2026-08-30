@@ -1,5 +1,6 @@
 using PlayerModes;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GameStates
 {
@@ -33,6 +34,9 @@ namespace GameStates
 			_player.OnPlayerDeath += OnPlayerDeath;
 			_normalMode.FocusModeRequested += () => SwitchPlayerMode(_focusMode);
 			_focusMode.FocusModeComplete += () => SwitchPlayerMode(_normalMode);
+
+			SpellManager.Instance.OnMaxLevelReached += OnPlayerDeath;
+			_enemy.OnEnemyDeath += OnEnemyDeath;
 		}
 
 		public override void Exit()
@@ -40,6 +44,9 @@ namespace GameStates
 			_player.OnPlayerDeath -= OnPlayerDeath;
 			_normalMode.FocusModeRequested -= () => SwitchPlayerMode(_focusMode);
 			_focusMode.FocusModeComplete -= () => SwitchPlayerMode(_normalMode);
+
+			SpellManager.Instance.OnMaxLevelReached -= OnPlayerDeath;
+			_enemy.OnEnemyDeath -= OnEnemyDeath;
 		}
 
 		public override void Update()
@@ -61,6 +68,14 @@ namespace GameStates
 		{
 			Debug.Log("<color=red>Player has died! Game Over!</color>");
 			_gameManager.SetState(_gameManager.GameOverState);
+			SceneManager.LoadScene("IntroScene");
+		}
+
+		private void OnEnemyDeath()
+		{
+			Debug.Log("<color=green>Enemy has died! You Win!</color>");
+			_gameManager.SetState(_gameManager.GameOverState);
+			SceneManager.LoadScene("IntroScene");
 		}
 	}
 }
