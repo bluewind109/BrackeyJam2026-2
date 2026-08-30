@@ -13,6 +13,7 @@ public partial class PlayerDisplay : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRendererFocusVFX;
     [AlchemySerializeField, NonSerialized] private Dictionary<SpellType, Color> _spellFocusColors = new();
     [AlchemySerializeField, NonSerialized] private Dictionary<SpellType, GameObject> _maxLevelSpellVFXs = new();
+    [AlchemySerializeField, NonSerialized] private Dictionary<SpellType, GameObject> _overHeatSpellVFXs = new();
 
     private MovementState _currentState = MovementState.Idle;
 
@@ -72,6 +73,18 @@ public partial class PlayerDisplay : MonoBehaviour
         else
         {
             Debug.LogWarning($"Max level VFX for spell type {spellType} not found.");
+        }
+    }
+
+    public void TriggerOverHeatVFX(SpellType spellType)
+    {
+        if (_overHeatSpellVFXs.TryGetValue(spellType, out GameObject overHeatVFX))
+        {
+            overHeatVFX.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning($"Overheat VFX for spell type {spellType} not found.");
         }
     }
 }

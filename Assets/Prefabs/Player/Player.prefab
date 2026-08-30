@@ -9997,6 +9997,7 @@ MonoBehaviour:
   _playerDisplay: {fileID: 2180220402360086605}
   _playerStats: {fileID: 11400000, guid: 06f75a25a8b1f9d4cac247d0941fe1b7, type: 2}
   _inputHandler: {fileID: 4817366234634584827}
+  _displayContainer: {fileID: 4022069889420862849}
   _invincibilityDuration: 1
   _blinkInterval: 0.1
   focusCooldownBar: {fileID: 6289257307378002343}
@@ -10032,10 +10033,18 @@ MonoBehaviour:
       data: "[\n    {\n        \"Key\": 0,\n        \"Value\": 0\n    },\n    {\n       
         \"Key\": 1,\n        \"Value\": 1\n    },\n    {\n        \"Key\": 2,\n       
         \"Value\": 2\n    }\n]"
+    _overHeatSpellVFXs:
+      isCreated: 1
+      data: "[\n    {\n        \"Key\": 0,\n        \"Value\": 3\n    },\n    {\n       
+        \"Key\": 1,\n        \"Value\": 4\n    },\n    {\n        \"Key\": 2,\n       
+        \"Value\": 5\n    }\n]"
     unityObjectReferences:
     - {fileID: 9031351309453552789}
     - {fileID: 2902188544836006328}
     - {fileID: 3301685607058031329}
+    - {fileID: 5835068641654852604}
+    - {fileID: 6903559414225010514}
+    - {fileID: 6818468871448521904}
 --- !u!95 &4422800322199678766
 Animator:
   serializedVersion: 7

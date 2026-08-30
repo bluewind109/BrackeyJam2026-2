@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 	[SerializeField] private PlayerDisplay _playerDisplay;
 	[SerializeField] private PlayerStats _playerStats;
 	[SerializeField] private PlayerInputHandler _inputHandler;
+	[SerializeField] private GameObject _displayContainer;
 
 	[SerializeField] private float _invincibilityDuration = 1f;
 	private float _invincibilityTimer = 0f;
@@ -71,13 +72,29 @@ public class Player : MonoBehaviour
 	void Start()
 	{
 		SpellManager.Instance.OnMaxLevelReached += OnSpellMaxLevelReached;
+		SpellManager.Instance.OnOverMaxLevelReached += OnOverMaxLevelReached;
 		InitInput();
 		ClampInsideScreen();
+	}
+
+	void OnDestroy()
+	{
+		if (SpellManager.Instance != null)
+		{
+			SpellManager.Instance.OnMaxLevelReached -= OnSpellMaxLevelReached;
+			SpellManager.Instance.OnOverMaxLevelReached -= OnOverMaxLevelReached;
+		}
+		DisposeInput();
 	}
 
 	private void OnSpellMaxLevelReached(SpellType type)
 	{
 		_playerDisplay.TriggerMaxLevelVFX(type);
+	}
+
+	private void OnOverMaxLevelReached(SpellType type)
+	{
+		_playerDisplay.TriggerOverHeatVFX(type);
 	}
 
 	private void InitInput()
@@ -86,11 +103,6 @@ public class Player : MonoBehaviour
 		_inputHandler.EnableInput();
 		_inputHandler.MouseClicked += OnMouseClicked;
 		_inputHandler.InputReceived += OnInputReceived;
-	}
-
-	void OnDestroy()
-	{
-		DisposeInput();
 	}
 
 	private void DisposeInput()
@@ -175,8 +187,14 @@ public class Player : MonoBehaviour
 		targetPosition.z = 0f;
 		SpellProgressionInfo spellProgressionInfo = SpellManager.Instance.GetSpellProgressionInfo(_currentSpell.SpellType);
 		int currentLevel = spellProgressionInfo.Level;
-		_currentSpell.Cast(currentLevel, this, targetPosition);
 		spellProgressionInfo.OnCasted();
+		if (spellProgressionInfo.IsOverMaxLevel())
+		{
+			_displayContainer.gameObject.SetActive(false);
+			Debug.LogWarning($"Spell {_currentSpell.SpellType} is over max level. Cannot cast.");
+			return;
+		}
+		_currentSpell.Cast(currentLevel, this, targetPosition);
 		_currentSpell = null; // Reset the current spell after casting
 
 		_playerDisplay.PlayCastSpellAnimation();
