@@ -68,14 +68,12 @@ namespace GameStates
 		{
 			Debug.Log("<color=red>Player has died! Game Over!</color>");
 			_gameManager.SetState(_gameManager.GameOverState);
-			SceneManager.LoadScene("IntroScene");
 		}
 
 		private void OnEnemyDeath()
 		{
 			Debug.Log("<color=green>Enemy has died! You Win!</color>");
 			_gameManager.SetState(_gameManager.GameOverState);
-			SceneManager.LoadScene("IntroScene");
 		}
 	}
 }

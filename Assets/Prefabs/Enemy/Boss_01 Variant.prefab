@@ -184,6 +184,7 @@ MonoBehaviour:
   _phaseConfigs:
   - {fileID: 11400000, guid: aba309f44428055428f7a6e463d24aef, type: 2}
   - {fileID: 11400000, guid: b2bd751455313b645bd8b9d3b19a7200, type: 2}
+  - {fileID: 11400000, guid: bfa379e40eb4dea4ab3705e5b2425656, type: 2}
   _predictionLinePrefab: {fileID: 7095520720234735969, guid: 2e82f68e0d5ff9a4d927e6b2b0984529, type: 3}
 --- !u!1 &5742486627938187004
 GameObject:
@@ -232,6 +233,7 @@ MonoBehaviour:
   _phaseConfigs:
   - {fileID: 11400000, guid: da3da24c2cfe04346a59cb0851ca4c88, type: 2}
   - {fileID: 11400000, guid: 66578bca9c1179e44bbe5937c53fc2b5, type: 2}
+  - {fileID: 11400000, guid: 1e5ea18a50fb0e64a8ee9478d818760a, type: 2}
 --- !u!1 &6901176135321113537
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,6 +325,7 @@ MonoBehaviour:
   _phaseConfigs:
   - {fileID: 11400000, guid: c867586f3fc45b94688676c002451d41, type: 2}
   - {fileID: 11400000, guid: f77c809ac6c316047aaa4148255954f1, type: 2}
+  - {fileID: 11400000, guid: a1b1d4ec68100ab4fbc38c7862b01355, type: 2}
 --- !u!1 &7445563150749018732
 GameObject:
   m_ObjectHideFlags: 0
@@ -1191,11 +1194,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _phaseDatas.Array.data[1]._stateData.Array.data[0]._baseWeight
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _phaseDatas.Array.data[1]._stateData.Array.data[1]._baseWeight
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _phaseDatas.Array.data[1]._stateData.Array.data[2]._baseWeight
@@ -1207,11 +1210,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _phaseDatas.Array.data[2]._stateData.Array.data[0]._baseWeight
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _phaseDatas.Array.data[2]._stateData.Array.data[1]._baseWeight
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _phaseDatas.Array.data[2]._stateData.Array.data[2]._baseWeight

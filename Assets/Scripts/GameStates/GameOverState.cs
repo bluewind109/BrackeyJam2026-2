@@ -1,4 +1,6 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GameStates
 {
@@ -10,6 +12,7 @@ namespace GameStates
 
 		public override void Enter()
 		{
+			_ = TransitionToOutroScene();
 		}
 
 		public override void Exit()
@@ -18,6 +21,12 @@ namespace GameStates
 
 		public override void Update()
 		{
+		}
+
+		private async UniTask TransitionToOutroScene()
+		{
+			await UniTask.Delay(2000); // Wait for 2 seconds before transitioning
+			SceneManager.LoadScene("IntroScene");
 		}
 	}
 }

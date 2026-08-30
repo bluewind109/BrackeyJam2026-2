@@ -18,15 +18,15 @@ MonoBehaviour:
   _levelInfos:
   - _damage: 4
     _cooldown: 3
-    _experienceRequired: 10
+    _experienceRequired: 7
     _inputSequence: {fileID: 11400000, guid: 9a7b35ff1f12b3241b4503a743801632, type: 2}
   - _damage: 7
     _cooldown: 3
-    _experienceRequired: 15
+    _experienceRequired: 9
     _inputSequence: {fileID: 11400000, guid: bc2d76bd5d44416499ca5f0544c8de16, type: 2}
   - _damage: 9
     _cooldown: 3
-    _experienceRequired: 20
+    _experienceRequired: 11
     _inputSequence: {fileID: 11400000, guid: 22cda64517b33a34c94c774d19681c6d, type: 2}
   _projectileSpeed: 10
   _numberOfLances: 5

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 3rdPhase_MeteorRainStateConfig_1stBoss
   m_EditorClassIdentifier: Assembly-CSharp::MeteorRainStateConfig
   numberOfMeteors: 16
-  minSpawnRadius: 0.9
-  maxSpawnRadius: 2.4
+  minSpawnRadius: 4
+  maxSpawnRadius: 5
   baseDelayDuration: 1
-  spawnRadius: 1.5
+  spawnRadius: 5
   spawnDelayJitter: 0.5
   spawnStaggerMin: 0.03
   spawnStaggerMax: 0.12
