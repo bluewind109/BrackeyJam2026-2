@@ -118,7 +118,7 @@ public class SpellManager : MonoBehaviour
     {
         // TODO player die => game over
         Debug.Log("All spells have reached max level! Game Over!");
-        PlayerPrefs.SetInt("CutscentType", (int)eCutsceneType.Ending_Exploded);
+        PlayerPrefs.SetInt("CutsceneType", (int)eCutsceneType.Ending_Exploded);
         OnMaxLevelReached?.Invoke();
     }
 
