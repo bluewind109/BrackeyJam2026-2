@@ -3,6 +3,8 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
+    public event Action OnEnemyDeath;
+
     [SerializeField] protected BossStats _bossStats;
     [SerializeField] protected EnemyDisplay _enemyDisplay;
 
@@ -88,6 +90,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void OnDeath()
     {
+        OnEnemyDeath?.Invoke();
     }
 
     protected virtual void OnHealthChanged(int currentHealth)

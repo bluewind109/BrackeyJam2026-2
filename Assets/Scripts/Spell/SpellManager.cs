@@ -1,8 +1,11 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class SpellManager : MonoBehaviour
 {
+    public event Action OnMaxLevelReached;
+
     public static SpellManager Instance { get; private set; }
 
     [SerializeField] private SpellDictionary _spellDictionary;
@@ -115,6 +118,7 @@ public class SpellManager : MonoBehaviour
     {
         // TODO player die => game over
         PlayerPrefs.SetInt("CutscentType", (int)eCutsceneType.Ending_Exploded);
+        OnMaxLevelReached?.Invoke();
     }
 
     public SpellInfo GetSpellByFirstInput(InputDirection input)
