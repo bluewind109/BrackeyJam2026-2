@@ -15,6 +15,13 @@ public class Player : MonoBehaviour
 	[SerializeField] private PlayerStats _playerStats;
 	[SerializeField] private PlayerInputHandler _inputHandler;
 
+	[SerializeField] private float _invincibilityDuration = 1f;
+	private float _invincibilityTimer = 0f;
+	public bool IsInvincible => _invincibilityTimer > 0f;
+
+	[SerializeField] private float _blinkInterval = 0.1f;
+	private float _blinkTimer = 0f;
+
 	[Header("Focus Cooldown UI")]
 	[SerializeField] private GameObject focusCooldownBar;
 	[SerializeField] private Image focusCooldownFill;
@@ -44,24 +51,33 @@ public class Player : MonoBehaviour
 		{
 			_hurtbox.Initialize(_health);
 		}
+		
 	}
 
 	private void OnDeath()
 	{
 		Debug.Log("<color=red>Player has died!</color>");
-        PlayerPrefs.SetInt("CutsceneType", (int)eCutsceneType.Ending_Death);
+		PlayerPrefs.SetInt("CutsceneType", (int)eCutsceneType.Ending_Death);
 		OnPlayerDeath?.Invoke();
 	}
 
 	private void OnHealthChanged(int value)
 	{
-
+		Debug.Log($"Player health changed to {value}");
+		_hurtbox.ToggleCollider(value <= 0);
+		_invincibilityTimer = _invincibilityDuration;
 	}
 
 	void Start()
 	{
+		SpellManager.Instance.OnMaxLevelReached += OnSpellMaxLevelReached;
 		InitInput();
 		ClampInsideScreen();
+	}
+
+	private void OnSpellMaxLevelReached(SpellType type)
+	{
+		_playerDisplay.TriggerMaxLevelVFX(type);
 	}
 
 	private void InitInput()
@@ -86,6 +102,8 @@ public class Player : MonoBehaviour
 
 	public void GameUpdate()
 	{
+		UpdateInvincibilityTimer(Time.deltaTime);
+
 		if (_inputHandler)
 		{
 			_inputHandler.UpdateMouseInput();
@@ -97,6 +115,26 @@ public class Player : MonoBehaviour
 			else
 			{
 				HandleNormalModeMovement(_inputHandler.GetMovementInput());
+			}
+		}
+	}
+
+	public void UpdateInvincibilityTimer(float deltaTime)
+	{
+		if (_invincibilityTimer > 0f)
+		{
+			_blinkTimer += deltaTime;
+			if (_blinkTimer >= _blinkInterval)
+			{
+				_blinkTimer = 0f;
+				_playerDisplay.ToggleDisplay(!_playerDisplay.IsSpriteRendererVisible);
+			}
+
+			_invincibilityTimer -= deltaTime;
+			if (_invincibilityTimer < 0f)
+			{
+				_playerDisplay.ToggleDisplay(true);
+				_hurtbox.ToggleCollider(true);
 			}
 		}
 	}

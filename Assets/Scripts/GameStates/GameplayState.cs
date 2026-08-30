@@ -35,7 +35,7 @@ namespace GameStates
 			_normalMode.FocusModeRequested += () => SwitchPlayerMode(_focusMode);
 			_focusMode.FocusModeComplete += () => SwitchPlayerMode(_normalMode);
 
-			SpellManager.Instance.OnMaxLevelReached += OnPlayerDeath;
+			SpellManager.Instance.OnOverMaxLevelReached += OnPlayerDeath;
 			_enemy.OnEnemyDeath += OnEnemyDeath;
 		}
 
@@ -45,7 +45,7 @@ namespace GameStates
 			_normalMode.FocusModeRequested -= () => SwitchPlayerMode(_focusMode);
 			_focusMode.FocusModeComplete -= () => SwitchPlayerMode(_normalMode);
 
-			SpellManager.Instance.OnMaxLevelReached -= OnPlayerDeath;
+			SpellManager.Instance.OnOverMaxLevelReached -= OnPlayerDeath;
 			_enemy.OnEnemyDeath -= OnEnemyDeath;
 		}
 
