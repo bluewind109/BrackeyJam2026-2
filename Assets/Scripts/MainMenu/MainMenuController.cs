@@ -2,6 +2,9 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using Cysharp.Threading.Tasks;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -9,10 +12,13 @@ public class MainMenuController : MonoBehaviour
 
     [SerializeField] private MainMenuInput input;
     [SerializeField] private GameObject buttonsContainer;
+    [SerializeField] private Image transitionImage;
 
     private List<MainMenuButton> buttons = new List<MainMenuButton>();
     private int selectedIndex = 0;
     private int totalActions => buttons.Count;
+
+    private bool isButtonStartGamePressed = false;
 
     void Awake()
     {
@@ -83,7 +89,9 @@ public class MainMenuController : MonoBehaviour
         {
             case MainMenuActionType.StartGame:
                 Debug.Log("Start Game selected");
-                SceneManager.LoadScene("IntroScene");
+                if (isButtonStartGamePressed) return;
+                isButtonStartGamePressed = true;
+                OnButtonStartGamePressed(selectedButton).Forget();
                 break;
             case MainMenuActionType.Options:
                 Debug.Log("Options selected");
@@ -97,6 +105,22 @@ public class MainMenuController : MonoBehaviour
                 break;
         }
 
+    }
+
+    private async UniTask OnButtonStartGamePressed(MainMenuButton button)
+    {
+        Debug.Log("Start Game button pressed");
+        button.PlayTweenAlphaLoop(0.1f, 0f, 1f);
+        await UniTask.Delay(TimeSpan.FromSeconds(1f));
+        float transitionDuration = 1f;
+        PlayTweenTransitionImage(transitionDuration);
+        await UniTask.Delay(TimeSpan.FromSeconds(transitionDuration));
+        SceneManager.LoadScene("IntroScene");
+    }
+
+    private void PlayTweenTransitionImage(float duration)
+    {
+        transitionImage.DOFade(1f, duration);
     }
 
     private void OnBack()
