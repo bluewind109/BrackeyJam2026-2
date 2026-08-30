@@ -58,7 +58,7 @@ public class SpellProgressionInfo
 
 	public bool IsMaxLevel()
 	{
-		return _level >= _maxLevel;
+		return _level > _maxLevel;
 	}
 
 	public void UpdateUI(List<InputDirection> inputDirections)
