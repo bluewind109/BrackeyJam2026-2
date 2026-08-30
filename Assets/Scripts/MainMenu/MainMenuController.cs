@@ -13,6 +13,7 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private MainMenuInput input;
     [SerializeField] private GameObject buttonsContainer;
     [SerializeField] private Image transitionImage;
+    [SerializeField] private Animator slime;
 
     private List<MainMenuButton> buttons = new List<MainMenuButton>();
     private int selectedIndex = 0;
@@ -33,6 +34,7 @@ public class MainMenuController : MonoBehaviour
 
     void Start()
     {
+        slime.Play("Lv3_Idle");
         ShowMenu();
     }
 
@@ -110,6 +112,7 @@ public class MainMenuController : MonoBehaviour
     private async UniTask OnButtonStartGamePressed(MainMenuButton button)
     {
         Debug.Log("Start Game button pressed");
+        slime.Play("Lv3_Transform");
         button.PlayTweenAlphaLoop(0.1f, 0f, 1f);
         await UniTask.Delay(TimeSpan.FromSeconds(1f));
         float transitionDuration = 1f;
