@@ -21,6 +21,8 @@ public class CutsceneController : MonoBehaviour
     private eCutsceneType currentCutsceneType = eCutsceneType.Intro;
     private bool ftuePlayerChoiceMade = true;
     private bool isBlocking = true; // Prevents input during cutscenes or dialogs
+    private bool isTyping = false; // True while the current sentence is still being typed out
+    private Coroutine typeTextCoroutine;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     // [SerializeField] private eCutsceneType testCutscene = eCutsceneType.Intro;
@@ -38,14 +40,39 @@ public class CutsceneController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
         {
-            ftuePlayerChoiceMade = true;
-            NextSentence();
+            if (isTyping)
+            {
+                CompleteCurrentSentence();
+            }
+            else
+            {
+                ftuePlayerChoiceMade = true;
+                NextSentence();
+            }
         }
         if (Input.GetMouseButtonDown(1))
         {
-            ftuePlayerChoiceMade = false;
-            NextSentence();
+            if (isTyping)
+            {
+                CompleteCurrentSentence();
+            }
+            else
+            {
+                ftuePlayerChoiceMade = false;
+                NextSentence();
+            }
         }
+    }
+
+    private void CompleteCurrentSentence()
+    {
+        if (typeTextCoroutine != null)
+        {
+            StopCoroutine(typeTextCoroutine);
+            typeTextCoroutine = null;
+        }
+        dialogText.maxVisibleCharacters = dialogText.text.Length;
+        isTyping = false;
     }
 
     private void CutsceneCheck(eCutsceneType cutsceneType)
@@ -108,7 +135,7 @@ public class CutsceneController : MonoBehaviour
             if (currentSentenceData != null)
             {
                 characterNameText.text = currentSentenceData.CharacterName.ToString();
-                PlayText(dialogText, currentSentenceData.SentenceText, 0.05f);
+                PlayText(dialogText, currentSentenceData.SentenceText, 0.02f);
                 choiceMessageGameObject.SetActive(!string.IsNullOrEmpty(currentSentenceData.ChoiceMessage));
                 choiceMessageText.text = currentSentenceData.ChoiceMessage;
             }
@@ -124,7 +151,7 @@ public class CutsceneController : MonoBehaviour
             if (currentSentenceData != null)
             {
                 characterNameText.text = currentSentenceData.CharacterName.ToString();
-                PlayText(dialogText, currentSentenceData.SentenceText, 0.05f);
+                PlayText(dialogText, currentSentenceData.SentenceText, 0.02f);
                 choiceMessageGameObject.SetActive(!string.IsNullOrEmpty(currentSentenceData.ChoiceMessage));
                 choiceMessageText.text = currentSentenceData.ChoiceMessage;
             }
@@ -241,13 +268,14 @@ public class CutsceneController : MonoBehaviour
     }
 
     //TEXT
-    public void PlayText(TMP_Text textBox, string message, float speed = 0.05f)
+    public void PlayText(TMP_Text textBox, string message, float speed = 0.02f)
     {
         StopAllCoroutines();
-        StartCoroutine(TypeText(textBox, message, speed));
+        isTyping = true;
+        typeTextCoroutine = StartCoroutine(TypeText(textBox, message, speed));
     }
 
-    private IEnumerator TypeText(TMP_Text textBox, string message, float speed = 0.05f)
+    private IEnumerator TypeText(TMP_Text textBox, string message, float speed = 0.02f)
     {
         textBox.text = message;
         textBox.maxVisibleCharacters = 0;
@@ -257,5 +285,7 @@ public class CutsceneController : MonoBehaviour
             textBox.maxVisibleCharacters = i;
             yield return new WaitForSeconds(speed);
         }
+        isTyping = false;
+        typeTextCoroutine = null;
     }
 }
