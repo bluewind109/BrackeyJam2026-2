@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using Cysharp.Threading.Tasks;
 using UnityEngine.UI;
 using DG.Tweening;
-
+using MoreMountains.Feedbacks;
 public class MainMenuController : MonoBehaviour
 {
     public Action onMenuOpened;
@@ -14,6 +14,8 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private GameObject buttonsContainer;
     [SerializeField] private Image transitionImage;
     [SerializeField] private Animator slime;
+    [SerializeField] private MMFeedbacks feedbacks_roars;
+    [SerializeField] private MMFeedbacks feedbacks_enter;
 
     private List<MainMenuButton> buttons = new List<MainMenuButton>();
     private int selectedIndex = 0;
@@ -112,9 +114,12 @@ public class MainMenuController : MonoBehaviour
     private async UniTask OnButtonStartGamePressed(MainMenuButton button)
     {
         Debug.Log("Start Game button pressed");
+        feedbacks_enter?.PlayFeedbacks();
         slime.Play("Lv3_Transform");
+        feedbacks_roars?.PlayFeedbacks();
         button.PlayTweenAlphaLoop(0.1f, 0f, 1f);
         await UniTask.Delay(TimeSpan.FromSeconds(1f));
+        
         float transitionDuration = 1f;
         PlayTweenTransitionImage(transitionDuration);
         await UniTask.Delay(TimeSpan.FromSeconds(transitionDuration));
