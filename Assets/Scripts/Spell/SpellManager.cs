@@ -54,8 +54,8 @@ public class SpellManager : MonoBehaviour
             _fireBall_UIElement
         );
         _spellProgressionInfos.Add(SpellType.FireBall, fireBallProgress);
-		_fireBall_UIElement.Initialize(startLevel, fireBallLevelInfo.InputSequence.GetInputs());
-		fireBallProgress.OnLevelUp += OnSpellLevelUp;
+        _fireBall_UIElement.Initialize(startLevel, fireBallLevelInfo.InputSequence.GetInputs());
+        fireBallProgress.OnLevelUp += OnSpellLevelUp;
     }
 
     private void InitIceLancesSpellProgression(int startLevel)
@@ -114,6 +114,7 @@ public class SpellManager : MonoBehaviour
     private void OnSpellMaxLevelReached()
     {
         // TODO player die => game over
+        PlayerPrefs.SetInt("CutscentType", (int)eCutsceneType.Ending_Exploded);
     }
 
     public SpellInfo GetSpellByFirstInput(InputDirection input)
