@@ -1346,15 +1346,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7626238642388107312, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: __alchemySerializationData_EnemyDisplay._spellCasting.data
-      value: "{\n    \"BossAttack.Meteor\": 0,\n    \"BossAttack.SlamAttack\": 0,\n   
+      value: "{\n    \"BossAttack.Meteor\": 0,\n    \"BossAttack.SlamAttack\": 1,\n   
         \"BossAttack.Shoot\": 0,\n    \"BossAttack.Dash\": 0\n}"
       objectReference: {fileID: 0}
     - target: {fileID: 7626238642388107312, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: __alchemySerializationData_EnemyDisplay._spellPreparation.data
+      value: "{\n    \"BossAttack.Meteor\": 1,\n    \"BossAttack.SlamAttack\": 0,\n   
+        \"BossAttack.Shoot\": 1,\n    \"BossAttack.Dash\": 1\n}"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626238642388107312, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: __alchemySerializationData_EnemyDisplay.unityObjectReferences.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7626238642388107312, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: '__alchemySerializationData_EnemyDisplay.unityObjectReferences.Array.data[0]'
+      value: 
+      objectReference: {fileID: 3414224589378416543}
+    - target: {fileID: 7626238642388107312, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: '__alchemySerializationData_EnemyDisplay.unityObjectReferences.Array.data[1]'
+      value: 
+      objectReference: {fileID: 5702143962333698511}
+    - target: {fileID: 7626238642388107312, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: '__alchemySerializationData_EnemyDisplay.unityObjectReferences.Array.data[2]'
       value: 
       objectReference: {fileID: 3414224589378416543}
     - target: {fileID: 8304034563500000565, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
@@ -1490,6 +1503,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9d4b4211a7de21408b198801ad4809a, type: 3}
+--- !u!114 &5702143962333698511 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8139956588067974558, guid: c9d4b4211a7de21408b198801ad4809a, type: 3}
+  m_PrefabInstance: {fileID: 4599576939096552529}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6da43522623d4704e979466dc7650b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MoreMountains.Tools::MoreMountains.Feedbacks.MMF_Player
 --- !u!4 &7210803044804995248 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6612711356477316321, guid: c9d4b4211a7de21408b198801ad4809a, type: 3}

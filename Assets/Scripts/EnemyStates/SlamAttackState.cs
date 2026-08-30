@@ -22,7 +22,7 @@ namespace EnemyStates
             Debug.Log("Entering Slam Attack State");
             _waitTimer = 0f;
             _hasPlayedCastAnimation = false;
-            _enemy.EnemyDisplay.PlayPrepareAnimation();
+            _enemy.EnemyDisplay.PlayPrepareAnimation(GameDefine.BossAttackEvents.State_SlamAttack);
             ExecuteSlamAttack();
         }
 

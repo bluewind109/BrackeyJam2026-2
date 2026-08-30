@@ -28,7 +28,7 @@ namespace EnemyStates
             _currentPatternInfo = _currentStateConfig.GetRandomPatternInfo();
             Debug.Log($"Selected Pattern: <color=yellow>{_currentPatternInfo.PatternType}</color>");
             _currentPattern = PatternFactory.CreatePattern(_currentPatternInfo);
-            _enemy.EnemyDisplay.PlayPrepareAnimation();
+            _enemy.EnemyDisplay.PlayPrepareAnimation(GameDefine.BossAttackEvents.State_Shoot);
         }
 
         public override void Exit()

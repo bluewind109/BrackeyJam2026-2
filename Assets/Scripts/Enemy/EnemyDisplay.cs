@@ -9,6 +9,7 @@ public partial class EnemyDisplay : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Animator _animatorPlayer;
     [AlchemySerializeField, NonSerialized] private Dictionary<string, MMF_Player> _spellCasting = new();
+    [AlchemySerializeField, NonSerialized] private Dictionary<string, MMF_Player> _spellPreparation = new();
     private Enemy _enemy;
 
     public void Initialize(Enemy enemy)
@@ -39,10 +40,19 @@ public partial class EnemyDisplay : MonoBehaviour
         _animatorPlayer.Play(animationName);
     }
 
-    public void PlayPrepareAnimation()
+    public void PlayPrepareAnimation(string spellName)
     {
         string animationName = $"Lv{_enemy.CurrentPhase}_Skill_Prepare";
         _animatorPlayer.Play(animationName);
+
+        if (_spellPreparation.TryGetValue(spellName, out MMF_Player preparationFeedback))
+        {
+            preparationFeedback?.PlayFeedbacks();
+        }
+        else
+        {
+            Debug.LogWarning($"Preparation feedback for spell name {spellName} not found.");
+        }
     }
 
     public void PlayCastAnimation(string spellName)
@@ -56,7 +66,7 @@ public partial class EnemyDisplay : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"Casting feedback for spell name {spellName} not found.");
+            Debug.LogWarning($"Casted feedback for spell name {spellName} not found.");
         }
     }
 
