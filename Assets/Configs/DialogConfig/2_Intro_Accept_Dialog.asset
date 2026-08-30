@@ -26,10 +26,10 @@ MonoBehaviour:
     sentenceText: Use "RMB" to enter "Focus Mode".
     choiceMessage: 
   - characterName: 1
-    sentenceText: Use the arrow keys to cast those tricky elemental spells.
+    sentenceText: Use the "Arrow keys" to cast those tricky elemental spells.
     choiceMessage: 
   - characterName: 1
-    sentenceText: Once you've finished casting, use LMB to unleash the spell.
+    sentenceText: Once you've finished casting, use "LMB" to unleash the spell.
     choiceMessage: 
   - characterName: 0
     sentenceText: Sounds complicated, huh? Just get in there and give it a shot.

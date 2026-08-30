@@ -676,7 +676,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1140237173038221551, guid: 365c7d49e3621ea4ca34e69461e20a06, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 480
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 1140237173038221551, guid: 365c7d49e3621ea4ca34e69461e20a06, type: 3}
       propertyPath: m_SizeDelta.y
@@ -728,6 +728,50 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1140237173038221551, guid: 365c7d49e3621ea4ca34e69461e20a06, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846379466138177931, guid: 365c7d49e3621ea4ca34e69461e20a06, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6585934138461164182, guid: 365c7d49e3621ea4ca34e69461e20a06, type: 3}
+      propertyPath: m_text
+      value: Press ENTER to Start
+      objectReference: {fileID: 0}
+    - target: {fileID: 6585934138461164182, guid: 365c7d49e3621ea4ca34e69461e20a06, type: 3}
+      propertyPath: m_fontSize
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 6585934138461164182, guid: 365c7d49e3621ea4ca34e69461e20a06, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e55f741062838f14db0b7b11083d2203, type: 2}
+    - target: {fileID: 6585934138461164182, guid: 365c7d49e3621ea4ca34e69461e20a06, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6585934138461164182, guid: 365c7d49e3621ea4ca34e69461e20a06, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6585934138461164182, guid: 365c7d49e3621ea4ca34e69461e20a06, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6585934138461164182, guid: 365c7d49e3621ea4ca34e69461e20a06, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -6879475018425478272, guid: e55f741062838f14db0b7b11083d2203, type: 2}
+    - target: {fileID: 6585934138461164182, guid: 365c7d49e3621ea4ca34e69461e20a06, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6585934138461164182, guid: 365c7d49e3621ea4ca34e69461e20a06, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
+      objectReference: {fileID: 0}
+    - target: {fileID: 6585934138461164182, guid: 365c7d49e3621ea4ca34e69461e20a06, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8929901455048640824, guid: 365c7d49e3621ea4ca34e69461e20a06, type: 3}
@@ -891,10 +935,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game Title?
+  m_text: Can you beat this slime?
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e55f741062838f14db0b7b11083d2203, type: 2}
+  m_sharedMaterial: {fileID: -6879475018425478272, guid: e55f741062838f14db0b7b11083d2203, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1070,7 +1114,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 1
+  m_ChildAlignment: 4
   m_Spacing: 25
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
