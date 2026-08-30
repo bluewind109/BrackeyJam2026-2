@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SidewayPatternConfig
   projectileDamage: 1
   projectileSpeed: 4
-  shotInterval: 0.15
+  shotInterval: 0.1
   duration: 2

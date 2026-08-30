@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 3rdPhase_RadialPatternConfig_1stBoss_2
   m_EditorClassIdentifier: Assembly-CSharp::RadialPatternConfig
   projectileDamage: 1
-  projectileSpeed: 4.25
-  shotInterval: 0.15
-  projectilesPerShot: 12
+  projectileSpeed: 3
+  shotInterval: 0.4
+  projectilesPerShot: 20
   numberOfShots: 8

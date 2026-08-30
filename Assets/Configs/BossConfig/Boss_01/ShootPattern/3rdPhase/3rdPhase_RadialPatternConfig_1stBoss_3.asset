@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RadialPatternConfig
   projectileDamage: 1
   projectileSpeed: 4
-  shotInterval: 0.2
-  projectilesPerShot: 24
+  shotInterval: 0.5
+  projectilesPerShot: 20
   numberOfShots: 4

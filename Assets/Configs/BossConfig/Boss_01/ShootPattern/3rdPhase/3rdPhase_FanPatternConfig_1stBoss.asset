@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 3rdPhase_FanPatternConfig_1stBoss
   m_EditorClassIdentifier: Assembly-CSharp::FanPatternConfig
   projectileDamage: 1
-  projectileSpeed: 4.5
-  shotInterval: 0.2
+  projectileSpeed: 5.5
+  shotInterval: 0.15
   projectilesPerShot: 9
   spreadAngle: 60
-  numberOfShots: 6
+  numberOfShots: 8

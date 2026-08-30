@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 3rdPhase_DashStateConfig_1stBoss
   m_EditorClassIdentifier: Assembly-CSharp::DashStateConfig
   delayDuration: 1
-  dashSpeed: 12
-  dashDistance: 10
+  dashSpeed: 24
+  dashDistance: 30
   dashDuration: 2
   shotInterval: 0.125
   radialPatternConfig: {fileID: 11400000, guid: fd80e97b538d7504cbd646993f658e69, type: 2}
