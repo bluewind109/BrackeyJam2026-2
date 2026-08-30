@@ -86,9 +86,8 @@ public abstract class Enemy : MonoBehaviour
         playerHurtbox.TakeDamage(1);
     }
 
-    private void OnDeath()
+    protected virtual void OnDeath()
     {
-
     }
 
     protected virtual void OnHealthChanged(int currentHealth)

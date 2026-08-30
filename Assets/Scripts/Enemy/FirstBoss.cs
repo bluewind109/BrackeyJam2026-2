@@ -17,6 +17,7 @@ public class FirstBoss : Enemy
     [SerializeField] private EnemyState _dashState;
     [SerializeField] private EnemyState _recoverState;
     [SerializeField] private EnemyState _phaseTransitionState;
+    [SerializeField] private EnemyState _deathState;
 
     [SerializeField] private List<EnemyPhaseData> _phaseDatas = new List<EnemyPhaseData>();
 
@@ -64,6 +65,9 @@ public class FirstBoss : Enemy
         ((ShootState)_shootState).Initialize(this, player);
         ((MeteorRainState)_meteorRainState).Initialize(this, player);
         ((SlamAttackState)_slamAttackState).Initialize(this, player);
+        ((RecoverState)_recoverState).Initialize(this, player);
+        ((PhaseTransitionState)_phaseTransitionState).Initialize(this, player);
+        ((DeathState)_deathState).Initialize(this, player);
         SetState(_spawnState);
     }
 
@@ -233,5 +237,11 @@ public class FirstBoss : Enemy
     private void OnPhaseTransitionStateFinished()
     {
         SetState(_recoverState);
+    }
+
+    protected override void OnDeath()
+    {
+        base.OnDeath();
+        SetState(_deathState);
     }
 }
