@@ -8,6 +8,8 @@ namespace EnemyStates
         [SerializeField] private List<SlamAttackStateConfig> _phaseConfigs = new List<SlamAttackStateConfig>();
         private SlamAttackStateConfig _currentStateConfig;
 
+        private float _waitTimer = 0f;
+
         public override void Initialize(Enemy enemy, Player player)
         {
             base.Initialize(enemy, player);
@@ -17,8 +19,8 @@ namespace EnemyStates
         public override void Enter()
         {
             Debug.Log("Entering Slam Attack State");
+            _waitTimer = 0f;
             ExecuteSlamAttack();
-            OnStateFinished();
         }
 
         public override void Exit()
@@ -27,7 +29,11 @@ namespace EnemyStates
 
         public override void UpdateState()
         {
-            
+            _waitTimer += Time.deltaTime;
+            if (_waitTimer >= _currentStateConfig.SlamAttackDelay + _currentStateConfig.SlamAttackPersistenceDuration)
+            {
+                OnStateFinished();
+            }
         }
 
         private void ExecuteSlamAttack()
@@ -38,7 +44,7 @@ namespace EnemyStates
             }
 
             Vector3 slamAttackPosition = transform.position;
-            AoeAttack slamAttack = AoeAttackManager.Instance.SpawnAoeAttack(
+            AoeAttack slamAttack = AoeAttackManager.Instance.SpawnEarthSpikeAttack(
                 _currentStateConfig.SlamAttackDelay,
                 _currentStateConfig.SlamAttackDamage,
                 _currentStateConfig.SlamAttackRadius,

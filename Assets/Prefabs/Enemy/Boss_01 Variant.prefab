@@ -1022,6 +1022,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: _phaseDatas.Array.data[3]._stateData.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _phaseDatas.Array.data[0]._attackStates.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -1114,6 +1118,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4194479015732547997}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: _phaseDatas.Array.data[3]._stateData.Array.data[0]._state
+      value: 
+      objectReference: {fileID: 5919872402068557067}
+    - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: _phaseDatas.Array.data[3]._stateData.Array.data[1]._state
+      value: 
+      objectReference: {fileID: 6305990441899281335}
+    - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: _phaseDatas.Array.data[3]._stateData.Array.data[2]._state
+      value: 
+      objectReference: {fileID: 4144934245156963055}
+    - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: _phaseDatas.Array.data[3]._stateData.Array.data[3]._state
+      value: 
+      objectReference: {fileID: 4194479015732547997}
+    - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _phaseDatas.Array.data[0]._stateData.Array.data[0]._baseWeight
       value: 1
       objectReference: {fileID: 0}
@@ -1151,6 +1171,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _phaseDatas.Array.data[2]._stateData.Array.data[3]._baseWeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: _phaseDatas.Array.data[3]._stateData.Array.data[0]._baseWeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: _phaseDatas.Array.data[3]._stateData.Array.data[1]._baseWeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: _phaseDatas.Array.data[3]._stateData.Array.data[2]._baseWeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
+      propertyPath: _phaseDatas.Array.data[3]._stateData.Array.data[3]._baseWeight
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2954071230119703291, guid: 89f04e583b7711d48b012efa0554576c, type: 3}

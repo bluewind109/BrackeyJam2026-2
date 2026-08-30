@@ -51,7 +51,7 @@ public class AoeAttack : MonoBehaviour
         _hitbox.Initialize("Player");
     }
 
-    public void Initialize(float delayDuration, int damage, float spawnRadius)
+    public virtual void Initialize(float delayDuration, int damage, float spawnRadius)
     {
         if (_hitbox == null)
         {
@@ -92,15 +92,11 @@ public class AoeAttack : MonoBehaviour
                 UpdateDelay(Time.deltaTime);
                 break;
             case AoeState.Executing:
-                // This case is no longer used since we directly 
-                // transition to Persisting in ExecuteAoeAttack.
+                // Visualize the attack
+                UpdateExecuting(Time.deltaTime);
                 break;
             case AoeState.Persisting:
-                _persistenceTimer += Time.deltaTime;
-                if (_persistenceTimer >= _persistenceDuration)
-                {
-                    Release();
-                }
+                UpdatePersisting(Time.deltaTime);
                 break;
         }
     }
@@ -118,7 +114,26 @@ public class AoeAttack : MonoBehaviour
         }
     }
 
-    private void ExecuteAoeAttack()
+    protected virtual void UpdateExecuting(float deltaTime)
+    {
+
+    }
+
+    protected virtual void UpdatePersisting(float deltaTime)
+    {
+        _persistenceTimer += deltaTime;
+        if (_persistenceTimer >= _persistenceDuration)
+        {
+            Release();
+        }
+    }
+
+    protected virtual void ExecuteAoeAttack()
+    {
+        _currentState = AoeState.Executing;
+    }
+
+    protected virtual void StartPersisting()
     {
         DealDamageToPlayersAlreadyInside();
         _currentState = AoeState.Persisting;
