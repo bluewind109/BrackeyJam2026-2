@@ -1080,7 +1080,7 @@ PrefabInstance:
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _phaseDatas.Array.data[0]._stateData.Array.data[0]._state
       value: 
-      objectReference: {fileID: 4144934245156963055}
+      objectReference: {fileID: 4194479015732547997}
     - target: {fileID: 2926748159286087263, guid: 89f04e583b7711d48b012efa0554576c, type: 3}
       propertyPath: _phaseDatas.Array.data[0]._stateData.Array.data[1]._state
       value: 

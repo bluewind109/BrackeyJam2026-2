@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AoeAttackManager
   _aoeAttackMeteorPrefab: {fileID: 3817068244514210230, guid: 6a14ff73d4284a240b7c861bfd06418d, type: 3}
-  _aoeAttackEarthSpikePrefab: {fileID: 3817068244514210230, guid: 6a14ff73d4284a240b7c861bfd06418d, type: 3}
+  _aoeAttackEarthSpikePrefab: {fileID: 8680322754977579173, guid: 0b3c09bf24a80794282fda8bd1c45e5b, type: 3}

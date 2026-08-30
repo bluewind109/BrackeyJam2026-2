@@ -2,28 +2,28 @@ using UnityEngine;
 
 public class AoeAttack_EarthSpike : AoeAttack
 {
-    [SerializeField] private SpriteRenderer _spikeSpriteRenderer;
-    [SerializeField] private float _baseScale = 1.0f;
-    [SerializeField] private float _scaleOffset = 0.5f;
+    [SerializeField] private ParticleSystem _spikeVfxPrefab;
 
-    
+    ParticleSystem _spikeVfx;
 
     public override void Initialize(float delayDuration, int damage, float spawnRadius)
     {
         base.Initialize(delayDuration, damage, spawnRadius);
-        _spikeSpriteRenderer.gameObject.SetActive(false);
-        _spikeSpriteRenderer.transform.localScale = 
-            Vector3.one * (_baseScale + Random.Range(-_scaleOffset, _scaleOffset));
+        _spikeVfx = Instantiate(_spikeVfxPrefab);
+        _spikeVfx.transform.position = transform.position;
+        var spikeShape = _spikeVfx.shape;
+        spikeShape.radius = spawnRadius / 2; // Set the radius of the particle system to match the hitbox radius
     }
 
     protected override void ExecuteAoeAttack()
     {
-        base.ExecuteAoeAttack();
-        _spikeSpriteRenderer.gameObject.SetActive(true);
+        // Skip executing state
+        StartPersisting();
     }
 
-    private void SpawnSpikeVisuals()
+    protected override void StartPersisting()
     {
-        _spikeSpriteRenderer.gameObject.SetActive(true);
+        base.StartPersisting();
+        _spikeVfx?.Play();
     }
 }
