@@ -46,7 +46,7 @@ namespace EnemyStates
             _shotTimer = _currentStateConfig.ShotInterval;
             _currentShotCount = 0;
 
-            _enemy.EnemyDisplay.PlayPrepareAnimation();
+            _enemy.EnemyDisplay.PlayPrepareAnimation(GameDefine.BossAttackEvents.State_Dash);
         }
 
         private void ShowPredictionLine()

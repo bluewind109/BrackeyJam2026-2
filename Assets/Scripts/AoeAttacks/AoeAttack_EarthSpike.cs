@@ -1,8 +1,10 @@
 using UnityEngine;
+using MoreMountains.Feedbacks;
 
 public class AoeAttack_EarthSpike : AoeAttack
 {
     [SerializeField] private ParticleSystem _spikeVfxPrefab;
+    [SerializeField] private MMF_Player _feedback_impact;
 
     ParticleSystem _spikeVfx;
 
@@ -25,5 +27,6 @@ public class AoeAttack_EarthSpike : AoeAttack
     {
         base.StartPersisting();
         _spikeVfx?.Play();
+        _feedback_impact?.PlayFeedbacks();
     }
 }
