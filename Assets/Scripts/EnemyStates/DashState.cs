@@ -27,6 +27,9 @@ namespace EnemyStates
         {
             base.Initialize(enemy, player);
             SetPhaseConfig(0);
+            _currentPredictionLine = Instantiate(_predictionLinePrefab, _enemy.transform.position, Quaternion.identity);
+            _currentPredictionLine.transform.SetParent(_enemy.transform);
+            _currentPredictionLine.gameObject.SetActive(false);
         }
 
         public override void Enter()
@@ -37,27 +40,7 @@ namespace EnemyStates
             _endPosition = _player.transform.position;
 
             // Create a prediction line to show where the enemy will dash
-            if (_predictionLinePrefab != null)
-            {
-                _currentPredictionLine = Instantiate(_predictionLinePrefab, _enemy.transform.position, Quaternion.identity);
-                _currentPredictionLine.transform.SetParent(_enemy.transform);
-                _currentPredictionLine.transform.localPosition = Vector3.zero;
-                _currentPredictionLine.transform.localRotation = Quaternion.identity;
-
-                float dashDistance = _currentStateConfig.DashDistance;
-                // scale the prediction line to match the dash distance
-                Vector3 scale = _currentPredictionLine.transform.localScale;
-                scale.x = 2f;
-                scale.y = dashDistance;
-                _currentPredictionLine.transform.localScale = scale;
-
-                // position the prediction line to start from the enemy's position and extend in the direction of the dash
-                Vector3 directionToPlayer = (_endPosition - _enemy.transform.position).normalized;
-                _currentPredictionLine.transform.position = _enemy.transform.position + directionToPlayer * (dashDistance / 2f);
-                // rotate the prediction line to face the player
-                float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg - 90f;
-                _currentPredictionLine.transform.rotation = Quaternion.Euler(0f, 0f, angle);
-            }
+            ShowPredictionLine();
 
             _dashTimer = 0f;
             _shotTimer = _currentStateConfig.ShotInterval;
@@ -66,8 +49,31 @@ namespace EnemyStates
             _enemy.EnemyDisplay.PlayPrepareAnimation();
         }
 
+        private void ShowPredictionLine()
+        {
+            if (_predictionLinePrefab == null) return;
+            _currentPredictionLine.gameObject.SetActive(true);
+            _currentPredictionLine.transform.localPosition = Vector3.zero;
+            _currentPredictionLine.transform.localRotation = Quaternion.identity;
+
+            float dashDistance = _currentStateConfig.DashDistance;
+            // scale the prediction line to match the dash distance
+            Vector3 scale = _currentPredictionLine.transform.localScale;
+            scale.x = 2f;
+            scale.y = dashDistance;
+            _currentPredictionLine.transform.localScale = scale;
+
+            // position the prediction line to start from the enemy's position and extend in the direction of the dash
+            Vector3 directionToPlayer = (_endPosition - _enemy.transform.position).normalized;
+            _currentPredictionLine.transform.position = _enemy.transform.position + directionToPlayer * (dashDistance / 2f);
+            // rotate the prediction line to face the player
+            float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg - 90f;
+            _currentPredictionLine.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        }
+
         public override void Exit()
         {
+            _currentPredictionLine?.gameObject.SetActive(false);
         }
 
         public override void UpdateState()
