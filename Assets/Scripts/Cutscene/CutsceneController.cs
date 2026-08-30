@@ -81,42 +81,33 @@ public class CutsceneController : MonoBehaviour
         switch (cutsceneType)
         {
             case eCutsceneType.Intro:
-                isBlocking = true;
-                cutsceneScript.PlayCutscene(cutsceneType, 
-                    () => {
-                        isBlocking = false;
-                        PlayDialog(currentDialog);
-                    });
+                PlayCutscene(currentCutsceneType, 
+                () => {
+                    PlayDialog(currentDialog);
+                });
                 break;
             case eCutsceneType.Intro_Accept:
-                isBlocking = false;
                 PlayDialog(currentDialog);
                 break;
             case eCutsceneType.Intro_Refuse:
-                isBlocking = false;
-                cutsceneScript.PlayCutscene(cutsceneType, 
+                PlayCutscene(currentCutsceneType, 
                 () => {
                     PlayDialog(currentDialog);
                 });
                 break;
             case eCutsceneType.Ending_Death:
-                isBlocking = false;
-                cutsceneScript.PlayCutscene(cutsceneType, 
+                PlayCutscene(currentCutsceneType, 
                 () => {
-                    isBlocking = false;
                     PlayDialog(currentDialog);
                 });
                 break;
             case eCutsceneType.Ending_Exploded:
-                isBlocking = false;
-                cutsceneScript.PlayCutscene(cutsceneType, 
+                PlayCutscene(currentCutsceneType, 
                 () => {
-                    isBlocking = false;
                     PlayDialog(currentDialog);
                 });
                 break;
             case eCutsceneType.Ending_Win:
-                isBlocking = false;
                 PlayDialog(currentDialog);
                 break;
             default:
@@ -129,6 +120,7 @@ public class CutsceneController : MonoBehaviour
     {
         if (dialogConfig != null)
         {
+            isBlocking = false;
             dialogTextCanvasGroup.DOFade(1, 0.5f);
             currentSentenceIndex = 0;
             currentSentenceData = dialogConfig.SentenceDataList[currentSentenceIndex];
@@ -219,8 +211,7 @@ public class CutsceneController : MonoBehaviour
 
     private void OnIntroAcceptDialogFinished()
     {
-        isBlocking = true;
-        cutsceneScript.PlayCutscene(currentCutsceneType, 
+        PlayCutscene(currentCutsceneType, 
         () => {
             SceneManager.LoadScene("Game");
         });
@@ -260,10 +251,18 @@ public class CutsceneController : MonoBehaviour
 
     private void OnEndingWinDialogFinished()
     {
-        isBlocking = false;
-        cutsceneScript.PlayCutscene(currentCutsceneType, 
+        PlayCutscene(currentCutsceneType, 
         () => {
             SceneManager.LoadScene("MainMenu");
+        });
+    }
+
+    private void PlayCutscene(eCutsceneType cutsceneType, Action onCutsceneFinished = null)
+    {
+        isBlocking = true;
+        cutsceneScript.PlayCutscene(cutsceneType, 
+        () => {
+            onCutsceneFinished?.Invoke();
         });
     }
 
