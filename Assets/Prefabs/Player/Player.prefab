@@ -9997,6 +9997,8 @@ MonoBehaviour:
   _playerDisplay: {fileID: 2180220402360086605}
   _playerStats: {fileID: 11400000, guid: 06f75a25a8b1f9d4cac247d0941fe1b7, type: 2}
   _inputHandler: {fileID: 4817366234634584827}
+  _invincibilityDuration: 1
+  _blinkInterval: 0.1
   focusCooldownBar: {fileID: 6289257307378002343}
   focusCooldownFill: {fileID: 6407019396460709371}
 --- !u!114 &2180220402360086605
@@ -10011,6 +10013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad13e3a50b1df4a4b8067e7e585a0d52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDisplay
+  _displayContainer: {fileID: 4022069889420862849}
   _spriteRenderer: {fileID: 5322462700554679006}
   _animatorPlayer: {fileID: 4422800322199678766}
   _animatorVFX: {fileID: 1683762555729292774}
