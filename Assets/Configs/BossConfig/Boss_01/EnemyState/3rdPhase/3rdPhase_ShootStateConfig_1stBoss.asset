@@ -13,9 +13,15 @@ MonoBehaviour:
   m_Name: 3rdPhase_ShootStateConfig_1stBoss
   m_EditorClassIdentifier: Assembly-CSharp::ShootStateConfig
   possiblePatterns:
-  - PatternType: 0
-    Config: {fileID: 11400000, guid: 6c11c658d159e5f498c8863fadc7a37e, type: 2}
-  - PatternType: 1
-    Config: {fileID: 11400000, guid: 2727dedb515c8db47818af9fcfbbdee0, type: 2}
   - PatternType: 2
-    Config: {fileID: 11400000, guid: 1779464ce45a02b4c9272edc642ddfcb, type: 2}
+    Config: {fileID: 11400000, guid: 2f414a308da6e9d4ca0f02e4ebac6bdf, type: 2}
+  - PatternType: 2
+    Config: {fileID: 11400000, guid: ad98bd163bb9aca448029b5472a7410f, type: 2}
+  - PatternType: 2
+    Config: {fileID: 11400000, guid: e3fa9f330d148684586f91cb40fd5e98, type: 2}
+  - PatternType: 0
+    Config: {fileID: 11400000, guid: 315b487918357794aaf74f28db8867d7, type: 2}
+  - PatternType: 0
+    Config: {fileID: 11400000, guid: f98c64ff81146c1479f4b6b348579ab2, type: 2}
+  - PatternType: 0
+    Config: {fileID: 11400000, guid: 566ad0878038b0947b7dec3e3b1f6aee, type: 2}
