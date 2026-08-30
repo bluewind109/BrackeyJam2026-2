@@ -15,6 +15,13 @@ public partial class PlayerDisplay : MonoBehaviour
 
     private MovementState _currentState = MovementState.Idle;
 
+    public bool IsSpriteRendererVisible => _spriteRenderer.color.a >= 1f;
+
+    public void ToggleDisplay(bool isVisible)
+    {
+        _spriteRenderer.color = isVisible ? Color.white : new Color(1f, 1f, 1f, 0f);
+    }
+
     public void UpdateMoving(Vector2 direction)
     {
         if (direction.x > 0.1f)

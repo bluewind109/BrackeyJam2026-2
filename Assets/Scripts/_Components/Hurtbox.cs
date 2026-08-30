@@ -10,6 +10,15 @@ public class Hurtbox : MonoBehaviour
         _health = health;
     }
 
+    public void ToggleCollider(bool isEnabled)
+    {
+        Collider2D collider = GetComponent<Collider2D>();
+        if (collider != null)
+        {
+            collider.enabled = isEnabled;
+        }
+    }
+
     public void TakeDamage(int damage)
     {
         // Debug.Log($"Hurtbox took {damage} damage.");
