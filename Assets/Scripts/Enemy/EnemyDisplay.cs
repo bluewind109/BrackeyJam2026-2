@@ -52,7 +52,7 @@ public partial class EnemyDisplay : MonoBehaviour
 
         if (_spellCasting.TryGetValue(spellName, out MMF_Player castingFeedback))
         {
-            castingFeedback.PlayFeedbacks();
+            castingFeedback?.PlayFeedbacks();
         }
         else
         {
