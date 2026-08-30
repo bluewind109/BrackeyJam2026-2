@@ -15,5 +15,7 @@ MonoBehaviour:
   sentenceDataList:
   - characterName: 0
     sentenceText: Hello, I'm come here to Fight with the Slime
+    choiceMessage: 
   - characterName: 1
     sentenceText: Oke! Let's go.
+    choiceMessage: 'LMB: Accept | RMB : Decline'

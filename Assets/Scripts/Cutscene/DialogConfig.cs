@@ -43,9 +43,11 @@ public class SentenceData
 {
     [SerializeField] private eTalkingCharacter characterName;
     [SerializeField] private string sentenceText;
+    [SerializeField] private string choiceMessage;
 
     public eTalkingCharacter CharacterName => characterName;
     public string SentenceText => sentenceText;
+    public string ChoiceMessage => choiceMessage;
 }
 
 public enum eTalkingCharacter

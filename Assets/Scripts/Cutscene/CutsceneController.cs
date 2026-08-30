@@ -2,6 +2,7 @@ using UnityEngine;
 using DG.Tweening;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
 using System;
 
 public class CutsceneController : MonoBehaviour
@@ -9,6 +10,8 @@ public class CutsceneController : MonoBehaviour
     [SerializeField] private CutsceneScript cutsceneScript;
     [SerializeField] private TMP_Text characterNameText;
     [SerializeField] private TMP_Text dialogText;
+    [SerializeField] private GameObject choiceMessageGameObject;
+    [SerializeField] private TMP_Text choiceMessageText;
     [SerializeField] private CanvasGroup dialogTextCanvasGroup;
     [Header("Dialog Configs")]
     [SerializeField] private CutsceneCollection cutsceneCollection;
@@ -19,9 +22,12 @@ public class CutsceneController : MonoBehaviour
     private bool ftuePlayerChoiceMade = true;
     private bool isBlocking = true; // Prevents input during cutscenes or dialogs
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    [SerializeField] private eCutsceneType testCutscene = eCutsceneType.Intro;
     private void Start()
     {
-        currentCutsceneType = GetCutsceneType();
+        // currentCutsceneType = GetCutsceneType();
+        currentCutsceneType = testCutscene;
         CutsceneCheck(currentCutsceneType);
     }
 
@@ -64,6 +70,26 @@ public class CutsceneController : MonoBehaviour
                 isBlocking = false;
                 PlayDialog(currentDialog);
                 break;
+            case eCutsceneType.Ending_Death:
+                isBlocking = false;
+                cutsceneScript.PlayCutscene(cutsceneType, 
+                () => {
+                    isBlocking = false;
+                    PlayDialog(currentDialog);
+                });
+                break;
+            case eCutsceneType.Ending_Exploded:
+                isBlocking = false;
+                cutsceneScript.PlayCutscene(cutsceneType, 
+                () => {
+                    isBlocking = false;
+                    PlayDialog(currentDialog);
+                });
+                break;
+            case eCutsceneType.Ending_Win:
+                isBlocking = false;
+                PlayDialog(currentDialog);
+                break;
             default:
                 Debug.LogWarning($"Unhandled cutscene type: {cutsceneType}");
                 break;
@@ -81,6 +107,8 @@ public class CutsceneController : MonoBehaviour
             {
                 characterNameText.text = currentSentenceData.CharacterName.ToString();
                 PlayText(dialogText, currentSentenceData.SentenceText, 0.05f);
+                choiceMessageGameObject.SetActive(!string.IsNullOrEmpty(currentSentenceData.ChoiceMessage));
+                choiceMessageText.text = currentSentenceData.ChoiceMessage;
             }
         }
     }
@@ -95,6 +123,8 @@ public class CutsceneController : MonoBehaviour
             {
                 characterNameText.text = currentSentenceData.CharacterName.ToString();
                 PlayText(dialogText, currentSentenceData.SentenceText, 0.05f);
+                choiceMessageGameObject.SetActive(!string.IsNullOrEmpty(currentSentenceData.ChoiceMessage));
+                choiceMessageText.text = currentSentenceData.ChoiceMessage;
             }
         }
         else
@@ -126,6 +156,19 @@ public class CutsceneController : MonoBehaviour
         {
             OnIntroRefuseDialogFinished();
         }
+
+        else if (currentCutsceneType == eCutsceneType.Ending_Death)
+        {
+            OnEndingDeathDialogFinished();
+        }
+        else if (currentCutsceneType == eCutsceneType.Ending_Exploded)
+        {
+            OnEndingExplodedDialogFinished();
+        }
+        else if (currentCutsceneType == eCutsceneType.Ending_Win)
+        {
+            OnEndingWinDialogFinished();
+        }
     }
 
     private void OnIntroDialogFinished()
@@ -150,7 +193,7 @@ public class CutsceneController : MonoBehaviour
         isBlocking = true;
         cutsceneScript.PlayCutscene(currentCutsceneType, 
         () => {
-            // Load scene
+            SceneManager.LoadScene("Game");
         });
     }
 
@@ -159,7 +202,42 @@ public class CutsceneController : MonoBehaviour
         isBlocking = false;
         cutsceneScript.PlayCutscene(currentCutsceneType, 
         () => {
-            // Load scene
+            SceneManager.LoadScene("MainMenu");
+        });
+    }
+
+    private void OnEndingDeathDialogFinished()
+    {
+        isBlocking = false;
+        if (ftuePlayerChoiceMade)
+        {
+            SceneManager.LoadScene("Game");
+        }
+        else
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+    }
+
+    private void OnEndingExplodedDialogFinished()
+    {
+        isBlocking = false;
+        if (ftuePlayerChoiceMade)
+        {
+            SceneManager.LoadScene("Game");
+        }
+        else
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+    }
+
+    private void OnEndingWinDialogFinished()
+    {
+        isBlocking = false;
+        cutsceneScript.PlayCutscene(currentCutsceneType, 
+        () => {
+            SceneManager.LoadScene("MainMenu");
         });
     }
 

@@ -82,7 +82,7 @@ public class MainMenuController : MonoBehaviour
         {
             case MainMenuActionType.StartGame:
                 Debug.Log("Start Game selected");
-                SceneManager.LoadScene("Game");
+                SceneManager.LoadScene("IntroScene");
                 break;
             case MainMenuActionType.Options:
                 Debug.Log("Options selected");

@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d9b59a3a2034149a601be1f040e5d0, type: 3}
   m_Name: 4_Outro_Dead_Dialog
   m_EditorClassIdentifier: Assembly-CSharp::DialogConfig
-  sentenceDataList: []
+  sentenceDataList:
+  - characterName: 1
+    sentenceText: Dead
+    choiceMessage: 
+  - characterName: 1
+    sentenceText: Dead
+    choiceMessage: 'LMB: Retry | RMB : Back'
