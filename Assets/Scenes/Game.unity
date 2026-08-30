@@ -7730,17 +7730,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &1398223018 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8262786872554923033, guid: 5e08b43a55df19940a2a9a94406357c8, type: 3}
-  m_PrefabInstance: {fileID: 8981870796558473429}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d67e0c99f917ee448b5df75385a2dbc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerTypedInput
 --- !u!1 &1534113032
 GameObject:
   m_ObjectHideFlags: 0
@@ -7797,6 +7786,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6ed7c54ac3860438bd17158d12eda9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+--- !u!114 &1569604675 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4194479015732547997, guid: bd0e11e4f71f4974681141f5b5fa5364, type: 3}
+  m_PrefabInstance: {fileID: 8296717267584270282}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b13fd3403ec4de4d95cda9a8cd90f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStates.SlamAttackState
 --- !u!1 &1675800772
 GameObject:
   m_ObjectHideFlags: 0
@@ -7898,6 +7898,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8bfb73366b25ac44a69bd700baf9f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FocusMode_UI
+--- !u!1 &2121183700
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2121183702}
+  - component: {fileID: 2121183701}
+  m_Layer: 0
+  m_Name: Header
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2121183701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121183700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f517a64d7c9c64b32922a42317242caf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Alchemy::Alchemy.Hierarchy.HierarchyHeader
+  hierarchyObjectMode: 0
+--- !u!4 &2121183702
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121183700}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &742184776238123828
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8164,7 +8209,7 @@ PrefabInstance:
     - target: {fileID: 6607568917157083030, guid: 59c3ccce5cbaa5d46b3954736dd84b59, type: 3}
       propertyPath: _typedInput
       value: 
-      objectReference: {fileID: 1398223018}
+      objectReference: {fileID: 0}
     - target: {fileID: 6607568917157083030, guid: 59c3ccce5cbaa5d46b3954736dd84b59, type: 3}
       propertyPath: _fireBall_UIElement
       value: 
@@ -8547,6 +8592,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1198239752916706968, guid: bd0e11e4f71f4974681141f5b5fa5364, type: 3}
+      propertyPath: _phaseDatas.Array.data[0]._stateData.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198239752916706968, guid: bd0e11e4f71f4974681141f5b5fa5364, type: 3}
+      propertyPath: _phaseDatas.Array.data[0]._stateData.Array.data[0]._state
+      value: 
+      objectReference: {fileID: 1569604675}
+    - target: {fileID: 1198239752916706968, guid: bd0e11e4f71f4974681141f5b5fa5364, type: 3}
+      propertyPath: _phaseDatas.Array.data[0]._stateData.Array.data[1]._state
+      value: 
+      objectReference: {fileID: 1569604675}
     - target: {fileID: 2508329124790449268, guid: bd0e11e4f71f4974681141f5b5fa5364, type: 3}
       propertyPath: healthUI
       value: 
@@ -10468,3 +10525,4 @@ SceneRoots:
   - {fileID: 715238748}
   - {fileID: 1118088898}
   - {fileID: 1534113034}
+  - {fileID: 2121183702}
