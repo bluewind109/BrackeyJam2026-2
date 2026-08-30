@@ -10013,7 +10013,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad13e3a50b1df4a4b8067e7e585a0d52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDisplay
-  _displayContainer: {fileID: 4022069889420862849}
   _spriteRenderer: {fileID: 5322462700554679006}
   _animatorPlayer: {fileID: 4422800322199678766}
   _animatorVFX: {fileID: 1683762555729292774}
@@ -10028,7 +10027,15 @@ MonoBehaviour:
         \"a\": 1\n        }\n    },\n    {\n        \"Key\": 2,\n        \"Value\":
         {\n            \"r\": 0,\n            \"g\": 1,\n            \"b\": 0.484495,\n           
         \"a\": 1\n        }\n    }\n]"
-    unityObjectReferences: []
+    _maxLevelSpellVFXs:
+      isCreated: 1
+      data: "[\n    {\n        \"Key\": 0,\n        \"Value\": 0\n    },\n    {\n       
+        \"Key\": 1,\n        \"Value\": 1\n    },\n    {\n        \"Key\": 2,\n       
+        \"Value\": 2\n    }\n]"
+    unityObjectReferences:
+    - {fileID: 9031351309453552789}
+    - {fileID: 2902188544836006328}
+    - {fileID: 3301685607058031329}
 --- !u!95 &4422800322199678766
 Animator:
   serializedVersion: 7

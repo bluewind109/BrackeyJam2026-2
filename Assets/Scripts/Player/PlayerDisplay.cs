@@ -12,6 +12,7 @@ public partial class PlayerDisplay : MonoBehaviour
     [SerializeField] private Animator _animatorVFX;
     [SerializeField] private SpriteRenderer _spriteRendererFocusVFX;
     [AlchemySerializeField, NonSerialized] private Dictionary<SpellType, Color> _spellFocusColors = new();
+    [AlchemySerializeField, NonSerialized] private Dictionary<SpellType, GameObject> _maxLevelSpellVFXs = new();
 
     private MovementState _currentState = MovementState.Idle;
 
@@ -45,6 +46,7 @@ public partial class PlayerDisplay : MonoBehaviour
         _animatorPlayer.Play("Cast");
         _animatorVFX.Play("Cast");
     }
+
     public void TriggerFocusVFXAnimation(SpellInfo spellInfo)
     {
         if (spellInfo == null) return;
@@ -58,5 +60,18 @@ public partial class PlayerDisplay : MonoBehaviour
             _spriteRendererFocusVFX.color = Color.white; // Default color if not found
         }
         _animatorVFX.Play("Focus");
+    }
+
+    public void TriggerMaxLevelVFX(SpellType spellType)
+    {
+        if (_maxLevelSpellVFXs.TryGetValue(spellType, out GameObject maxLevelVFX))
+        {
+            maxLevelVFX.SetActive(true);
+
+        }
+        else
+        {
+            Debug.LogWarning($"Max level VFX for spell type {spellType} not found.");
+        }
     }
 }

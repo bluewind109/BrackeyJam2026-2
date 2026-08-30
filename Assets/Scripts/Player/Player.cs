@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
 		{
 			_hurtbox.Initialize(_health);
 		}
+		
 	}
 
 	private void OnDeath()
@@ -69,8 +70,14 @@ public class Player : MonoBehaviour
 
 	void Start()
 	{
+		SpellManager.Instance.OnMaxLevelReached += OnSpellMaxLevelReached;
 		InitInput();
 		ClampInsideScreen();
+	}
+
+	private void OnSpellMaxLevelReached(SpellType type)
+	{
+		_playerDisplay.TriggerMaxLevelVFX(type);
 	}
 
 	private void InitInput()

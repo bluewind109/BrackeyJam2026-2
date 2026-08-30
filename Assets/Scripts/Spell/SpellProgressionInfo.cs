@@ -58,6 +58,11 @@ public class SpellProgressionInfo
 
 	public bool IsMaxLevel()
 	{
+		return _level == _maxLevel;
+	}
+
+	public bool IsOverMaxLevel()
+	{
 		return _level > _maxLevel;
 	}
 

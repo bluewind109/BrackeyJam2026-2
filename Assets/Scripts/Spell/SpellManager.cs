@@ -4,7 +4,8 @@ using System;
 
 public class SpellManager : MonoBehaviour
 {
-    public event Action OnMaxLevelReached;
+    public event Action OnOverMaxLevelReached;
+    public event Action<SpellType> OnMaxLevelReached;
 
     public static SpellManager Instance { get; private set; }
 
@@ -101,9 +102,14 @@ public class SpellManager : MonoBehaviour
         SpellType spellType = spellProgressionInfo.SpellType;
         SpellInfo spellInfo = _spellDictionary.GetSpellByType(spellType);
         spellProgressionInfo.LevelUp();
+
         if (spellProgressionInfo.IsMaxLevel())
         {
-            OnSpellMaxLevelReached();
+            OnMaxLevelReached?.Invoke(spellType);
+        }
+        if (spellProgressionInfo.IsOverMaxLevel())
+        {
+            OnSpellOverMaxLevelReached();
             return;
         }
 
@@ -114,12 +120,12 @@ public class SpellManager : MonoBehaviour
         spellProgressionInfo.UpdateUI(inputDirections);
     }
 
-    private void OnSpellMaxLevelReached()
+    private void OnSpellOverMaxLevelReached()
     {
         // TODO player die => game over
         Debug.Log("All spells have reached max level! Game Over!");
         PlayerPrefs.SetInt("CutsceneType", (int)eCutsceneType.Ending_Exploded);
-        OnMaxLevelReached?.Invoke();
+        OnOverMaxLevelReached?.Invoke();
     }
 
     public SpellInfo GetSpellByFirstInput(InputDirection input)
