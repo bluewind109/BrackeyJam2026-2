@@ -14,8 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogConfig
   sentenceDataList:
   - characterName: 1
-    sentenceText: Win
+    sentenceText: Well, well... I didn't expect you to be this strong.
     choiceMessage: 
   - characterName: 1
-    sentenceText: Win
+    sentenceText: Congratulations on your victory!
+    choiceMessage: 
+  - characterName: 1
+    sentenceText: But...
+    choiceMessage: 
+  - characterName: 1
+    sentenceText: Without the Giant Slime, it'll be much harder to lure other souls
+      here.
+    choiceMessage: 
+  - characterName: 1
+    sentenceText: You'll make it up to me, won't you?
+    choiceMessage: 
+  - characterName: 0
+    sentenceText: ...
     choiceMessage: 

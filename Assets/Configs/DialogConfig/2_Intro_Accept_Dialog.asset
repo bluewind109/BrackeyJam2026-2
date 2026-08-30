@@ -13,7 +13,27 @@ MonoBehaviour:
   m_Name: 2_Intro_Accept_Dialog
   m_EditorClassIdentifier: Assembly-CSharp::DialogConfig
   sentenceDataList:
+  - characterName: 0
+    sentenceText: Alright, I'll be counting on you.
+    choiceMessage: 
   - characterName: 1
-    sentenceText: Goat
+    sentenceText: Very well. I'll bless you now.
+    choiceMessage: 
   - characterName: 1
-    sentenceText: Goat
+    sentenceText: I'll lend you some of my power.
+    choiceMessage: 
+  - characterName: 1
+    sentenceText: Use "RMB" to enter "Focus Mode".
+    choiceMessage: 
+  - characterName: 1
+    sentenceText: Use the arrow keys to cast those tricky elemental spells.
+    choiceMessage: 
+  - characterName: 1
+    sentenceText: Once you've finished casting, use LMB to unleash the spell.
+    choiceMessage: 
+  - characterName: 0
+    sentenceText: Sounds complicated, huh? Just get in there and give it a shot.
+    choiceMessage: 
+  - characterName: 1
+    sentenceText: Okay, I like that spirit! Let me cast the blessing first.
+    choiceMessage: 

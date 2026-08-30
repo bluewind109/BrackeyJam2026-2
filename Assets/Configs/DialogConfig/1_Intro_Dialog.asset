@@ -14,8 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogConfig
   sentenceDataList:
   - characterName: 0
-    sentenceText: Hello, I'm come here to Fight with the Slime
+    sentenceText: Hey, I want to challenge the Giant Slime.
     choiceMessage: 
   - characterName: 1
-    sentenceText: Oke! Let's go.
-    choiceMessage: 'LMB: Accept | RMB : Decline'
+    sentenceText: Sure. Just so you know, it's pretty tough.
+    choiceMessage: 
+  - characterName: 1
+    sentenceText: A lot of people have failed already, so I'll give you a hand.
+    choiceMessage: 
+  - characterName: 0
+    sentenceText: Hmm...
+    choiceMessage: 'LMB: Accept | RMB : Refuse'

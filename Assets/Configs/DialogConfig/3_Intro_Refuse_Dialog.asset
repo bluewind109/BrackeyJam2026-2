@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogConfig
   sentenceDataList:
   - characterName: 1
-    sentenceText: Chicken
+    sentenceText: So weak...
+    choiceMessage: 
   - characterName: 1
-    sentenceText: Chicken
+    sentenceText: This feeble little soul isn't even worth much...
+    choiceMessage: 

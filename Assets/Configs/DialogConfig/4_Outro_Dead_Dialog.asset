@@ -14,8 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogConfig
   sentenceDataList:
   - characterName: 1
-    sentenceText: Dead
+    sentenceText: Oh, you poor thing...
     choiceMessage: 
   - characterName: 1
-    sentenceText: Dead
+    sentenceText: I didn't realize you were this weak.
+    choiceMessage: 
+  - characterName: 1
+    sentenceText: I guess I'll just have to make do with this soul...
+    choiceMessage: 
+  - characterName: 1
+    sentenceText: Hopefully, I'll get something tastier next time.
     choiceMessage: 'LMB: Retry | RMB : Back'

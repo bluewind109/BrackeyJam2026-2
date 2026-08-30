@@ -67,7 +67,10 @@ public class CutsceneController : MonoBehaviour
                 break;
             case eCutsceneType.Intro_Refuse:
                 isBlocking = false;
-                PlayDialog(currentDialog);
+                cutsceneScript.PlayCutscene(cutsceneType, 
+                () => {
+                    PlayDialog(currentDialog);
+                });
                 break;
             case eCutsceneType.Ending_Death:
                 isBlocking = false;
@@ -199,10 +202,7 @@ public class CutsceneController : MonoBehaviour
     private void OnIntroRefuseDialogFinished()
     {
         isBlocking = false;
-        cutsceneScript.PlayCutscene(currentCutsceneType, 
-        () => {
-            SceneManager.LoadScene("MainMenu");
-        });
+        SceneManager.LoadScene("MainMenu");
     }
 
     private void OnEndingDeathDialogFinished()
