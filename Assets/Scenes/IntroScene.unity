@@ -5693,7 +5693,6 @@ MonoBehaviour:
       dialogConfig: {fileID: 11400000, guid: a13aa9e5b7ca80546bf6cd4e9a8be548, type: 2}
     - cutsceneType: 5
       dialogConfig: {fileID: 11400000, guid: ac0c9b55fad89504a8683b92dc333302, type: 2}
-  testCutscene: 5
 --- !u!1 &840498800
 GameObject:
   m_ObjectHideFlags: 0
