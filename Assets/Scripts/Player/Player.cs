@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.Tools;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
@@ -12,6 +14,10 @@ public class Player : MonoBehaviour
 	[SerializeField] private PlayerDisplay _playerDisplay;
 	[SerializeField] private PlayerStats _playerStats;
 	[SerializeField] private PlayerInputHandler _inputHandler;
+
+	[Header("Focus Cooldown UI")]
+	[SerializeField] private GameObject focusCooldownBar;
+	[SerializeField] private Image focusCooldownFill;
 
 	private Health _health;
 	private Hurtbox _hurtbox;
@@ -43,7 +49,7 @@ public class Player : MonoBehaviour
 	private void OnDeath()
 	{
 		Debug.Log("<color=red>Player has died!</color>");
-        PlayerPrefs.SetInt("CutscentType", (int)eCutsceneType.Ending_Death);
+		PlayerPrefs.SetInt("CutscentType", (int)eCutsceneType.Ending_Death);
 		OnPlayerDeath?.Invoke();
 	}
 
@@ -93,6 +99,21 @@ public class Player : MonoBehaviour
 				HandleNormalModeMovement(_inputHandler.GetMovementInput());
 			}
 		}
+	}
+
+	public void UpdateFocusCooldownUI(float fillAmount)
+	{
+		if (focusCooldownFill == null) return;
+		focusCooldownFill.fillAmount = 1f - Mathf.Clamp01(fillAmount);
+	}
+
+	public void PlayTweenPulseFocusCooldownUI()
+	{
+		if (focusCooldownFill == null) return;
+		float duration = 0.5f;
+		focusCooldownBar.transform.DOKill();
+		focusCooldownBar.transform.localScale = Vector3.one;
+		focusCooldownBar.transform.DOPunchScale(Vector3.one * 0.2f, duration, 1, 0.25f);
 	}
 
 	private void OnMouseClicked(MouseButton button)

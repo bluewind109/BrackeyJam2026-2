@@ -43,6 +43,7 @@ namespace PlayerModes
 			EnemyProjectileManager.Instance.GameUpdate();
 			AoeAttackManager.Instance.GameUpdate();
 			_focusCooldownTimer.UpdateTime();
+			_player.UpdateFocusCooldownUI(_focusCooldownTimer.GetRemainingTime() / _focusCooldown);
 		}
 
 		private void OnRightMouseClicked()
@@ -54,7 +55,7 @@ namespace PlayerModes
 
 		private void OnFocusCooldownTimerComplete()
 		{
-			
+			_player.PlayTweenPulseFocusCooldownUI();
 		}
 	}
 }
