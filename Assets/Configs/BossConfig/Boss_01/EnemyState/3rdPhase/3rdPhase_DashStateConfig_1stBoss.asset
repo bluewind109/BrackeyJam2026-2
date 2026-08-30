@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67fd2741bd40a08429e32dd1aabe1214, type: 3}
   m_Name: 3rdPhase_DashStateConfig_1stBoss
   m_EditorClassIdentifier: Assembly-CSharp::DashStateConfig
-  delayDuration: 1
+  delayDuration: 0.5
   dashSpeed: 24
   dashDistance: 30
-  dashDuration: 2
+  dashDuration: 1
   shotInterval: 0.125
   radialPatternConfig: {fileID: 11400000, guid: fd80e97b538d7504cbd646993f658e69, type: 2}
   sidewayPatternConfig: {fileID: 11400000, guid: bb6e3e8b6b17c20488be731a1a4230e9, type: 2}
