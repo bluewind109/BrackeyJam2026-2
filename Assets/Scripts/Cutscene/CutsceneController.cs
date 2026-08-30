@@ -36,7 +36,7 @@ public class CutsceneController : MonoBehaviour
         if (isBlocking)
             return;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
         {
             ftuePlayerChoiceMade = true;
             NextSentence();
