@@ -23,11 +23,10 @@ public class CutsceneController : MonoBehaviour
     private bool isBlocking = true; // Prevents input during cutscenes or dialogs
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    [SerializeField] private eCutsceneType testCutscene = eCutsceneType.Intro;
+    // [SerializeField] private eCutsceneType testCutscene = eCutsceneType.Intro;
     private void Start()
     {
-        // currentCutsceneType = GetCutsceneType();
-        currentCutsceneType = testCutscene;
+        currentCutsceneType = GetCutsceneType();
         CutsceneCheck(currentCutsceneType);
     }
 

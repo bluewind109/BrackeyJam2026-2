@@ -17,6 +17,7 @@ public class MainMenuController : MonoBehaviour
     void Awake()
     {
         buttons = new List<MainMenuButton>(buttonsContainer.GetComponentsInChildren<MainMenuButton>());
+        PlayerPrefs.SetInt("CutsceneType", 0);
 
         if (buttons.Count > 0)
         {
