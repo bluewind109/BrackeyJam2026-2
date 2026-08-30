@@ -14,8 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogConfig
   sentenceDataList:
   - characterName: 1
-    sentenceText: Explode
+    sentenceText: Oh, you poor thing...
     choiceMessage: 
   - characterName: 1
-    sentenceText: Explode
+    sentenceText: You never realized that using too much elemental magic
+    choiceMessage: 
+  - characterName: 1
+    sentenceText: could trigger such a severe reaction.
+    choiceMessage: 
+  - characterName: 1
+    sentenceText: And now your soul is overflowing with energy...
+    choiceMessage: 
+  - characterName: 1
+    sentenceText: How delicious.
     choiceMessage: 'LMB: Retry | RMB : Back'

@@ -5631,6 +5631,8 @@ PlayableDirector:
     value: {fileID: 5168091428730090120}
   - key: {fileID: 4790908076535109412, guid: 57fcccc004a41cc438b8611923e16550, type: 2}
     value: {fileID: 308750637}
+  - key: {fileID: -4042278846834661327, guid: 478fb452a49e2d14a9b4d47af5e6d5bf, type: 2}
+    value: {fileID: 7611305505151724070}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &585194062
@@ -5691,7 +5693,6 @@ MonoBehaviour:
       dialogConfig: {fileID: 11400000, guid: a13aa9e5b7ca80546bf6cd4e9a8be548, type: 2}
     - cutsceneType: 5
       dialogConfig: {fileID: 11400000, guid: ac0c9b55fad89504a8683b92dc333302, type: 2}
-  testCutscene: 5
 --- !u!1 &840498800
 GameObject:
   m_ObjectHideFlags: 0
@@ -11858,6 +11859,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2945408445151723747}
   - component: {fileID: 2027211006467817289}
+  - component: {fileID: 7611305505151724070}
   m_Layer: 0
   m_Name: CharacterDisplay
   m_TagString: Untagged
@@ -11865,6 +11867,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!95 &7611305505151724070
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7611305505151724069}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8004467228777402303
 GameObject:
   m_ObjectHideFlags: 0
