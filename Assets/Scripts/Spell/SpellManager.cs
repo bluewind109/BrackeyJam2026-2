@@ -117,7 +117,7 @@ public class SpellManager : MonoBehaviour
     private void OnSpellMaxLevelReached()
     {
         // TODO player die => game over
-        PlayerPrefs.SetInt("CutscentType", (int)eCutsceneType.Ending_Exploded);
+        PlayerPrefs.SetInt("CutsceneType", (int)eCutsceneType.Ending_Exploded);
         OnMaxLevelReached?.Invoke();
     }
 

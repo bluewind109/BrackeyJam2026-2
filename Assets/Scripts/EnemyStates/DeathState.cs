@@ -8,7 +8,7 @@ namespace EnemyStates
         {
             Debug.Log("Entering Death State");
             _enemy.EnemyDisplay.PlayIdleAnimation();
-            PlayerPrefs.SetInt("CutscentType", (int)eCutsceneType.Ending_Win);
+            PlayerPrefs.SetInt("CutsceneType", (int)eCutsceneType.Ending_Win);
         }
 
         public override void Exit()

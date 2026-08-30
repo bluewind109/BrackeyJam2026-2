@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
 	private void OnDeath()
 	{
 		Debug.Log("<color=red>Player has died!</color>");
-        PlayerPrefs.SetInt("CutscentType", (int)eCutsceneType.Ending_Death);
+        PlayerPrefs.SetInt("CutsceneType", (int)eCutsceneType.Ending_Death);
 		OnPlayerDeath?.Invoke();
 	}
 
