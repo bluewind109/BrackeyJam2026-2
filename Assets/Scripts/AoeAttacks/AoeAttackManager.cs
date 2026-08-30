@@ -5,11 +5,14 @@ public class AoeAttackManager : MonoBehaviour
 {
     public static AoeAttackManager Instance { get; private set; }
 
-    [SerializeField] private AoeAttack _aoeAttackPrefab;
+    [SerializeField] private AoeAttack _aoeAttackMeteorPrefab;
+    [SerializeField] private AoeAttack _aoeAttackEarthSpikePrefab;
 
-    private List<AoeAttack> _attackPool = new List<AoeAttack>();
+    private List<AoeAttack> _meteorPool = new List<AoeAttack>();
+    private List<AoeAttack> _earthSpikePool = new List<AoeAttack>();
 
-    private const int POOL_SIZE = 20;
+    private const int METEOR_POOL_SIZE = 15;
+    private const int EARTH_SPIKE_POOL_SIZE = 2;
 
     private bool _isInitialized = false;
     public bool IsInitialized => _isInitialized;
@@ -42,27 +45,79 @@ public class AoeAttackManager : MonoBehaviour
 
     private void InitializePool()
     {
-        for (int i = 0; i < POOL_SIZE; i++)
+        for (int i = 0; i < METEOR_POOL_SIZE; i++)
         {
-            CreateNewAttack();
+            CreateNewMeteorAttack();
+        }
+        for (int i = 0; i < EARTH_SPIKE_POOL_SIZE; i++)
+        {
+            CreateNewEarthSpikeAttack();
         }
     }
 
-    private AoeAttack CreateNewAttack()
+    private AoeAttack CreateNewMeteorAttack()
     {
-        var newAttack = Instantiate(_aoeAttackPrefab, transform);
+        var newAttack = Instantiate(_aoeAttackMeteorPrefab, transform);
         newAttack.gameObject.SetActive(false);
-        _attackPool.Add(newAttack);
+        _meteorPool.Add(newAttack);
         return newAttack;
     }
 
-    public AoeAttack SpawnAoeAttack(
+    private AoeAttack CreateNewEarthSpikeAttack()
+    {
+        var newAttack = Instantiate(_aoeAttackEarthSpikePrefab, transform);
+        newAttack.gameObject.SetActive(false);
+        _earthSpikePool.Add(newAttack);
+        return newAttack;
+    }
+
+    public AoeAttack SpawnMeteorAttack(
+        float delayDuration, 
+        int damage, 
+        float spawnRadius,
+        Vector3 spawnPosition,
+        Vector3 directionToTarget)
+    {
+        var attack = GetFreeMeteorAttack();
+        if (attack != null)
+        {
+            attack.transform.position = spawnPosition;
+            if (attack is AoeAttack_Meteor meteorAttack)
+            {
+                meteorAttack.SetDirectionToTarget(directionToTarget);
+            }
+            attack.Initialize(delayDuration, damage, spawnRadius);
+            return attack;
+        }
+        return null;
+    }
+
+    public AoeAttack GetFreeMeteorAttack()
+    {
+        foreach (var attack in _meteorPool)
+        {
+            if (!attack.gameObject.activeInHierarchy)
+            {
+                return attack;
+            }
+        }
+
+        if (_aoeAttackMeteorPrefab == null)
+        {
+            Debug.LogError("AoeAttack Meteor prefab is not assigned in AoeAttackManager.");
+            return null;
+        }
+        var newAttack = CreateNewMeteorAttack();
+        return newAttack;
+    }
+
+    public AoeAttack SpawnEarthSpikeAttack(
         float delayDuration, 
         int damage, 
         float spawnRadius,
         Vector3 position)
     {
-        var attack = GetFreeAttack();
+        var attack = GetFreeEarthSpikeAttack();
         if (attack != null)
         {
             attack.transform.position = position;
@@ -72,9 +127,9 @@ public class AoeAttackManager : MonoBehaviour
         return null;
     }
 
-    public AoeAttack GetFreeAttack()
+    public AoeAttack GetFreeEarthSpikeAttack()
     {
-        foreach (var attack in _attackPool)
+        foreach (var attack in _earthSpikePool)
         {
             if (!attack.gameObject.activeInHierarchy)
             {
@@ -82,18 +137,23 @@ public class AoeAttackManager : MonoBehaviour
             }
         }
 
-        if (_aoeAttackPrefab == null)
+        if (_aoeAttackEarthSpikePrefab == null)
         {
-            Debug.LogError("AoeAttack prefab is not assigned in AoeAttackManager.");
+            Debug.LogError("AoeAttack Earth Spike prefab is not assigned in AoeAttackManager.");
             return null;
         }
-        var newAttack = CreateNewAttack();
+        var newAttack = CreateNewEarthSpikeAttack();
         return newAttack;
     }
 
     public void GameUpdate()
     {
-        foreach (var attack in _attackPool)
+        foreach (var attack in _meteorPool)
+        {
+            if (!attack.gameObject.activeSelf) continue;
+            attack.GameUpdate();
+        }
+        foreach (var attack in _earthSpikePool)
         {
             if (!attack.gameObject.activeSelf) continue;
             attack.GameUpdate();

@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1215468599141279576}
-  - component: {fileID: 1493725163063362029}
   m_Layer: 0
   m_Name: AoeAttack
   m_TagString: Untagged
@@ -35,19 +34,6 @@ Transform:
   - {fileID: 6196228218752427194}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1493725163063362029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 538915579155901971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c41a2e21b6201944fa984a8ea388e422, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AoeAttack
-  predictionZone: {fileID: 7954885705684472889}
 --- !u!1 &3002807508820894745
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +112,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1675016143
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 89f6a89826231f5449f4c766ecc62025, type: 3}
@@ -218,7 +204,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1675016143
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 772dec38efea16d4f88f6263a0768cdb, type: 3}

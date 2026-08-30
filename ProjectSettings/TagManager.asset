@@ -61,6 +61,9 @@ TagManager:
   - name: Projectile
     uniqueID: 2528463939
     locked: 0
+  - name: AoeAttack
+    uniqueID: 1590780863
+    locked: 0
   m_RenderingLayers:
   - Default
   m_MigratedRenderPipelines: []

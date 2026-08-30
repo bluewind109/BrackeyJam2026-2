@@ -28,7 +28,7 @@ namespace EnemyStates
         private MeteorRainStateConfig _currentStateConfig;
 
         private int _positionRetryCount = 6;
-        
+
         public override void Initialize(Enemy enemy, Player player)
         {
             base.Initialize(enemy, player);
@@ -72,12 +72,19 @@ namespace EnemyStates
             }
 
             Vector3 playerPosition = _player.transform.position;
+            Vector3 directionToPlayer = (playerPosition - _enemy.transform.position).normalized;
             List<Vector3> existingSpawnPositions = new List<Vector3>(_currentStateConfig.NumberOfMeteors);
             float accumulatedStagger = 0f;
 
             float centerRandomDelay = Random.Range(0f, Mathf.Max(0f, _currentStateConfig.SpawnDelayJitter));
             float centerDelayDuration = Mathf.Max(0f, _currentStateConfig.BaseDelayDuration + centerRandomDelay);
-            AoeAttackManager.Instance.SpawnAoeAttack(centerDelayDuration, _currentStateConfig.MeteorDamage, _currentStateConfig.SpawnRadius, playerPosition);
+            AoeAttackManager.Instance.SpawnMeteorAttack(
+                centerDelayDuration, 
+                _currentStateConfig.MeteorDamage, 
+                _currentStateConfig.SpawnRadius, 
+                playerPosition, 
+                directionToPlayer
+            );
             existingSpawnPositions.Add(playerPosition);
 
             for (int i = 1; i < _currentStateConfig.NumberOfMeteors; i++)
@@ -87,8 +94,13 @@ namespace EnemyStates
 
                 float randomDelay = Random.Range(0f, Mathf.Max(0f, _currentStateConfig.SpawnDelayJitter));
                 float delayDuration = Mathf.Max(0f, _currentStateConfig.BaseDelayDuration + randomDelay + accumulatedStagger);
-                AoeAttackManager.Instance.SpawnAoeAttack(delayDuration, _currentStateConfig.MeteorDamage, _currentStateConfig.SpawnRadius, spawnPosition);
-
+                AoeAttackManager.Instance.SpawnMeteorAttack(
+                    delayDuration, 
+                    _currentStateConfig.MeteorDamage, 
+                    _currentStateConfig.SpawnRadius, 
+                    spawnPosition,
+                    directionToPlayer
+                );
                 float staggerStep = Random.Range(
                     Mathf.Max(0f, _currentStateConfig.SpawnStaggerMin),
                     Mathf.Max(_currentStateConfig.SpawnStaggerMin, _currentStateConfig.SpawnStaggerMax));

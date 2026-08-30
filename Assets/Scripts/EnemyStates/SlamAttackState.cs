@@ -38,7 +38,7 @@ namespace EnemyStates
             }
 
             Vector3 slamAttackPosition = transform.position;
-            AoeAttack slamAttack = AoeAttackManager.Instance.SpawnAoeAttack(
+            AoeAttack slamAttack = AoeAttackManager.Instance.SpawnEarthSpikeAttack(
                 _currentStateConfig.SlamAttackDelay,
                 _currentStateConfig.SlamAttackDamage,
                 _currentStateConfig.SlamAttackRadius,

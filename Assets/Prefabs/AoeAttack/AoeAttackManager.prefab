@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba19db0b4c8898849838a6b6db7aecab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AoeAttackManager
-  _aoeAttackPrefab: {fileID: 1493725163063362029, guid: f42317504a36e124ca01a624ab165b25, type: 3}
+  _aoeAttackMeteorPrefab: {fileID: 3817068244514210230, guid: 6a14ff73d4284a240b7c861bfd06418d, type: 3}
+  _aoeAttackEarthSpikePrefab: {fileID: 3817068244514210230, guid: 6a14ff73d4284a240b7c861bfd06418d, type: 3}
