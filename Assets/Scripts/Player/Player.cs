@@ -142,6 +142,8 @@ public class Player : MonoBehaviour
 		_currentSpell = null; // Reset the current spell after casting
 
 		_playerDisplay.PlayCastSpellAnimation();
+
+		MMGameEvent.Trigger(GameDefine.SpellEvents.OnSpellFinish);
 	}
 
 	private void HandleRightClick()
@@ -205,6 +207,8 @@ public class Player : MonoBehaviour
 				OnSpellTyped?.Invoke();
 
 				_playerDisplay.TriggerFocusVFXAnimation(_spellToType);
+
+				MMGameEvent.Trigger(GameDefine.SpellEvents.OnSpellFinish, intParameter: (int)_spellToType.SpellType);
 
 				MMGameEvent.Trigger(GameDefine.FocusModeEvents.EventName, stringParameter: GameDefine.FocusModeEvents.State_Success);
 			}

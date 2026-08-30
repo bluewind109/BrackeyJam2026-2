@@ -53,5 +53,7 @@ public enum SpellType
 {
 	FireBall,
 	IceLances,
-	WindStep
+	WindStep,
+
+	None = 9999
 }
