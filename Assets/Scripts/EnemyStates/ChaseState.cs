@@ -12,6 +12,7 @@ namespace EnemyStates
         {
             Debug.Log("Entering Chase State");
             _chaseTimer = 0f;
+            _enemy.EnemyDisplay.PlayIdleAnimation();
         }
 
         public override void Exit()

@@ -201,6 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDisplay
   _spriteRenderer: {fileID: 5976554279991328066}
+  _animatorPlayer: {fileID: 143969426254036046}
 --- !u!95 &143969426254036046
 Animator:
   serializedVersion: 7

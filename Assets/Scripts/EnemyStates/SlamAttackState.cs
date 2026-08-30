@@ -9,6 +9,7 @@ namespace EnemyStates
         private SlamAttackStateConfig _currentStateConfig;
 
         private float _waitTimer = 0f;
+        private bool _hasPlayedCastAnimation = false;
 
         public override void Initialize(Enemy enemy, Player player)
         {
@@ -20,6 +21,8 @@ namespace EnemyStates
         {
             Debug.Log("Entering Slam Attack State");
             _waitTimer = 0f;
+            _hasPlayedCastAnimation = false;
+            _enemy.EnemyDisplay.PlayPrepareAnimation();
             ExecuteSlamAttack();
         }
 
@@ -30,6 +33,12 @@ namespace EnemyStates
         public override void UpdateState()
         {
             _waitTimer += Time.deltaTime;
+            if (_waitTimer >= _currentStateConfig.SlamAttackDelay && !_hasPlayedCastAnimation)
+            {
+                _enemy.EnemyDisplay.PlayCastAnimation();
+                _hasPlayedCastAnimation = true;
+            }
+            
             if (_waitTimer >= _currentStateConfig.SlamAttackDelay + _currentStateConfig.SlamAttackPersistenceDuration)
             {
                 OnStateFinished();

@@ -27,7 +27,6 @@ public class FirstBoss : Enemy
     private const float HEALTH_THRESHOLD_PHASE_3 = 2f / 5f;
 
     private EnemyState _currentState;
-    private int _currentPhase = 1;
 
     void Start()
     {
