@@ -7786,17 +7786,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6ed7c54ac3860438bd17158d12eda9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
---- !u!114 &1569604675 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4194479015732547997, guid: bd0e11e4f71f4974681141f5b5fa5364, type: 3}
-  m_PrefabInstance: {fileID: 8296717267584270282}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b13fd3403ec4de4d95cda9a8cd90f89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyStates.SlamAttackState
 --- !u!1 &1675800772
 GameObject:
   m_ObjectHideFlags: 0
@@ -8592,18 +8581,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1198239752916706968, guid: bd0e11e4f71f4974681141f5b5fa5364, type: 3}
-      propertyPath: _phaseDatas.Array.data[0]._stateData.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1198239752916706968, guid: bd0e11e4f71f4974681141f5b5fa5364, type: 3}
-      propertyPath: _phaseDatas.Array.data[0]._stateData.Array.data[0]._state
-      value: 
-      objectReference: {fileID: 1569604675}
-    - target: {fileID: 1198239752916706968, guid: bd0e11e4f71f4974681141f5b5fa5364, type: 3}
-      propertyPath: _phaseDatas.Array.data[0]._stateData.Array.data[1]._state
-      value: 
-      objectReference: {fileID: 1569604675}
     - target: {fileID: 2508329124790449268, guid: bd0e11e4f71f4974681141f5b5fa5364, type: 3}
       propertyPath: healthUI
       value: 
