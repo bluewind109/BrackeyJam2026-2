@@ -40,9 +40,8 @@ MonoBehaviour:
     - line: '|   accelerometerFrequency: 60'
     - line: '|   companyName: DefaultCompany'
     - line: '|   productName: BrackeyJam2026-2'
-    - line: '|   defaultCursor: {fileID: 2800000, guid: 9465f36fde6a9014387eb18115b4f30b,
-        type: 3}'
-    - line: '|   cursorHotspot: {x: 16, y: 16}'
+    - line: '|   defaultCursor: {instanceID: 0}'
+    - line: '|   cursorHotspot: {x: 0, y: 0}'
     - line: '|   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b:
         0.1254902, a: 1}'
     - line: '|   m_ShowUnitySplashScreen: 1'
@@ -176,7 +175,7 @@ MonoBehaviour:
     - line: '|   loadStoreDebugModeEnabled: 0'
     - line: '|   visionOSBundleVersion: 1.0'
     - line: '|   tvOSBundleVersion: 1.0'
-    - line: '|   bundleVersion: 1.04'
+    - line: '|   bundleVersion: 1.06'
     - line: '|   preloadedAssets:'
     - line: '|   - {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100,
         type: 3}'
