@@ -4,7 +4,7 @@ using TMPro;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System;
-
+using MoreMountains.Feedbacks;
 public class CutsceneController : MonoBehaviour
 {
     [SerializeField] private CutsceneScript cutsceneScript;
@@ -15,6 +15,8 @@ public class CutsceneController : MonoBehaviour
     [SerializeField] private CanvasGroup dialogTextCanvasGroup;
     [Header("Dialog Configs")]
     [SerializeField] private CutsceneCollection cutsceneCollection;
+
+    [SerializeField] private MMF_Player feedbacks_typing;
     private int currentSentenceIndex = 0;
     DialogConfig currentDialog;
     private SentenceData currentSentenceData;
@@ -283,6 +285,11 @@ public class CutsceneController : MonoBehaviour
         {
             textBox.maxVisibleCharacters = i;
             yield return new WaitForSeconds(speed);
+
+            if(i % 5 == 0 && i > 0)
+            {
+                feedbacks_typing?.PlayFeedbacks();
+            }
         }
         isTyping = false;
         typeTextCoroutine = null;
