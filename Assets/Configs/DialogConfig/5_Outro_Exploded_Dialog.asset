@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d9b59a3a2034149a601be1f040e5d0, type: 3}
   m_Name: 5_Outro_Exploded_Dialog
   m_EditorClassIdentifier: Assembly-CSharp::DialogConfig
-  sentenceDataList: []
+  sentenceDataList:
+  - characterName: 1
+    sentenceText: Explode
+    choiceMessage: 
+  - characterName: 1
+    sentenceText: Explode
+    choiceMessage: 'LMB: Retry | RMB : Back'

@@ -17,6 +17,7 @@ public class MainMenuController : MonoBehaviour
     void Awake()
     {
         buttons = new List<MainMenuButton>(buttonsContainer.GetComponentsInChildren<MainMenuButton>());
+        PlayerPrefs.SetInt("CutsceneType", 0);
 
         if (buttons.Count > 0)
         {
@@ -82,7 +83,7 @@ public class MainMenuController : MonoBehaviour
         {
             case MainMenuActionType.StartGame:
                 Debug.Log("Start Game selected");
-                SceneManager.LoadScene("Game");
+                SceneManager.LoadScene("IntroScene");
                 break;
             case MainMenuActionType.Options:
                 Debug.Log("Options selected");
