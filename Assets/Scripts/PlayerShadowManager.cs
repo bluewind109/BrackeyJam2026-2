@@ -45,8 +45,9 @@ public class PlayerShadowManager : MonoBehaviour
 
     public void GameUpdate()
     {
-        foreach (var shadow in _playerShadows)
+        for (int i = _playerShadows.Count - 1; i >= 0; i--)
         {
+            var shadow = _playerShadows[i];
             if (shadow != null && shadow.gameObject.activeInHierarchy)
             {
                 shadow.GameUpdate();
